@@ -8,7 +8,6 @@ buildscript {
     }
 
     dependencies {
-        //compile 'com.google.protobuf:protobuf-lite:3.0.0'
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.0'
     }
 }
@@ -46,6 +45,7 @@ dependencies {
     })
     testCompile 'junit:junit:4.12'
     compile 'com.google.protobuf:protobuf-lite:3.0.0'
+    compile 'com.koushikdutta.async:androidasync:2.1.9'
 }
 
 protobuf {
