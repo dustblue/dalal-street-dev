@@ -1,4 +1,17 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.protobuf'
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        //compile 'com.google.protobuf:protobuf-lite:3.0.0'
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.0'
+    }
+}
 
 android {
     compileSdkVersion 25
@@ -17,6 +30,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            proto {
+                srcDir 'src/main/proto'
+            }
+        }
+    }
 }
 
 dependencies {
@@ -25,4 +45,28 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testCompile 'junit:junit:4.12'
+    compile 'com.google.protobuf:protobuf-lite:3.0.0'
+}
+
+protobuf {
+    // Configure the protoc executable
+    protoc {
+        // Download from repositories
+        artifact = 'com.google.protobuf:protoc:3.0.0'
+    }
+    plugins {
+        javalite {
+            // The codegen for lite comes as a separate artifact
+            artifact = 'com.google.protobuf:protoc-gen-javalite:3.0.0'
+        }
+    }
+    generatedFilesBaseDir = "$projectDir/src/main/java/protobuild"
+    generateProtoTasks {
+        all().each { task ->
+            task.plugins {
+                javalite {
+                }
+            }
+        }
+    }
 }
