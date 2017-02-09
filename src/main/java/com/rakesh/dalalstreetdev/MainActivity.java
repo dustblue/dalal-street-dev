@@ -1,53 +1,121 @@
 package com.rakesh.dalalstreetdev;
 
 import android.app.Activity;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.Objects;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.koushikdutta.async.ByteBufferList;
+import com.koushikdutta.async.DataEmitter;
+import com.koushikdutta.async.callback.CompletedCallback;
+import com.koushikdutta.async.callback.DataCallback;
+import com.koushikdutta.async.http.AsyncHttpClient;
+import com.koushikdutta.async.http.WebSocket;
+
+import dalalstreet.socketapi.DalalMessageOuterClass;
+import dalalstreet.socketapi.actions.Login;
 
 public class MainActivity extends Activity {
 
-    TextView tresponse;
-    EditText addr;
-    EditText prt;
+    private EditText mAddr;
+    private EditText mPrt;
+    String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tresponse = (TextView)findViewById(R.id.textView2);
-        addr = (EditText)findViewById(R.id.editText);
-        prt = (EditText)findViewById(R.id.editText2);
+        mAddr = (EditText)findViewById(R.id.editText);
+        mPrt = (EditText)findViewById(R.id.editText2);
         Button go = (Button) findViewById(R.id.button);
+
+        final AsyncHttpClient.WebSocketConnectCallback mWebSocketConnectCallback = new AsyncHttpClient.WebSocketConnectCallback() {
+            @Override
+            public void onCompleted(Exception ex, WebSocket webSocket) {
+                Log.e(TAG, "onConnected");
+                if (ex != null) {
+                    ex.printStackTrace();
+                    return;
+                }
+                DalalMessageOuterClass.DalalMessage dalalMess = DalalMessageOuterClass.DalalMessage.newBuilder().
+                        setRequestWrapper(DalalMessageOuterClass.RequestWrapper.newBuilder().
+                                setLoginRequest(Login.LoginRequest.newBuilder().setEmail("106115092@nitt.edu").
+                                        setPassword("Mymail@27").build()).build()).build();
+
+                String s = dalalMess.toString();
+                Log.e(TAG, "Sent Message : " + s);
+
+                webSocket.send(dalalMess.toByteArray());
+                webSocket.setStringCallback(new WebSocket.StringCallback() {
+                    @Override
+                    public void onStringAvailable(String s) {
+                        Log.e(TAG, s);
+                        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                webSocket.setDataCallback(new DataCallback() {
+                    public void onDataAvailable(DataEmitter emitter, ByteBufferList byteBufferList) {
+                        try {
+                            DalalMessageOuterClass.DalalMessage dalalMessage =
+                                    DalalMessageOuterClass.DalalMessage.parseFrom(byteBufferList.getAllByteArray());
+
+                            //String s = dalalMessage.getMessageTypeCase().toString();
+                            String s = dalalMessage.toString();
+                            Log.e(TAG, "Received Message : " + s);
+                            //Toast.makeText(getApplicationContext(), "Message type = " + s, Toast.LENGTH_SHORT).show();
+                        } catch (InvalidProtocolBufferException e) {
+                            e.printStackTrace();
+                        }
+                        byteBufferList.recycle();
+                    }
+                });
+                webSocket.setClosedCallback(new CompletedCallback() {
+                    @Override
+                    public void onCompleted(Exception ex) {
+                        if(ex != null) throw new RuntimeException(ex);
+                        Log.e(TAG, "Successfully closed connection");
+                    }
+                });
+
+                webSocket.setEndCallback(new CompletedCallback() {
+                    @Override
+                    public void onCompleted(Exception ex) {
+                        if(ex != null) throw new RuntimeException(ex);
+                        Log.e(TAG, "Successfully ended connection");
+                    }
+                });
+            }
+        };
+        final AsyncHttpClient mAsyncHttpClient = AsyncHttpClient.getDefaultInstance();
 
         go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                asyncTask asyncTask = new asyncTask(addr.getText().toString(), Integer.parseInt(prt.getText().toString()));
-                asyncTask.execute();
+                String hostAddress = "http://" + mAddr.getText().toString() + ":" + Integer.parseInt(mPrt.getText().toString()) + "/ws";
+                Toast.makeText(getApplicationContext(), "Connecting to : " + hostAddress, Toast.LENGTH_SHORT).show();
+                mAsyncHttpClient.websocket(hostAddress, null, mWebSocketConnectCallback);
             }
         });
 
     }
-    public class asyncTask extends AsyncTask<Void, Void, Void> {
+    /*public static Object deserialize(byte[] data) throws IOException, ClassNotFoundException {
+        ByteArrayInputStream in = new ByteArrayInputStream(data);
+        ObjectInputStream is = new ObjectInputStream(in);
+        return is.readObject();
+    }*/
+/*    public class asyncTask extends AsyncTask<Void, Void, Void> {
 
         private String mAddress;
         private int mPort;
         private String response = "";
 
-        asyncTask(String addr, int port){
-            mAddress = addr;
+        asyncTask(String mAddr, int port){
+            mAddress = mAddr;
             mPort = port;
         }
 
@@ -93,10 +161,10 @@ public class MainActivity extends Activity {
 
         @Override
         protected void onPostExecute(Void result) {
-            tresponse.setText(response);
+            mResponse.setText(response);
             super.onPostExecute(result);
         }
 
     }
-
+*/
 }
