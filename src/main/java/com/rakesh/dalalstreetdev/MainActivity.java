@@ -6,8 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.koushikdutta.async.ByteBufferList;
@@ -18,7 +16,17 @@ import com.koushikdutta.async.http.AsyncHttpClient;
 import com.koushikdutta.async.http.WebSocket;
 
 import dalalstreet.socketapi.DalalMessageOuterClass;
+import dalalstreet.socketapi.actions.BuyStocksFromExchange;
+import dalalstreet.socketapi.actions.CancelAskOrder;
+import dalalstreet.socketapi.actions.CancelBidOrder;
 import dalalstreet.socketapi.actions.Login;
+import dalalstreet.socketapi.actions.Logout;
+import dalalstreet.socketapi.actions.MortgageStocks;
+import dalalstreet.socketapi.actions.PlaceAskOrder;
+import dalalstreet.socketapi.actions.PlaceBidOrder;
+import dalalstreet.socketapi.actions.RetrieveMortgageStocks;
+import dalalstreet.socketapi.actions.Subscribe;
+import dalalstreet.socketapi.actions.Unsubscribe;
 
 public class MainActivity extends Activity {
 
@@ -42,32 +50,80 @@ public class MainActivity extends Activity {
                     ex.printStackTrace();
                     return;
                 }
+
+                //TODO Send Req Wrappers here
+                //Default Login req wrapper
+                Login.LoginRequest loginRequest = Login.LoginRequest.
+                        newBuilder().setEmail("106115092@nitt.edu").
+                        setPassword("password").build();
                 DalalMessageOuterClass.DalalMessage dalalMess = DalalMessageOuterClass.DalalMessage.newBuilder().
                         setRequestWrapper(DalalMessageOuterClass.RequestWrapper.newBuilder().
-                                setLoginRequest(Login.LoginRequest.newBuilder().setEmail("106115092@nitt.edu").
-                                        setPassword("Mymail@27").build()).build()).build();
-
-                String s = dalalMess.toString();
-                Log.e(TAG, "Sent Message : " + s);
+                                setLoginRequest(loginRequest).build()).build();
 
                 webSocket.send(dalalMess.toByteArray());
-                webSocket.setStringCallback(new WebSocket.StringCallback() {
-                    @Override
-                    public void onStringAvailable(String s) {
-                        Log.e(TAG, s);
-                        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
-                    }
-                });
+                Log.e(TAG, "Sent Message : " + dalalMess.toString());
+
+                //Callback Handling
                 webSocket.setDataCallback(new DataCallback() {
                     public void onDataAvailable(DataEmitter emitter, ByteBufferList byteBufferList) {
                         try {
                             DalalMessageOuterClass.DalalMessage dalalMessage =
                                     DalalMessageOuterClass.DalalMessage.parseFrom(byteBufferList.getAllByteArray());
+                            Log.e(TAG, "Received Message : " + dalalMessage.toString());
 
-                            //String s = dalalMessage.getMessageTypeCase().toString();
-                            String s = dalalMessage.toString();
-                            Log.e(TAG, "Received Message : " + s);
-                            //Toast.makeText(getApplicationContext(), "Message type = " + s, Toast.LENGTH_SHORT).show();
+                            //If Response wrapper
+                            if(dalalMessage.getMessageTypeCase().getNumber()==2) {
+                                int id = dalalMessage.getResponseWrapper().getResponseCase().getNumber();
+                                switch (id) {
+                                    //TODO Define below functions in models
+                                    case 3:
+                                        buy_stocks_from_exchange_response(dalalMessage.getResponseWrapper().
+                                                getBuyStocksFromExchangeResponse());
+                                        break;
+                                    case 4:
+                                        cancel_ask_order_response(dalalMessage.getResponseWrapper().
+                                                getCancelAskOrderResponse());
+                                        break;
+                                    case 5:
+                                        cancel_bid_order_response(dalalMessage.getResponseWrapper().
+                                                getCancelBidOrderResponse());
+                                        break;
+                                    case 6:
+                                        login_response(dalalMessage.getResponseWrapper().
+                                                getLoginResponse());
+                                        break;
+                                    case 7:
+                                        logout_response(dalalMessage.getResponseWrapper().
+                                                getLogoutResponse());
+                                        break;
+                                    case 8:
+                                        mortgage_stocks_response(dalalMessage.getResponseWrapper().
+                                                getMortgageStocksResponse());
+                                        break;
+                                    case 9:
+                                        place_ask_order_response(dalalMessage.getResponseWrapper().
+                                                getPlaceAskOrderResponse());
+                                        break;
+                                    case 10:
+                                        place_bid_order_response(dalalMessage.getResponseWrapper().
+                                                getPlaceBidOrderResponse());
+                                        break;
+                                    case 11:
+                                        retrieve_mortgage_stocks_response(dalalMessage.getResponseWrapper().
+                                                getRetrieveMortgageStocksResponse());
+                                        break;
+                                    case 12:
+                                        subscribe_response(dalalMessage.getResponseWrapper().
+                                                getSubscribeResponse());
+                                        break;
+                                    case 13:
+                                        unsubscribe_response(dalalMessage.getResponseWrapper().
+                                                getUnsubscribeResponse());
+                                        break;
+                                    default: break;
+                                }
+                            }
+
                         } catch (InvalidProtocolBufferException e) {
                             e.printStackTrace();
                         }
@@ -97,74 +153,120 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 String hostAddress = "http://" + mAddr.getText().toString() + ":" + Integer.parseInt(mPrt.getText().toString()) + "/ws";
-                Toast.makeText(getApplicationContext(), "Connecting to : " + hostAddress, Toast.LENGTH_SHORT).show();
                 mAsyncHttpClient.websocket(hostAddress, null, mWebSocketConnectCallback);
             }
         });
 
     }
-    /*public static Object deserialize(byte[] data) throws IOException, ClassNotFoundException {
-        ByteArrayInputStream in = new ByteArrayInputStream(data);
-        ObjectInputStream is = new ObjectInputStream(in);
-        return is.readObject();
-    }*/
-/*    public class asyncTask extends AsyncTask<Void, Void, Void> {
 
-        private String mAddress;
-        private int mPort;
-        private String response = "";
+    //Implementation of the Response functions
+    //To be implemented in models
 
-        asyncTask(String mAddr, int port){
-            mAddress = mAddr;
-            mPort = port;
+    void buy_stocks_from_exchange_response(BuyStocksFromExchange.BuyStocksFromExchangeResponse buyStocksFromExchangeResponse) {
+        switch (buyStocksFromExchangeResponse.getResponseCase().getNumber()) {
+            case 1: Log.e(TAG, "Buy Success, Trading Price : " + buyStocksFromExchangeResponse.getResult().getTradingPrice());
+            case 2: Log.e(TAG, "Not Enough Cash Error : " + buyStocksFromExchangeResponse.getNotEnoughCashError().getReason());
+            case 3: Log.e(TAG, "Buy Limit Exceeded Error : " + buyStocksFromExchangeResponse.getBuyLimitExceededError().getReason());
+            case 4: Log.e(TAG, "Bad Request Error : " + buyStocksFromExchangeResponse.getBadRequestError().getReason());
+            case 5: Log.e(TAG, "Internal Server Error : " + buyStocksFromExchangeResponse.getInternalServerError().getReason());
         }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-
-            Socket socket = null;
-
-            try {
-                socket = new Socket(mAddress, mPort);
-
-                ByteArrayOutputStream byteArrayOutputStream =
-                        new ByteArrayOutputStream(1024);
-                byte[] buffer = new byte[1024];
-
-                int bytesRead;
-                InputStream inputStream = socket.getInputStream();
-
-                while ((bytesRead = inputStream.read(buffer)) != -1){
-                    byteArrayOutputStream.write(buffer, 0, bytesRead);
-                    response += byteArrayOutputStream.toString("UTF-8");
-                    if (Objects.equals(response, ""))
-                        response = "Success!";
-                }
-
-            } catch (UnknownHostException e) {
-                e.printStackTrace();
-                response = "UnknownHostException: " + e.toString();
-            } catch (IOException e) {
-                e.printStackTrace();
-                response = "IOException: " + e.toString();
-            } finally{
-                if(socket != null){
-                    try {
-                        socket.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            mResponse.setText(response);
-            super.onPostExecute(result);
-        }
-
     }
-*/
+
+    void cancel_ask_order_response(CancelAskOrder.CancelAskOrderResponse cancelAskOrderResponse) {
+        switch (cancelAskOrderResponse.getResponseCase().getNumber()) {
+            case 1: if (cancelAskOrderResponse.getResult().getSuccess())
+                        Log.e(TAG, "Cancel Ask Order Success");
+            case 2: Log.e(TAG, "Invalid Ask Id Error : " + cancelAskOrderResponse.getInvalidAskIdError().getReason());
+            case 3: Log.e(TAG, "Bad Request Error : " + cancelAskOrderResponse.getBadRequestError().getReason());
+            case 4: Log.e(TAG, "Internal Server Error : " + cancelAskOrderResponse.getInternalServerError().getReason());
+        }
+    }
+
+    void cancel_bid_order_response(CancelBidOrder.CancelBidOrderResponse cancelBidOrderResponse) {
+        switch (cancelBidOrderResponse.getResponseCase().getNumber()) {
+            case 1: if (cancelBidOrderResponse.getResult().getSuccess())
+                Log.e(TAG, "Cancel Ask Order Success");
+            case 2: Log.e(TAG, "Invalid Bid Id Error : " + cancelBidOrderResponse.getInvalidBidIdError().getReason());
+            case 3: Log.e(TAG, "Bad Request Error : " + cancelBidOrderResponse.getBadRequestError().getReason());
+            case 4: Log.e(TAG, "Internal Server Error : " + cancelBidOrderResponse.getInternalServerError().getReason());
+        }
+    }
+
+    void login_response(Login.LoginResponse loginResponse) {
+        switch (loginResponse.getResponseCase().getNumber()) {
+            case 1: Log.e(TAG, "Login Success, Session Id : " + loginResponse.getResult().getSessionId());
+            case 2: Log.e(TAG, "Invalid Credentials Error : " + loginResponse.getInvalidCredentialsError().getReason());
+            case 3: Log.e(TAG, "Bad Request Error : " + loginResponse.getBadRequestError().getReason());
+            case 4: Log.e(TAG, "Internal Server Error : " + loginResponse.getInternalServerError().getReason());
+        }
+    }
+
+    void logout_response(Logout.LogoutResponse logoutResponse) {
+        switch (logoutResponse.getResponseCase().getNumber()) {
+            case 1: if (logoutResponse.getResult().getSuccess())
+                Log.e(TAG, "Logout Success");
+            case 2: Log.e(TAG, "Bad Request Error : " + logoutResponse.getBadRequestError().getReason());
+            case 3: Log.e(TAG, "Internal Server Error : " + logoutResponse.getInternalServerError().getReason());
+        }
+    }
+
+    void mortgage_stocks_response(MortgageStocks.MortgageStocksResponse mortgageStocksResponse) {
+        switch (mortgageStocksResponse.getResponseCase().getNumber()) {
+            case 1: if (mortgageStocksResponse.getResult().getSuccess())
+                        Log.e(TAG, "Mortgage Stocks Success, Trading Price : " + mortgageStocksResponse.getResult().getTradingPrice());
+            case 2: Log.e(TAG, "Not Enough Stocks Error : " + mortgageStocksResponse.getNotEnoughStocksError().getReason());
+            case 3: Log.e(TAG, "Bad Request Error : " + mortgageStocksResponse.getBadRequestError().getReason());
+            case 4: Log.e(TAG, "Internal Server Error : " + mortgageStocksResponse.getInternalServerError().getReason());
+        }
+    }
+
+    void place_ask_order_response(PlaceAskOrder.PlaceAskOrderResponse placeAskOrderResponse) {
+        switch (placeAskOrderResponse.getResponseCase().getNumber()) {
+            case 1: Log.e(TAG, "Ask Order Success, Ask id : " + placeAskOrderResponse.getResult().getAskId());
+            case 2: Log.e(TAG, "Ask Limit Exceeded Error : " + placeAskOrderResponse.getAskLimitExceededError().getReason());
+            case 3: Log.e(TAG, "Not Enough Stocks Error : " + placeAskOrderResponse.getNotEnoughStocksError().getReason());
+            case 4: Log.e(TAG, "Bad Request Error : " + placeAskOrderResponse.getBadRequestError().getReason());
+            case 5: Log.e(TAG, "Internal Server Error : " + placeAskOrderResponse.getInternalServerError().getReason());
+        }
+    }
+
+    void place_bid_order_response(PlaceBidOrder.PlaceBidOrderResponse placeBidOrderResponse) {
+        switch (placeBidOrderResponse.getResponseCase().getNumber()) {
+            case 1: Log.e(TAG, "Bid Order Success, Ask id : " + placeBidOrderResponse.getResult().getBidId());
+            case 2: Log.e(TAG, "Bid Limit Exceeded Error : " + placeBidOrderResponse.getBidLimitExceededError().getReason());
+            case 3: Log.e(TAG, "Not Enough Cash Error : " + placeBidOrderResponse.getNotEnoughCashError().getReason());
+            case 4: Log.e(TAG, "Bad Request Error : " + placeBidOrderResponse.getBadRequestError().getReason());
+            case 5: Log.e(TAG, "Internal Server Error : " + placeBidOrderResponse.getInternalServerError().getReason());
+        }
+    }
+
+    void retrieve_mortgage_stocks_response(RetrieveMortgageStocks.RetrieveMortgageStocksResponse retrieveMortgageStocksResponse) {
+        switch (retrieveMortgageStocksResponse.getResponseCase().getNumber()) {
+            case 1: if (retrieveMortgageStocksResponse.getResult().getSuccess())
+                Log.e(TAG, "Mortgage Stocks Success, Trading Price : " + retrieveMortgageStocksResponse.getResult().getTradingPrice());
+            case 2: Log.e(TAG, "Not Enough Stocks Error : " + retrieveMortgageStocksResponse.getNotEnoughStocksError().getReason());
+            case 3: Log.e(TAG, "Not Enough Cash Error : " + retrieveMortgageStocksResponse.getNotEnoughCashError().getReason());
+            case 4: Log.e(TAG, "Bad Request Error : " + retrieveMortgageStocksResponse.getBadRequestError().getReason());
+            case 5: Log.e(TAG, "Internal Server Error : " + retrieveMortgageStocksResponse.getInternalServerError().getReason());
+        }
+    }
+
+    void subscribe_response(Subscribe.SubscribeResponse subscribeResponse) {
+        switch (subscribeResponse.getResponseCase().getNumber()) {
+            case 1: if (subscribeResponse.getResult().getSuccess())
+                Log.e(TAG, "Subscribe Success");
+            case 2: Log.e(TAG, "Bad Request Error : " + subscribeResponse.getBadRequestError().getReason());
+            case 3: Log.e(TAG, "Internal Server Error : " + subscribeResponse.getInternalServerError().getReason());
+        }
+    }
+
+    void unsubscribe_response(Unsubscribe.UnsubscribeResponse unsubscribeResponse) {
+        switch (unsubscribeResponse.getResponseCase().getNumber()) {
+            case 1: if (unsubscribeResponse.getResult().getSuccess())
+                Log.e(TAG, "Unsubscribe Success");
+            case 2: Log.e(TAG, "Bad Request Error : " + unsubscribeResponse.getBadRequestError().getReason());
+            case 3: Log.e(TAG, "Internal Server Error : " + unsubscribeResponse.getInternalServerError().getReason());
+        }
+    }
+
 }
