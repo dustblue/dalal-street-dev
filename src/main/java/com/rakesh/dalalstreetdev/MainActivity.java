@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
                 Login.LoginRequest loginRequest = Login.LoginRequest.
                         newBuilder().setEmail("106115092@nitt.edu").
                         setPassword("password").build();
-                DalalMessageOuterClass.DalalMessage dalalMess = DalalMessageOuterClass.DalalMessage.newBuilder().
+                final DalalMessageOuterClass.DalalMessage dalalMess = DalalMessageOuterClass.DalalMessage.newBuilder().
                         setRequestWrapper(DalalMessageOuterClass.RequestWrapper.newBuilder().
                                 setLoginRequest(loginRequest).build()).build();
 
@@ -73,55 +73,7 @@ public class MainActivity extends Activity {
 
                             //If Response wrapper
                             if(dalalMessage.getMessageTypeCase().getNumber()==2) {
-                                int id = dalalMessage.getResponseWrapper().getResponseCase().getNumber();
-                                switch (id) {
-                                    //TODO Define below functions in models
-                                    case 3:
-                                        buy_stocks_from_exchange_response(dalalMessage.getResponseWrapper().
-                                                getBuyStocksFromExchangeResponse());
-                                        break;
-                                    case 4:
-                                        cancel_ask_order_response(dalalMessage.getResponseWrapper().
-                                                getCancelAskOrderResponse());
-                                        break;
-                                    case 5:
-                                        cancel_bid_order_response(dalalMessage.getResponseWrapper().
-                                                getCancelBidOrderResponse());
-                                        break;
-                                    case 6:
-                                        login_response(dalalMessage.getResponseWrapper().
-                                                getLoginResponse());
-                                        break;
-                                    case 7:
-                                        logout_response(dalalMessage.getResponseWrapper().
-                                                getLogoutResponse());
-                                        break;
-                                    case 8:
-                                        mortgage_stocks_response(dalalMessage.getResponseWrapper().
-                                                getMortgageStocksResponse());
-                                        break;
-                                    case 9:
-                                        place_ask_order_response(dalalMessage.getResponseWrapper().
-                                                getPlaceAskOrderResponse());
-                                        break;
-                                    case 10:
-                                        place_bid_order_response(dalalMessage.getResponseWrapper().
-                                                getPlaceBidOrderResponse());
-                                        break;
-                                    case 11:
-                                        retrieve_mortgage_stocks_response(dalalMessage.getResponseWrapper().
-                                                getRetrieveMortgageStocksResponse());
-                                        break;
-                                    case 12:
-                                        subscribe_response(dalalMessage.getResponseWrapper().
-                                                getSubscribeResponse());
-                                        break;
-                                    case 13:
-                                        unsubscribe_response(dalalMessage.getResponseWrapper().
-                                                getUnsubscribeResponse());
-                                        break;
-                                    default: break;
-                                }
+                                parseResponseWrapper(dalalMessage.getResponseWrapper());
                             }
 
                         } catch (InvalidProtocolBufferException e) {
@@ -157,6 +109,45 @@ public class MainActivity extends Activity {
             }
         });
 
+    }
+
+    void parseResponseWrapper(DalalMessageOuterClass.ResponseWrapper responseWrapper) {
+        switch (responseWrapper.getResponseCase().getNumber()) {
+            case 3:
+                buy_stocks_from_exchange_response(responseWrapper.getBuyStocksFromExchangeResponse());
+                break;
+            case 4:
+                cancel_ask_order_response(responseWrapper.getCancelAskOrderResponse());
+                break;
+            case 5:
+                cancel_bid_order_response(responseWrapper.getCancelBidOrderResponse());
+                break;
+            case 6:
+                login_response(responseWrapper.getLoginResponse());
+                break;
+            case 7:
+                logout_response(responseWrapper.getLogoutResponse());
+                break;
+            case 8:
+                mortgage_stocks_response(responseWrapper.getMortgageStocksResponse());
+                break;
+            case 9:
+                place_ask_order_response(responseWrapper.getPlaceAskOrderResponse());
+                break;
+            case 10:
+                place_bid_order_response(responseWrapper.getPlaceBidOrderResponse());
+                break;
+            case 11:
+                retrieve_mortgage_stocks_response(responseWrapper.getRetrieveMortgageStocksResponse());
+                break;
+            case 12:
+                subscribe_response(responseWrapper.getSubscribeResponse());
+                break;
+            case 13:
+                unsubscribe_response(responseWrapper.getUnsubscribeResponse());
+                break;
+            default: break;
+        }
     }
 
     //Implementation of the Response functions
