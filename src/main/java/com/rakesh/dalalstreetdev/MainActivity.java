@@ -19,6 +19,14 @@ import dalalstreet.socketapi.DalalMessageOuterClass;
 import dalalstreet.socketapi.actions.BuyStocksFromExchange;
 import dalalstreet.socketapi.actions.CancelAskOrder;
 import dalalstreet.socketapi.actions.CancelBidOrder;
+import dalalstreet.socketapi.actions.GetCompanyProfile;
+import dalalstreet.socketapi.actions.GetLeaderboard;
+import dalalstreet.socketapi.actions.GetMarketEvents;
+import dalalstreet.socketapi.actions.GetMortgageDetails;
+import dalalstreet.socketapi.actions.GetMyAsks;
+import dalalstreet.socketapi.actions.GetMyBids;
+import dalalstreet.socketapi.actions.GetNotifications;
+import dalalstreet.socketapi.actions.GetTransactions;
 import dalalstreet.socketapi.actions.Login;
 import dalalstreet.socketapi.actions.Logout;
 import dalalstreet.socketapi.actions.MortgageStocks;
@@ -113,6 +121,7 @@ public class MainActivity extends Activity {
 
     void parseResponseWrapper(DalalMessageOuterClass.ResponseWrapper responseWrapper) {
         switch (responseWrapper.getResponseCase().getNumber()) {
+            case 0: break; //Response not set
             case 3:
                 buy_stocks_from_exchange_response(responseWrapper.getBuyStocksFromExchangeResponse());
                 break;
@@ -146,6 +155,30 @@ public class MainActivity extends Activity {
             case 13:
                 unsubscribe_response(responseWrapper.getUnsubscribeResponse());
                 break;
+            case 14:
+                get_company_profile(responseWrapper.getGetCompanyProfileResponse());
+                break;
+            case 15:
+                get_market_events(responseWrapper.getGetMarketEventsResponse());
+                break;
+            case 16:
+                get_my_asks(responseWrapper.getGetMyAsksResponse());
+                break;
+            case 17:
+                get_my_bids(responseWrapper.getGetMyBidsResponse());
+                break;
+            case 18:
+                get_notifications(responseWrapper.getGetNotificationsResponse());
+                break;
+            case 19:
+                get_transactions(responseWrapper.getGetTransactionsResponse());
+                break;
+            case 20:
+                get_mortgage_details(responseWrapper.getGetMortgageDetailsResponse());
+                break;
+            case 21:
+                get_leaderboard(responseWrapper.getGetLeaderboardResponse());
+                break;
             default: break;
         }
     }
@@ -153,9 +186,100 @@ public class MainActivity extends Activity {
     //Implementation of the Response functions
     //To be implemented in models
 
+    private void get_leaderboard(GetLeaderboard.GetLeaderboardResponse getLeaderboardResponse) {
+        switch(getLeaderboardResponse.getResponseCase().getNumber()) {
+            case 1: Log.e(TAG, "Got Company profile : " + getLeaderboardResponse.getResult().getMyRank()
+                    + getLeaderboardResponse.getResult().getRankListCount() + getLeaderboardResponse.getResult().getRankListMap());
+            case 2:
+                Log.e(TAG, "Bad Request Error : " + getLeaderboardResponse.getBadRequestError().getReason());
+            case 3:
+                Log.e(TAG, "Internal Server Error : " + getLeaderboardResponse.getInternalServerError().getReason());
+        }
+    }
+
+    private void get_mortgage_details(GetMortgageDetails.GetMortgageDetailsResponse getMortgageDetailsResponse) {
+        switch(getMortgageDetailsResponse.getResponseCase().getNumber()) {
+            case 1: Log.e(TAG, "Got Company profile : " + getMortgageDetailsResponse.getResult().getMortgageMapCount()
+                    + getMortgageDetailsResponse.getResult().getMortgageMapCount());
+            case 2:
+                Log.e(TAG, "Bad Request Error : " + getMortgageDetailsResponse.getBadRequestError().getReason());
+            case 3:
+                Log.e(TAG, "Internal Server Error : " + getMortgageDetailsResponse.getInternalServerError().getReason());
+        }
+    }
+
+    private void get_transactions(GetTransactions.GetTransactionsResponse getTransactionsResponse) {
+        switch(getTransactionsResponse.getResponseCase().getNumber()) {
+            case 1: Log.e(TAG, "Got Company profile : " + getTransactionsResponse.getResult().getMoreExists()
+                    + getTransactionsResponse.getResult().getTransactionsMapCount());
+            case 2:
+                Log.e(TAG, "Bad Request Error : " + getTransactionsResponse.getBadRequestError().getReason());
+            case 3:
+                Log.e(TAG, "Internal Server Error : " + getTransactionsResponse.getInternalServerError().getReason());
+        }
+    }
+
+    private void get_notifications(GetNotifications.GetNotificationsResponse getNotificationsResponse) {
+        switch(getNotificationsResponse.getResponseCase().getNumber()) {
+            case 1: Log.e(TAG, "Got Company profile : " + getNotificationsResponse.getResult().getMoreExists()
+                    + getNotificationsResponse.getResult().getNotificationsCount()
+                    + getNotificationsResponse.getResult().getNotificationsMap());
+            case 2:
+                Log.e(TAG, "Bad Request Error : " + getNotificationsResponse.getBadRequestError().getReason());
+            case 3:
+                Log.e(TAG, "Internal Server Error : " + getNotificationsResponse.getInternalServerError().getReason());
+        }
+    }
+
+    private void get_my_bids(GetMyBids.GetMyBidsResponse getMyBidsResponse) {
+        switch(getMyBidsResponse.getResponseCase().getNumber()) {
+            case 1: Log.e(TAG, "Got Company profile : " + getMyBidsResponse.getResult().getMoreExists()
+                    + getMyBidsResponse.getResult().getClosedBidOrdersCount()
+                    + getMyBidsResponse.getResult().getOpenBidOrdersCount());
+            case 2:
+                Log.e(TAG, "Bad Request Error : " + getMyBidsResponse.getBadRequestError().getReason());
+            case 3:
+                Log.e(TAG, "Internal Server Error : " + getMyBidsResponse.getInternalServerError().getReason());
+        }
+    }
+
+    private void get_my_asks(GetMyAsks.GetMyAsksResponse getMyAsksResponse) {
+        switch(getMyAsksResponse.getResponseCase().getNumber()) {
+            case 1: Log.e(TAG, "Got Company profile : " + getMyAsksResponse.getResult().getMoreExists()
+                    + getMyAsksResponse.getResult().getClosedAskOrdersCount()
+                    + getMyAsksResponse.getResult().getClosedAskOrdersMap());
+            case 2:
+                Log.e(TAG, "Bad Request Error : " + getMyAsksResponse.getBadRequestError().getReason());
+            case 3:
+                Log.e(TAG, "Internal Server Error : " + getMyAsksResponse.getInternalServerError().getReason());
+        }
+    }
+
+    private void get_market_events(GetMarketEvents.GetMarketEventsResponse getMarketEventsResponse) {
+        switch(getMarketEventsResponse.getResponseCase().getNumber()) {
+            case 1: Log.e(TAG, "Got Company profile : " + getMarketEventsResponse.getResult().getMarketEventsCount()
+                    + getMarketEventsResponse.getResult().getMarketEventsMap());
+            case 2:
+                Log.e(TAG, "Bad Request Error : " + getMarketEventsResponse.getBadRequestError().getReason());
+            case 3:
+                Log.e(TAG, "Internal Server Error : " + getMarketEventsResponse.getInternalServerError().getReason());
+        }
+    }
+
+    void get_company_profile(GetCompanyProfile.GetCompanyProfileResponse getCompanyProfileResponse) {
+        switch(getCompanyProfileResponse.getResponseCase().getNumber()) {
+            case 1: Log.e(TAG, "Got Company profile : " + getCompanyProfileResponse.getResult().getStockDetails()
+                    + getCompanyProfileResponse.getResult().getStockHistoryMapCount());
+            case 2:
+                Log.e(TAG, "Bad Request Error : " + getCompanyProfileResponse.getBadRequestError().getReason());
+            case 3:
+                Log.e(TAG, "Internal Server Error : " + getCompanyProfileResponse.getInternalServerError().getReason());
+        }
+    }
+
     void buy_stocks_from_exchange_response(BuyStocksFromExchange.BuyStocksFromExchangeResponse buyStocksFromExchangeResponse) {
         switch (buyStocksFromExchangeResponse.getResponseCase().getNumber()) {
-            case 1: Log.e(TAG, "Buy Success, Trading Price : " + buyStocksFromExchangeResponse.getResult().getTradingPrice());
+            case 1: Log.e(TAG, "Buy Success, Trading Price : " + buyStocksFromExchangeResponse.getResult().getTransaction());
             case 2: Log.e(TAG, "Not Enough Cash Error : " + buyStocksFromExchangeResponse.getNotEnoughCashError().getReason());
             case 3: Log.e(TAG, "Buy Limit Exceeded Error : " + buyStocksFromExchangeResponse.getBuyLimitExceededError().getReason());
             case 4: Log.e(TAG, "Bad Request Error : " + buyStocksFromExchangeResponse.getBadRequestError().getReason());
@@ -203,8 +327,7 @@ public class MainActivity extends Activity {
 
     void mortgage_stocks_response(MortgageStocks.MortgageStocksResponse mortgageStocksResponse) {
         switch (mortgageStocksResponse.getResponseCase().getNumber()) {
-            case 1: if (mortgageStocksResponse.getResult().getSuccess())
-                        Log.e(TAG, "Mortgage Stocks Success, Trading Price : " + mortgageStocksResponse.getResult().getTradingPrice());
+            case 1: Log.e(TAG, "Mortgage Stocks Success, Trading Price : " + mortgageStocksResponse.getResult().getTransaction());
             case 2: Log.e(TAG, "Not Enough Stocks Error : " + mortgageStocksResponse.getNotEnoughStocksError().getReason());
             case 3: Log.e(TAG, "Bad Request Error : " + mortgageStocksResponse.getBadRequestError().getReason());
             case 4: Log.e(TAG, "Internal Server Error : " + mortgageStocksResponse.getInternalServerError().getReason());
@@ -233,8 +356,7 @@ public class MainActivity extends Activity {
 
     void retrieve_mortgage_stocks_response(RetrieveMortgageStocks.RetrieveMortgageStocksResponse retrieveMortgageStocksResponse) {
         switch (retrieveMortgageStocksResponse.getResponseCase().getNumber()) {
-            case 1: if (retrieveMortgageStocksResponse.getResult().getSuccess())
-                Log.e(TAG, "Mortgage Stocks Success, Trading Price : " + retrieveMortgageStocksResponse.getResult().getTradingPrice());
+            case 1: Log.e(TAG, "Mortgage Stocks Success, Trading Price : " + retrieveMortgageStocksResponse.getResult().getTransaction());
             case 2: Log.e(TAG, "Not Enough Stocks Error : " + retrieveMortgageStocksResponse.getNotEnoughStocksError().getReason());
             case 3: Log.e(TAG, "Not Enough Cash Error : " + retrieveMortgageStocksResponse.getNotEnoughCashError().getReason());
             case 4: Log.e(TAG, "Bad Request Error : " + retrieveMortgageStocksResponse.getBadRequestError().getReason());
