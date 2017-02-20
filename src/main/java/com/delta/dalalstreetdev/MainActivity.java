@@ -1,4 +1,4 @@
-package com.rakesh.dalalstreetdev;
+package com.delta.dalalstreetdev;
 
 import android.app.Activity;
 import android.os.Bundle;

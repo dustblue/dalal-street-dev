@@ -1,4 +1,4 @@
-package com.rakesh.dalalstreetdev;
+package com.delta.dalalstreetdev;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
