@@ -45,10 +45,10 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mAddr = (EditText)findViewById(R.id.editText);
-        mPrt = (EditText)findViewById(R.id.editText2);
-        Button go = (Button) findViewById(R.id.button);
+//        setContentView(R.layout.activity_main);
+//        mAddr = (EditText)findViewById(R.id.editText);
+//        mPrt = (EditText)findViewById(R.id.editText2);
+//        Button go = (Button) findViewById(R.id.button);
 
         final AsyncHttpClient.WebSocketConnectCallback mWebSocketConnectCallback = new AsyncHttpClient.WebSocketConnectCallback() {
             @Override
@@ -109,13 +109,13 @@ public class MainActivity extends Activity {
         };
         final AsyncHttpClient mAsyncHttpClient = AsyncHttpClient.getDefaultInstance();
 
-        go.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String hostAddress = "http://" + mAddr.getText().toString() + ":" + Integer.parseInt(mPrt.getText().toString()) + "/ws";
-                mAsyncHttpClient.websocket(hostAddress, null, mWebSocketConnectCallback);
-            }
-        });
+//        setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String hostAddress = "http://" + mAddr.getText().toString() + ":" + Integer.parseInt(mPrt.getText().toString()) + "/ws";
+//                mAsyncHttpClient.websocket(hostAddress, null, mWebSocketConnectCallback);
+//            }
+//        });
 
     }
 
