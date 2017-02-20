@@ -1,11 +1,7 @@
 package com.delta.dalalstreetdev;
 
-import android.app.Activity;
-import android.os.Bundle;
+import android.content.Context;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.koushikdutta.async.ByteBufferList;
@@ -14,6 +10,8 @@ import com.koushikdutta.async.callback.CompletedCallback;
 import com.koushikdutta.async.callback.DataCallback;
 import com.koushikdutta.async.http.AsyncHttpClient;
 import com.koushikdutta.async.http.WebSocket;
+
+import java.util.Map;
 
 import dalalstreet.socketapi.DalalMessageOuterClass;
 import dalalstreet.socketapi.actions.BuyStocksFromExchange;
@@ -35,43 +33,40 @@ import dalalstreet.socketapi.actions.PlaceBidOrder;
 import dalalstreet.socketapi.actions.RetrieveMortgageStocks;
 import dalalstreet.socketapi.actions.Subscribe;
 import dalalstreet.socketapi.actions.Unsubscribe;
+import dalalstreet.socketapi.models.StockOuterClass;
+import dalalstreet.socketapi.models.UserOuterClass;
 
-public class MainActivity extends Activity {
+class WebsocketsService {
+    private Context mContext;
+    private LoginListener mll;
 
-    private EditText mAddr;
-    private EditText mPrt;
-    String TAG = "MainActivity";
+    WebsocketsService(Context context, LoginListener ll) {
+        this.mContext = context;
+        this.mll = ll;
+    }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//        mAddr = (EditText)findViewById(R.id.editText);
-//        mPrt = (EditText)findViewById(R.id.editText2);
-//        Button go = (Button) findViewById(R.id.button);
+    public WebSocket ws;
+    public String sessionId;
+    public UserOuterClass.User user;
+    public Map<Integer, Integer> stocks_owned;
+    public Map<Integer, StockOuterClass.Stock> stock_list;
+    public Map<String, Integer> constants;
 
-        final AsyncHttpClient.WebSocketConnectCallback mWebSocketConnectCallback = new AsyncHttpClient.WebSocketConnectCallback() {
+    private String TAG = "WebsocketsService";
+
+    void createWS() {
+        String hostAddress = "http://192.168.43.79" + ":3000" + "/ws";
+        AsyncHttpClient.getDefaultInstance().websocket(hostAddress, null ,new AsyncHttpClient.WebSocketConnectCallback() {
             @Override
             public void onCompleted(Exception ex, WebSocket webSocket) {
-                Log.e(TAG, "onConnected");
+                /*Log.e(TAG, "onConnected");
                 if (ex != null) {
                     ex.printStackTrace();
                     return;
-                }
+                }*/
 
-                //TODO Send Req Wrappers here
-                //Default Login req wrapper
-                Login.LoginRequest loginRequest = Login.LoginRequest.
-                        newBuilder().setEmail("106115092@nitt.edu").
-                        setPassword("password").build();
-                final DalalMessageOuterClass.DalalMessage dalalMess = DalalMessageOuterClass.DalalMessage.newBuilder().
-                        setRequestWrapper(DalalMessageOuterClass.RequestWrapper.newBuilder().
-                                setLoginRequest(loginRequest).build()).build();
+                ws = webSocket;
 
-                webSocket.send(dalalMess.toByteArray());
-                Log.e(TAG, "Sent Message : " + dalalMess.toString());
-
-                //Callback Handling
                 webSocket.setDataCallback(new DataCallback() {
                     public void onDataAvailable(DataEmitter emitter, ByteBufferList byteBufferList) {
                         try {
@@ -106,20 +101,11 @@ public class MainActivity extends Activity {
                     }
                 });
             }
-        };
-        final AsyncHttpClient mAsyncHttpClient = AsyncHttpClient.getDefaultInstance();
-
-//        setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String hostAddress = "http://" + mAddr.getText().toString() + ":" + Integer.parseInt(mPrt.getText().toString()) + "/ws";
-//                mAsyncHttpClient.websocket(hostAddress, null, mWebSocketConnectCallback);
-//            }
-//        });
-
+        });
     }
 
-    void parseResponseWrapper(DalalMessageOuterClass.ResponseWrapper responseWrapper) {
+
+    public void parseResponseWrapper(DalalMessageOuterClass.ResponseWrapper responseWrapper) {
         switch (responseWrapper.getResponseCase().getNumber()) {
             case 0: break; //Response not set
             case 3:
@@ -183,8 +169,36 @@ public class MainActivity extends Activity {
         }
     }
 
-    //Implementation of the Response functions
-    //To be implemented in models
+    void login_request(String username, String password) {
+        Login.LoginRequest loginRequest = Login.LoginRequest.
+                newBuilder().setEmail(username).setPassword(password).build();
+        final DalalMessageOuterClass.DalalMessage dalalMess = DalalMessageOuterClass.DalalMessage.newBuilder().
+                setRequestWrapper(DalalMessageOuterClass.RequestWrapper.newBuilder().
+                        setLoginRequest(loginRequest).build()).build();
+        if (dalalMess==null) {
+            Log.e(TAG, "dalal is null");
+        }
+        if(dalalMess.toByteArray()==null)
+            Log.e(TAG, "dalalmess is null");
+        ws.send(dalalMess.toByteArray());
+    }
+
+    public interface LoginListener {
+        public void OnloginListened();
+    }
+
+    private void login_response(Login.LoginResponse loginResponse) {
+        switch (loginResponse.getResponseCase().getNumber()) {
+            case 1:
+                sessionId = loginResponse.getResult().getSessionId();
+                stocks_owned = loginResponse.getResult().getStocksOwnedMap();
+                mll.OnloginListened();
+                break;
+            case 2: Log.e(TAG, "Invalid Credentials Error : " + loginResponse.getInvalidCredentialsError().getReason());
+            case 3: Log.e(TAG, "Bad Request Error : " + loginResponse.getBadRequestError().getReason());
+            case 4: Log.e(TAG, "Internal Server Error : " + loginResponse.getInternalServerError().getReason());
+        }
+    }
 
     private void get_leaderboard(GetLeaderboard.GetLeaderboardResponse getLeaderboardResponse) {
         switch(getLeaderboardResponse.getResponseCase().getNumber()) {
@@ -210,6 +224,7 @@ public class MainActivity extends Activity {
 
     private void get_transactions(GetTransactions.GetTransactionsResponse getTransactionsResponse) {
         switch(getTransactionsResponse.getResponseCase().getNumber()) {
+
             case 1: Log.e(TAG, "Got Company profile : " + getTransactionsResponse.getResult().getMoreExists()
                     + getTransactionsResponse.getResult().getTransactionsMapCount());
             case 2:
@@ -266,7 +281,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    void get_company_profile(GetCompanyProfile.GetCompanyProfileResponse getCompanyProfileResponse) {
+    private void get_company_profile(GetCompanyProfile.GetCompanyProfileResponse getCompanyProfileResponse) {
         switch(getCompanyProfileResponse.getResponseCase().getNumber()) {
             case 1: Log.e(TAG, "Got Company profile : " + getCompanyProfileResponse.getResult().getStockDetails()
                     + getCompanyProfileResponse.getResult().getStockHistoryMapCount());
@@ -277,7 +292,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    void buy_stocks_from_exchange_response(BuyStocksFromExchange.BuyStocksFromExchangeResponse buyStocksFromExchangeResponse) {
+    private void buy_stocks_from_exchange_response(BuyStocksFromExchange.BuyStocksFromExchangeResponse buyStocksFromExchangeResponse) {
         switch (buyStocksFromExchangeResponse.getResponseCase().getNumber()) {
             case 1: Log.e(TAG, "Buy Success, Trading Price : " + buyStocksFromExchangeResponse.getResult().getTransaction());
             case 2: Log.e(TAG, "Not Enough Cash Error : " + buyStocksFromExchangeResponse.getNotEnoughCashError().getReason());
@@ -287,7 +302,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    void cancel_ask_order_response(CancelAskOrder.CancelAskOrderResponse cancelAskOrderResponse) {
+    private void cancel_ask_order_response(CancelAskOrder.CancelAskOrderResponse cancelAskOrderResponse) {
         switch (cancelAskOrderResponse.getResponseCase().getNumber()) {
             case 1: if (cancelAskOrderResponse.getResult().getSuccess())
                         Log.e(TAG, "Cancel Ask Order Success");
@@ -297,7 +312,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    void cancel_bid_order_response(CancelBidOrder.CancelBidOrderResponse cancelBidOrderResponse) {
+    private void cancel_bid_order_response(CancelBidOrder.CancelBidOrderResponse cancelBidOrderResponse) {
         switch (cancelBidOrderResponse.getResponseCase().getNumber()) {
             case 1: if (cancelBidOrderResponse.getResult().getSuccess())
                 Log.e(TAG, "Cancel Ask Order Success");
@@ -307,16 +322,8 @@ public class MainActivity extends Activity {
         }
     }
 
-    void login_response(Login.LoginResponse loginResponse) {
-        switch (loginResponse.getResponseCase().getNumber()) {
-            case 1: Log.e(TAG, "Login Success, Session Id : " + loginResponse.getResult().getSessionId());
-            case 2: Log.e(TAG, "Invalid Credentials Error : " + loginResponse.getInvalidCredentialsError().getReason());
-            case 3: Log.e(TAG, "Bad Request Error : " + loginResponse.getBadRequestError().getReason());
-            case 4: Log.e(TAG, "Internal Server Error : " + loginResponse.getInternalServerError().getReason());
-        }
-    }
 
-    void logout_response(Logout.LogoutResponse logoutResponse) {
+    private void logout_response(Logout.LogoutResponse logoutResponse) {
         switch (logoutResponse.getResponseCase().getNumber()) {
             case 1: if (logoutResponse.getResult().getSuccess())
                 Log.e(TAG, "Logout Success");
@@ -325,7 +332,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    void mortgage_stocks_response(MortgageStocks.MortgageStocksResponse mortgageStocksResponse) {
+    private void mortgage_stocks_response(MortgageStocks.MortgageStocksResponse mortgageStocksResponse) {
         switch (mortgageStocksResponse.getResponseCase().getNumber()) {
             case 1: Log.e(TAG, "Mortgage Stocks Success, Trading Price : " + mortgageStocksResponse.getResult().getTransaction());
             case 2: Log.e(TAG, "Not Enough Stocks Error : " + mortgageStocksResponse.getNotEnoughStocksError().getReason());
