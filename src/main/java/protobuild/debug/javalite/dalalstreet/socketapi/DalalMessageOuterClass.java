@@ -33,19 +33,6 @@ public final class DalalMessageOuterClass {
         getSessionIdBytes();
 
     /**
-     * <pre>
-     *      
-     *LoginResponse should return:
-     *user's name, cash, stocks currently owned, total worth, and list of all stocks (name, price, stats)
-     *getMyOrders       -&gt; list of asks and bids made by the user, including the orderfills. Must be paginated.
-     *getMarketEvents   -&gt; Paginated list of market events
-     *getNotifications  -&gt; Paginated list of notifications
-     *getTransactions   -&gt; Paginated list of transactions
-     *getCompanyProfile -&gt; stock history of the company and company details
-     *getLeaderboard    -&gt; Paginated list of users on leaderboard
-     *getMortgageDetails-&gt; List of all stocks currently in mortgage (calculated from transactions)
-     * </pre>
-     *
      * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeRequest buy_stocks_from_exchange_request = 3;</code>
      */
     dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeRequest getBuyStocksFromExchangeRequest();
@@ -100,6 +87,46 @@ public final class DalalMessageOuterClass {
      */
     dalalstreet.socketapi.actions.Unsubscribe.UnsubscribeRequest getUnsubscribeRequest();
 
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileRequest get_company_profile_request = 14;</code>
+     */
+    dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileRequest getGetCompanyProfileRequest();
+
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsRequest get_market_events_request = 15;</code>
+     */
+    dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsRequest getGetMarketEventsRequest();
+
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyAsksRequest get_my_asks_request = 16;</code>
+     */
+    dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksRequest getGetMyAsksRequest();
+
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyBidsRequest get_my_bids_request = 17;</code>
+     */
+    dalalstreet.socketapi.actions.GetMyBids.GetMyBidsRequest getGetMyBidsRequest();
+
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetNotificationsRequest get_notifications_request = 18;</code>
+     */
+    dalalstreet.socketapi.actions.GetNotifications.GetNotificationsRequest getGetNotificationsRequest();
+
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetTransactionsRequest get_transactions_request = 19;</code>
+     */
+    dalalstreet.socketapi.actions.GetTransactions.GetTransactionsRequest getGetTransactionsRequest();
+
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsRequest get_mortgage_details_request = 20;</code>
+     */
+    dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsRequest getGetMortgageDetailsRequest();
+
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardRequest get_leaderboard_request = 21;</code>
+     */
+    dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardRequest getGetLeaderboardRequest();
+
     public dalalstreet.socketapi.DalalMessageOuterClass.RequestWrapper.RequestCase getRequestCase();
   }
   /**
@@ -129,6 +156,14 @@ public final class DalalMessageOuterClass {
       RETRIEVE_MORTGAGE_STOCKS_REQUEST(11),
       SUBSCRIBE_REQUEST(12),
       UNSUBSCRIBE_REQUEST(13),
+      GET_COMPANY_PROFILE_REQUEST(14),
+      GET_MARKET_EVENTS_REQUEST(15),
+      GET_MY_ASKS_REQUEST(16),
+      GET_MY_BIDS_REQUEST(17),
+      GET_NOTIFICATIONS_REQUEST(18),
+      GET_TRANSACTIONS_REQUEST(19),
+      GET_MORTGAGE_DETAILS_REQUEST(20),
+      GET_LEADERBOARD_REQUEST(21),
       REQUEST_NOT_SET(0);
       private final int value;
       private RequestCase(int value) {
@@ -155,6 +190,14 @@ public final class DalalMessageOuterClass {
           case 11: return RETRIEVE_MORTGAGE_STOCKS_REQUEST;
           case 12: return SUBSCRIBE_REQUEST;
           case 13: return UNSUBSCRIBE_REQUEST;
+          case 14: return GET_COMPANY_PROFILE_REQUEST;
+          case 15: return GET_MARKET_EVENTS_REQUEST;
+          case 16: return GET_MY_ASKS_REQUEST;
+          case 17: return GET_MY_BIDS_REQUEST;
+          case 18: return GET_NOTIFICATIONS_REQUEST;
+          case 19: return GET_TRANSACTIONS_REQUEST;
+          case 20: return GET_MORTGAGE_DETAILS_REQUEST;
+          case 21: return GET_LEADERBOARD_REQUEST;
           case 0: return REQUEST_NOT_SET;
           default: return null;
         }
@@ -269,19 +312,6 @@ public final class DalalMessageOuterClass {
 
     public static final int BUY_STOCKS_FROM_EXCHANGE_REQUEST_FIELD_NUMBER = 3;
     /**
-     * <pre>
-     *      
-     *LoginResponse should return:
-     *user's name, cash, stocks currently owned, total worth, and list of all stocks (name, price, stats)
-     *getMyOrders       -&gt; list of asks and bids made by the user, including the orderfills. Must be paginated.
-     *getMarketEvents   -&gt; Paginated list of market events
-     *getNotifications  -&gt; Paginated list of notifications
-     *getTransactions   -&gt; Paginated list of transactions
-     *getCompanyProfile -&gt; stock history of the company and company details
-     *getLeaderboard    -&gt; Paginated list of users on leaderboard
-     *getMortgageDetails-&gt; List of all stocks currently in mortgage (calculated from transactions)
-     * </pre>
-     *
      * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeRequest buy_stocks_from_exchange_request = 3;</code>
      */
     public dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeRequest getBuyStocksFromExchangeRequest() {
@@ -291,19 +321,6 @@ public final class DalalMessageOuterClass {
       return dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeRequest.getDefaultInstance();
     }
     /**
-     * <pre>
-     *      
-     *LoginResponse should return:
-     *user's name, cash, stocks currently owned, total worth, and list of all stocks (name, price, stats)
-     *getMyOrders       -&gt; list of asks and bids made by the user, including the orderfills. Must be paginated.
-     *getMarketEvents   -&gt; Paginated list of market events
-     *getNotifications  -&gt; Paginated list of notifications
-     *getTransactions   -&gt; Paginated list of transactions
-     *getCompanyProfile -&gt; stock history of the company and company details
-     *getLeaderboard    -&gt; Paginated list of users on leaderboard
-     *getMortgageDetails-&gt; List of all stocks currently in mortgage (calculated from transactions)
-     * </pre>
-     *
      * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeRequest buy_stocks_from_exchange_request = 3;</code>
      */
     private void setBuyStocksFromExchangeRequest(dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeRequest value) {
@@ -314,19 +331,6 @@ public final class DalalMessageOuterClass {
       requestCase_ = 3;
     }
     /**
-     * <pre>
-     *      
-     *LoginResponse should return:
-     *user's name, cash, stocks currently owned, total worth, and list of all stocks (name, price, stats)
-     *getMyOrders       -&gt; list of asks and bids made by the user, including the orderfills. Must be paginated.
-     *getMarketEvents   -&gt; Paginated list of market events
-     *getNotifications  -&gt; Paginated list of notifications
-     *getTransactions   -&gt; Paginated list of transactions
-     *getCompanyProfile -&gt; stock history of the company and company details
-     *getLeaderboard    -&gt; Paginated list of users on leaderboard
-     *getMortgageDetails-&gt; List of all stocks currently in mortgage (calculated from transactions)
-     * </pre>
-     *
      * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeRequest buy_stocks_from_exchange_request = 3;</code>
      */
     private void setBuyStocksFromExchangeRequest(
@@ -335,19 +339,6 @@ public final class DalalMessageOuterClass {
       requestCase_ = 3;
     }
     /**
-     * <pre>
-     *      
-     *LoginResponse should return:
-     *user's name, cash, stocks currently owned, total worth, and list of all stocks (name, price, stats)
-     *getMyOrders       -&gt; list of asks and bids made by the user, including the orderfills. Must be paginated.
-     *getMarketEvents   -&gt; Paginated list of market events
-     *getNotifications  -&gt; Paginated list of notifications
-     *getTransactions   -&gt; Paginated list of transactions
-     *getCompanyProfile -&gt; stock history of the company and company details
-     *getLeaderboard    -&gt; Paginated list of users on leaderboard
-     *getMortgageDetails-&gt; List of all stocks currently in mortgage (calculated from transactions)
-     * </pre>
-     *
      * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeRequest buy_stocks_from_exchange_request = 3;</code>
      */
     private void mergeBuyStocksFromExchangeRequest(dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeRequest value) {
@@ -361,19 +352,6 @@ public final class DalalMessageOuterClass {
       requestCase_ = 3;
     }
     /**
-     * <pre>
-     *      
-     *LoginResponse should return:
-     *user's name, cash, stocks currently owned, total worth, and list of all stocks (name, price, stats)
-     *getMyOrders       -&gt; list of asks and bids made by the user, including the orderfills. Must be paginated.
-     *getMarketEvents   -&gt; Paginated list of market events
-     *getNotifications  -&gt; Paginated list of notifications
-     *getTransactions   -&gt; Paginated list of transactions
-     *getCompanyProfile -&gt; stock history of the company and company details
-     *getLeaderboard    -&gt; Paginated list of users on leaderboard
-     *getMortgageDetails-&gt; List of all stocks currently in mortgage (calculated from transactions)
-     * </pre>
-     *
      * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeRequest buy_stocks_from_exchange_request = 3;</code>
      */
     private void clearBuyStocksFromExchangeRequest() {
@@ -893,6 +871,414 @@ public final class DalalMessageOuterClass {
       }
     }
 
+    public static final int GET_COMPANY_PROFILE_REQUEST_FIELD_NUMBER = 14;
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileRequest get_company_profile_request = 14;</code>
+     */
+    public dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileRequest getGetCompanyProfileRequest() {
+      if (requestCase_ == 14) {
+         return (dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileRequest) request_;
+      }
+      return dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileRequest.getDefaultInstance();
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileRequest get_company_profile_request = 14;</code>
+     */
+    private void setGetCompanyProfileRequest(dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      request_ = value;
+      requestCase_ = 14;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileRequest get_company_profile_request = 14;</code>
+     */
+    private void setGetCompanyProfileRequest(
+        dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileRequest.Builder builderForValue) {
+      request_ = builderForValue.build();
+      requestCase_ = 14;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileRequest get_company_profile_request = 14;</code>
+     */
+    private void mergeGetCompanyProfileRequest(dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileRequest value) {
+      if (requestCase_ == 14 &&
+          request_ != dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileRequest.getDefaultInstance()) {
+        request_ = dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileRequest.newBuilder((dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileRequest) request_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        request_ = value;
+      }
+      requestCase_ = 14;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileRequest get_company_profile_request = 14;</code>
+     */
+    private void clearGetCompanyProfileRequest() {
+      if (requestCase_ == 14) {
+        requestCase_ = 0;
+        request_ = null;
+      }
+    }
+
+    public static final int GET_MARKET_EVENTS_REQUEST_FIELD_NUMBER = 15;
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsRequest get_market_events_request = 15;</code>
+     */
+    public dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsRequest getGetMarketEventsRequest() {
+      if (requestCase_ == 15) {
+         return (dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsRequest) request_;
+      }
+      return dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsRequest.getDefaultInstance();
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsRequest get_market_events_request = 15;</code>
+     */
+    private void setGetMarketEventsRequest(dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      request_ = value;
+      requestCase_ = 15;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsRequest get_market_events_request = 15;</code>
+     */
+    private void setGetMarketEventsRequest(
+        dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsRequest.Builder builderForValue) {
+      request_ = builderForValue.build();
+      requestCase_ = 15;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsRequest get_market_events_request = 15;</code>
+     */
+    private void mergeGetMarketEventsRequest(dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsRequest value) {
+      if (requestCase_ == 15 &&
+          request_ != dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsRequest.getDefaultInstance()) {
+        request_ = dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsRequest.newBuilder((dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsRequest) request_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        request_ = value;
+      }
+      requestCase_ = 15;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsRequest get_market_events_request = 15;</code>
+     */
+    private void clearGetMarketEventsRequest() {
+      if (requestCase_ == 15) {
+        requestCase_ = 0;
+        request_ = null;
+      }
+    }
+
+    public static final int GET_MY_ASKS_REQUEST_FIELD_NUMBER = 16;
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyAsksRequest get_my_asks_request = 16;</code>
+     */
+    public dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksRequest getGetMyAsksRequest() {
+      if (requestCase_ == 16) {
+         return (dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksRequest) request_;
+      }
+      return dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksRequest.getDefaultInstance();
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyAsksRequest get_my_asks_request = 16;</code>
+     */
+    private void setGetMyAsksRequest(dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      request_ = value;
+      requestCase_ = 16;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyAsksRequest get_my_asks_request = 16;</code>
+     */
+    private void setGetMyAsksRequest(
+        dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksRequest.Builder builderForValue) {
+      request_ = builderForValue.build();
+      requestCase_ = 16;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyAsksRequest get_my_asks_request = 16;</code>
+     */
+    private void mergeGetMyAsksRequest(dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksRequest value) {
+      if (requestCase_ == 16 &&
+          request_ != dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksRequest.getDefaultInstance()) {
+        request_ = dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksRequest.newBuilder((dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksRequest) request_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        request_ = value;
+      }
+      requestCase_ = 16;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyAsksRequest get_my_asks_request = 16;</code>
+     */
+    private void clearGetMyAsksRequest() {
+      if (requestCase_ == 16) {
+        requestCase_ = 0;
+        request_ = null;
+      }
+    }
+
+    public static final int GET_MY_BIDS_REQUEST_FIELD_NUMBER = 17;
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyBidsRequest get_my_bids_request = 17;</code>
+     */
+    public dalalstreet.socketapi.actions.GetMyBids.GetMyBidsRequest getGetMyBidsRequest() {
+      if (requestCase_ == 17) {
+         return (dalalstreet.socketapi.actions.GetMyBids.GetMyBidsRequest) request_;
+      }
+      return dalalstreet.socketapi.actions.GetMyBids.GetMyBidsRequest.getDefaultInstance();
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyBidsRequest get_my_bids_request = 17;</code>
+     */
+    private void setGetMyBidsRequest(dalalstreet.socketapi.actions.GetMyBids.GetMyBidsRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      request_ = value;
+      requestCase_ = 17;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyBidsRequest get_my_bids_request = 17;</code>
+     */
+    private void setGetMyBidsRequest(
+        dalalstreet.socketapi.actions.GetMyBids.GetMyBidsRequest.Builder builderForValue) {
+      request_ = builderForValue.build();
+      requestCase_ = 17;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyBidsRequest get_my_bids_request = 17;</code>
+     */
+    private void mergeGetMyBidsRequest(dalalstreet.socketapi.actions.GetMyBids.GetMyBidsRequest value) {
+      if (requestCase_ == 17 &&
+          request_ != dalalstreet.socketapi.actions.GetMyBids.GetMyBidsRequest.getDefaultInstance()) {
+        request_ = dalalstreet.socketapi.actions.GetMyBids.GetMyBidsRequest.newBuilder((dalalstreet.socketapi.actions.GetMyBids.GetMyBidsRequest) request_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        request_ = value;
+      }
+      requestCase_ = 17;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyBidsRequest get_my_bids_request = 17;</code>
+     */
+    private void clearGetMyBidsRequest() {
+      if (requestCase_ == 17) {
+        requestCase_ = 0;
+        request_ = null;
+      }
+    }
+
+    public static final int GET_NOTIFICATIONS_REQUEST_FIELD_NUMBER = 18;
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetNotificationsRequest get_notifications_request = 18;</code>
+     */
+    public dalalstreet.socketapi.actions.GetNotifications.GetNotificationsRequest getGetNotificationsRequest() {
+      if (requestCase_ == 18) {
+         return (dalalstreet.socketapi.actions.GetNotifications.GetNotificationsRequest) request_;
+      }
+      return dalalstreet.socketapi.actions.GetNotifications.GetNotificationsRequest.getDefaultInstance();
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetNotificationsRequest get_notifications_request = 18;</code>
+     */
+    private void setGetNotificationsRequest(dalalstreet.socketapi.actions.GetNotifications.GetNotificationsRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      request_ = value;
+      requestCase_ = 18;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetNotificationsRequest get_notifications_request = 18;</code>
+     */
+    private void setGetNotificationsRequest(
+        dalalstreet.socketapi.actions.GetNotifications.GetNotificationsRequest.Builder builderForValue) {
+      request_ = builderForValue.build();
+      requestCase_ = 18;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetNotificationsRequest get_notifications_request = 18;</code>
+     */
+    private void mergeGetNotificationsRequest(dalalstreet.socketapi.actions.GetNotifications.GetNotificationsRequest value) {
+      if (requestCase_ == 18 &&
+          request_ != dalalstreet.socketapi.actions.GetNotifications.GetNotificationsRequest.getDefaultInstance()) {
+        request_ = dalalstreet.socketapi.actions.GetNotifications.GetNotificationsRequest.newBuilder((dalalstreet.socketapi.actions.GetNotifications.GetNotificationsRequest) request_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        request_ = value;
+      }
+      requestCase_ = 18;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetNotificationsRequest get_notifications_request = 18;</code>
+     */
+    private void clearGetNotificationsRequest() {
+      if (requestCase_ == 18) {
+        requestCase_ = 0;
+        request_ = null;
+      }
+    }
+
+    public static final int GET_TRANSACTIONS_REQUEST_FIELD_NUMBER = 19;
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetTransactionsRequest get_transactions_request = 19;</code>
+     */
+    public dalalstreet.socketapi.actions.GetTransactions.GetTransactionsRequest getGetTransactionsRequest() {
+      if (requestCase_ == 19) {
+         return (dalalstreet.socketapi.actions.GetTransactions.GetTransactionsRequest) request_;
+      }
+      return dalalstreet.socketapi.actions.GetTransactions.GetTransactionsRequest.getDefaultInstance();
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetTransactionsRequest get_transactions_request = 19;</code>
+     */
+    private void setGetTransactionsRequest(dalalstreet.socketapi.actions.GetTransactions.GetTransactionsRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      request_ = value;
+      requestCase_ = 19;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetTransactionsRequest get_transactions_request = 19;</code>
+     */
+    private void setGetTransactionsRequest(
+        dalalstreet.socketapi.actions.GetTransactions.GetTransactionsRequest.Builder builderForValue) {
+      request_ = builderForValue.build();
+      requestCase_ = 19;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetTransactionsRequest get_transactions_request = 19;</code>
+     */
+    private void mergeGetTransactionsRequest(dalalstreet.socketapi.actions.GetTransactions.GetTransactionsRequest value) {
+      if (requestCase_ == 19 &&
+          request_ != dalalstreet.socketapi.actions.GetTransactions.GetTransactionsRequest.getDefaultInstance()) {
+        request_ = dalalstreet.socketapi.actions.GetTransactions.GetTransactionsRequest.newBuilder((dalalstreet.socketapi.actions.GetTransactions.GetTransactionsRequest) request_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        request_ = value;
+      }
+      requestCase_ = 19;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetTransactionsRequest get_transactions_request = 19;</code>
+     */
+    private void clearGetTransactionsRequest() {
+      if (requestCase_ == 19) {
+        requestCase_ = 0;
+        request_ = null;
+      }
+    }
+
+    public static final int GET_MORTGAGE_DETAILS_REQUEST_FIELD_NUMBER = 20;
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsRequest get_mortgage_details_request = 20;</code>
+     */
+    public dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsRequest getGetMortgageDetailsRequest() {
+      if (requestCase_ == 20) {
+         return (dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsRequest) request_;
+      }
+      return dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsRequest.getDefaultInstance();
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsRequest get_mortgage_details_request = 20;</code>
+     */
+    private void setGetMortgageDetailsRequest(dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      request_ = value;
+      requestCase_ = 20;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsRequest get_mortgage_details_request = 20;</code>
+     */
+    private void setGetMortgageDetailsRequest(
+        dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsRequest.Builder builderForValue) {
+      request_ = builderForValue.build();
+      requestCase_ = 20;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsRequest get_mortgage_details_request = 20;</code>
+     */
+    private void mergeGetMortgageDetailsRequest(dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsRequest value) {
+      if (requestCase_ == 20 &&
+          request_ != dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsRequest.getDefaultInstance()) {
+        request_ = dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsRequest.newBuilder((dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsRequest) request_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        request_ = value;
+      }
+      requestCase_ = 20;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsRequest get_mortgage_details_request = 20;</code>
+     */
+    private void clearGetMortgageDetailsRequest() {
+      if (requestCase_ == 20) {
+        requestCase_ = 0;
+        request_ = null;
+      }
+    }
+
+    public static final int GET_LEADERBOARD_REQUEST_FIELD_NUMBER = 21;
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardRequest get_leaderboard_request = 21;</code>
+     */
+    public dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardRequest getGetLeaderboardRequest() {
+      if (requestCase_ == 21) {
+         return (dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardRequest) request_;
+      }
+      return dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardRequest.getDefaultInstance();
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardRequest get_leaderboard_request = 21;</code>
+     */
+    private void setGetLeaderboardRequest(dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardRequest value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      request_ = value;
+      requestCase_ = 21;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardRequest get_leaderboard_request = 21;</code>
+     */
+    private void setGetLeaderboardRequest(
+        dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardRequest.Builder builderForValue) {
+      request_ = builderForValue.build();
+      requestCase_ = 21;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardRequest get_leaderboard_request = 21;</code>
+     */
+    private void mergeGetLeaderboardRequest(dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardRequest value) {
+      if (requestCase_ == 21 &&
+          request_ != dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardRequest.getDefaultInstance()) {
+        request_ = dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardRequest.newBuilder((dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardRequest) request_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        request_ = value;
+      }
+      requestCase_ = 21;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardRequest get_leaderboard_request = 21;</code>
+     */
+    private void clearGetLeaderboardRequest() {
+      if (requestCase_ == 21) {
+        requestCase_ = 0;
+        request_ = null;
+      }
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!requestId_.isEmpty()) {
@@ -933,6 +1319,30 @@ public final class DalalMessageOuterClass {
       }
       if (requestCase_ == 13) {
         output.writeMessage(13, (dalalstreet.socketapi.actions.Unsubscribe.UnsubscribeRequest) request_);
+      }
+      if (requestCase_ == 14) {
+        output.writeMessage(14, (dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileRequest) request_);
+      }
+      if (requestCase_ == 15) {
+        output.writeMessage(15, (dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsRequest) request_);
+      }
+      if (requestCase_ == 16) {
+        output.writeMessage(16, (dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksRequest) request_);
+      }
+      if (requestCase_ == 17) {
+        output.writeMessage(17, (dalalstreet.socketapi.actions.GetMyBids.GetMyBidsRequest) request_);
+      }
+      if (requestCase_ == 18) {
+        output.writeMessage(18, (dalalstreet.socketapi.actions.GetNotifications.GetNotificationsRequest) request_);
+      }
+      if (requestCase_ == 19) {
+        output.writeMessage(19, (dalalstreet.socketapi.actions.GetTransactions.GetTransactionsRequest) request_);
+      }
+      if (requestCase_ == 20) {
+        output.writeMessage(20, (dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsRequest) request_);
+      }
+      if (requestCase_ == 21) {
+        output.writeMessage(21, (dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardRequest) request_);
       }
     }
 
@@ -992,6 +1402,38 @@ public final class DalalMessageOuterClass {
       if (requestCase_ == 13) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(13, (dalalstreet.socketapi.actions.Unsubscribe.UnsubscribeRequest) request_);
+      }
+      if (requestCase_ == 14) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(14, (dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileRequest) request_);
+      }
+      if (requestCase_ == 15) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(15, (dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsRequest) request_);
+      }
+      if (requestCase_ == 16) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(16, (dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksRequest) request_);
+      }
+      if (requestCase_ == 17) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(17, (dalalstreet.socketapi.actions.GetMyBids.GetMyBidsRequest) request_);
+      }
+      if (requestCase_ == 18) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(18, (dalalstreet.socketapi.actions.GetNotifications.GetNotificationsRequest) request_);
+      }
+      if (requestCase_ == 19) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(19, (dalalstreet.socketapi.actions.GetTransactions.GetTransactionsRequest) request_);
+      }
+      if (requestCase_ == 20) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(20, (dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsRequest) request_);
+      }
+      if (requestCase_ == 21) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(21, (dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardRequest) request_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -1171,38 +1613,12 @@ public final class DalalMessageOuterClass {
       }
 
       /**
-       * <pre>
-       *      
-       *LoginResponse should return:
-       *user's name, cash, stocks currently owned, total worth, and list of all stocks (name, price, stats)
-       *getMyOrders       -&gt; list of asks and bids made by the user, including the orderfills. Must be paginated.
-       *getMarketEvents   -&gt; Paginated list of market events
-       *getNotifications  -&gt; Paginated list of notifications
-       *getTransactions   -&gt; Paginated list of transactions
-       *getCompanyProfile -&gt; stock history of the company and company details
-       *getLeaderboard    -&gt; Paginated list of users on leaderboard
-       *getMortgageDetails-&gt; List of all stocks currently in mortgage (calculated from transactions)
-       * </pre>
-       *
        * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeRequest buy_stocks_from_exchange_request = 3;</code>
        */
       public dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeRequest getBuyStocksFromExchangeRequest() {
         return instance.getBuyStocksFromExchangeRequest();
       }
       /**
-       * <pre>
-       *      
-       *LoginResponse should return:
-       *user's name, cash, stocks currently owned, total worth, and list of all stocks (name, price, stats)
-       *getMyOrders       -&gt; list of asks and bids made by the user, including the orderfills. Must be paginated.
-       *getMarketEvents   -&gt; Paginated list of market events
-       *getNotifications  -&gt; Paginated list of notifications
-       *getTransactions   -&gt; Paginated list of transactions
-       *getCompanyProfile -&gt; stock history of the company and company details
-       *getLeaderboard    -&gt; Paginated list of users on leaderboard
-       *getMortgageDetails-&gt; List of all stocks currently in mortgage (calculated from transactions)
-       * </pre>
-       *
        * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeRequest buy_stocks_from_exchange_request = 3;</code>
        */
       public Builder setBuyStocksFromExchangeRequest(dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeRequest value) {
@@ -1211,19 +1627,6 @@ public final class DalalMessageOuterClass {
         return this;
       }
       /**
-       * <pre>
-       *      
-       *LoginResponse should return:
-       *user's name, cash, stocks currently owned, total worth, and list of all stocks (name, price, stats)
-       *getMyOrders       -&gt; list of asks and bids made by the user, including the orderfills. Must be paginated.
-       *getMarketEvents   -&gt; Paginated list of market events
-       *getNotifications  -&gt; Paginated list of notifications
-       *getTransactions   -&gt; Paginated list of transactions
-       *getCompanyProfile -&gt; stock history of the company and company details
-       *getLeaderboard    -&gt; Paginated list of users on leaderboard
-       *getMortgageDetails-&gt; List of all stocks currently in mortgage (calculated from transactions)
-       * </pre>
-       *
        * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeRequest buy_stocks_from_exchange_request = 3;</code>
        */
       public Builder setBuyStocksFromExchangeRequest(
@@ -1233,19 +1636,6 @@ public final class DalalMessageOuterClass {
         return this;
       }
       /**
-       * <pre>
-       *      
-       *LoginResponse should return:
-       *user's name, cash, stocks currently owned, total worth, and list of all stocks (name, price, stats)
-       *getMyOrders       -&gt; list of asks and bids made by the user, including the orderfills. Must be paginated.
-       *getMarketEvents   -&gt; Paginated list of market events
-       *getNotifications  -&gt; Paginated list of notifications
-       *getTransactions   -&gt; Paginated list of transactions
-       *getCompanyProfile -&gt; stock history of the company and company details
-       *getLeaderboard    -&gt; Paginated list of users on leaderboard
-       *getMortgageDetails-&gt; List of all stocks currently in mortgage (calculated from transactions)
-       * </pre>
-       *
        * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeRequest buy_stocks_from_exchange_request = 3;</code>
        */
       public Builder mergeBuyStocksFromExchangeRequest(dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeRequest value) {
@@ -1254,19 +1644,6 @@ public final class DalalMessageOuterClass {
         return this;
       }
       /**
-       * <pre>
-       *      
-       *LoginResponse should return:
-       *user's name, cash, stocks currently owned, total worth, and list of all stocks (name, price, stats)
-       *getMyOrders       -&gt; list of asks and bids made by the user, including the orderfills. Must be paginated.
-       *getMarketEvents   -&gt; Paginated list of market events
-       *getNotifications  -&gt; Paginated list of notifications
-       *getTransactions   -&gt; Paginated list of transactions
-       *getCompanyProfile -&gt; stock history of the company and company details
-       *getLeaderboard    -&gt; Paginated list of users on leaderboard
-       *getMortgageDetails-&gt; List of all stocks currently in mortgage (calculated from transactions)
-       * </pre>
-       *
        * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeRequest buy_stocks_from_exchange_request = 3;</code>
        */
       public Builder clearBuyStocksFromExchangeRequest() {
@@ -1675,6 +2052,326 @@ public final class DalalMessageOuterClass {
         return this;
       }
 
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileRequest get_company_profile_request = 14;</code>
+       */
+      public dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileRequest getGetCompanyProfileRequest() {
+        return instance.getGetCompanyProfileRequest();
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileRequest get_company_profile_request = 14;</code>
+       */
+      public Builder setGetCompanyProfileRequest(dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileRequest value) {
+        copyOnWrite();
+        instance.setGetCompanyProfileRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileRequest get_company_profile_request = 14;</code>
+       */
+      public Builder setGetCompanyProfileRequest(
+          dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setGetCompanyProfileRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileRequest get_company_profile_request = 14;</code>
+       */
+      public Builder mergeGetCompanyProfileRequest(dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileRequest value) {
+        copyOnWrite();
+        instance.mergeGetCompanyProfileRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileRequest get_company_profile_request = 14;</code>
+       */
+      public Builder clearGetCompanyProfileRequest() {
+        copyOnWrite();
+        instance.clearGetCompanyProfileRequest();
+        return this;
+      }
+
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsRequest get_market_events_request = 15;</code>
+       */
+      public dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsRequest getGetMarketEventsRequest() {
+        return instance.getGetMarketEventsRequest();
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsRequest get_market_events_request = 15;</code>
+       */
+      public Builder setGetMarketEventsRequest(dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsRequest value) {
+        copyOnWrite();
+        instance.setGetMarketEventsRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsRequest get_market_events_request = 15;</code>
+       */
+      public Builder setGetMarketEventsRequest(
+          dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setGetMarketEventsRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsRequest get_market_events_request = 15;</code>
+       */
+      public Builder mergeGetMarketEventsRequest(dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsRequest value) {
+        copyOnWrite();
+        instance.mergeGetMarketEventsRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsRequest get_market_events_request = 15;</code>
+       */
+      public Builder clearGetMarketEventsRequest() {
+        copyOnWrite();
+        instance.clearGetMarketEventsRequest();
+        return this;
+      }
+
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMyAsksRequest get_my_asks_request = 16;</code>
+       */
+      public dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksRequest getGetMyAsksRequest() {
+        return instance.getGetMyAsksRequest();
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMyAsksRequest get_my_asks_request = 16;</code>
+       */
+      public Builder setGetMyAsksRequest(dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksRequest value) {
+        copyOnWrite();
+        instance.setGetMyAsksRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMyAsksRequest get_my_asks_request = 16;</code>
+       */
+      public Builder setGetMyAsksRequest(
+          dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setGetMyAsksRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMyAsksRequest get_my_asks_request = 16;</code>
+       */
+      public Builder mergeGetMyAsksRequest(dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksRequest value) {
+        copyOnWrite();
+        instance.mergeGetMyAsksRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMyAsksRequest get_my_asks_request = 16;</code>
+       */
+      public Builder clearGetMyAsksRequest() {
+        copyOnWrite();
+        instance.clearGetMyAsksRequest();
+        return this;
+      }
+
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMyBidsRequest get_my_bids_request = 17;</code>
+       */
+      public dalalstreet.socketapi.actions.GetMyBids.GetMyBidsRequest getGetMyBidsRequest() {
+        return instance.getGetMyBidsRequest();
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMyBidsRequest get_my_bids_request = 17;</code>
+       */
+      public Builder setGetMyBidsRequest(dalalstreet.socketapi.actions.GetMyBids.GetMyBidsRequest value) {
+        copyOnWrite();
+        instance.setGetMyBidsRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMyBidsRequest get_my_bids_request = 17;</code>
+       */
+      public Builder setGetMyBidsRequest(
+          dalalstreet.socketapi.actions.GetMyBids.GetMyBidsRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setGetMyBidsRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMyBidsRequest get_my_bids_request = 17;</code>
+       */
+      public Builder mergeGetMyBidsRequest(dalalstreet.socketapi.actions.GetMyBids.GetMyBidsRequest value) {
+        copyOnWrite();
+        instance.mergeGetMyBidsRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMyBidsRequest get_my_bids_request = 17;</code>
+       */
+      public Builder clearGetMyBidsRequest() {
+        copyOnWrite();
+        instance.clearGetMyBidsRequest();
+        return this;
+      }
+
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetNotificationsRequest get_notifications_request = 18;</code>
+       */
+      public dalalstreet.socketapi.actions.GetNotifications.GetNotificationsRequest getGetNotificationsRequest() {
+        return instance.getGetNotificationsRequest();
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetNotificationsRequest get_notifications_request = 18;</code>
+       */
+      public Builder setGetNotificationsRequest(dalalstreet.socketapi.actions.GetNotifications.GetNotificationsRequest value) {
+        copyOnWrite();
+        instance.setGetNotificationsRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetNotificationsRequest get_notifications_request = 18;</code>
+       */
+      public Builder setGetNotificationsRequest(
+          dalalstreet.socketapi.actions.GetNotifications.GetNotificationsRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setGetNotificationsRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetNotificationsRequest get_notifications_request = 18;</code>
+       */
+      public Builder mergeGetNotificationsRequest(dalalstreet.socketapi.actions.GetNotifications.GetNotificationsRequest value) {
+        copyOnWrite();
+        instance.mergeGetNotificationsRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetNotificationsRequest get_notifications_request = 18;</code>
+       */
+      public Builder clearGetNotificationsRequest() {
+        copyOnWrite();
+        instance.clearGetNotificationsRequest();
+        return this;
+      }
+
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetTransactionsRequest get_transactions_request = 19;</code>
+       */
+      public dalalstreet.socketapi.actions.GetTransactions.GetTransactionsRequest getGetTransactionsRequest() {
+        return instance.getGetTransactionsRequest();
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetTransactionsRequest get_transactions_request = 19;</code>
+       */
+      public Builder setGetTransactionsRequest(dalalstreet.socketapi.actions.GetTransactions.GetTransactionsRequest value) {
+        copyOnWrite();
+        instance.setGetTransactionsRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetTransactionsRequest get_transactions_request = 19;</code>
+       */
+      public Builder setGetTransactionsRequest(
+          dalalstreet.socketapi.actions.GetTransactions.GetTransactionsRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setGetTransactionsRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetTransactionsRequest get_transactions_request = 19;</code>
+       */
+      public Builder mergeGetTransactionsRequest(dalalstreet.socketapi.actions.GetTransactions.GetTransactionsRequest value) {
+        copyOnWrite();
+        instance.mergeGetTransactionsRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetTransactionsRequest get_transactions_request = 19;</code>
+       */
+      public Builder clearGetTransactionsRequest() {
+        copyOnWrite();
+        instance.clearGetTransactionsRequest();
+        return this;
+      }
+
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsRequest get_mortgage_details_request = 20;</code>
+       */
+      public dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsRequest getGetMortgageDetailsRequest() {
+        return instance.getGetMortgageDetailsRequest();
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsRequest get_mortgage_details_request = 20;</code>
+       */
+      public Builder setGetMortgageDetailsRequest(dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsRequest value) {
+        copyOnWrite();
+        instance.setGetMortgageDetailsRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsRequest get_mortgage_details_request = 20;</code>
+       */
+      public Builder setGetMortgageDetailsRequest(
+          dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setGetMortgageDetailsRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsRequest get_mortgage_details_request = 20;</code>
+       */
+      public Builder mergeGetMortgageDetailsRequest(dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsRequest value) {
+        copyOnWrite();
+        instance.mergeGetMortgageDetailsRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsRequest get_mortgage_details_request = 20;</code>
+       */
+      public Builder clearGetMortgageDetailsRequest() {
+        copyOnWrite();
+        instance.clearGetMortgageDetailsRequest();
+        return this;
+      }
+
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardRequest get_leaderboard_request = 21;</code>
+       */
+      public dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardRequest getGetLeaderboardRequest() {
+        return instance.getGetLeaderboardRequest();
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardRequest get_leaderboard_request = 21;</code>
+       */
+      public Builder setGetLeaderboardRequest(dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardRequest value) {
+        copyOnWrite();
+        instance.setGetLeaderboardRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardRequest get_leaderboard_request = 21;</code>
+       */
+      public Builder setGetLeaderboardRequest(
+          dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardRequest.Builder builderForValue) {
+        copyOnWrite();
+        instance.setGetLeaderboardRequest(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardRequest get_leaderboard_request = 21;</code>
+       */
+      public Builder mergeGetLeaderboardRequest(dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardRequest value) {
+        copyOnWrite();
+        instance.mergeGetLeaderboardRequest(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardRequest get_leaderboard_request = 21;</code>
+       */
+      public Builder clearGetLeaderboardRequest() {
+        copyOnWrite();
+        instance.clearGetLeaderboardRequest();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:dalalstreet.socketapi.RequestWrapper)
     }
     protected final Object dynamicMethod(
@@ -1774,6 +2471,62 @@ public final class DalalMessageOuterClass {
             case UNSUBSCRIBE_REQUEST: {
               request_ = visitor.visitOneofMessage(
                   requestCase_ == 13,
+                  request_,
+                  other.request_);
+              break;
+            }
+            case GET_COMPANY_PROFILE_REQUEST: {
+              request_ = visitor.visitOneofMessage(
+                  requestCase_ == 14,
+                  request_,
+                  other.request_);
+              break;
+            }
+            case GET_MARKET_EVENTS_REQUEST: {
+              request_ = visitor.visitOneofMessage(
+                  requestCase_ == 15,
+                  request_,
+                  other.request_);
+              break;
+            }
+            case GET_MY_ASKS_REQUEST: {
+              request_ = visitor.visitOneofMessage(
+                  requestCase_ == 16,
+                  request_,
+                  other.request_);
+              break;
+            }
+            case GET_MY_BIDS_REQUEST: {
+              request_ = visitor.visitOneofMessage(
+                  requestCase_ == 17,
+                  request_,
+                  other.request_);
+              break;
+            }
+            case GET_NOTIFICATIONS_REQUEST: {
+              request_ = visitor.visitOneofMessage(
+                  requestCase_ == 18,
+                  request_,
+                  other.request_);
+              break;
+            }
+            case GET_TRANSACTIONS_REQUEST: {
+              request_ = visitor.visitOneofMessage(
+                  requestCase_ == 19,
+                  request_,
+                  other.request_);
+              break;
+            }
+            case GET_MORTGAGE_DETAILS_REQUEST: {
+              request_ = visitor.visitOneofMessage(
+                  requestCase_ == 20,
+                  request_,
+                  other.request_);
+              break;
+            }
+            case GET_LEADERBOARD_REQUEST: {
+              request_ = visitor.visitOneofMessage(
+                  requestCase_ == 21,
                   request_,
                   other.request_);
               break;
@@ -1976,6 +2729,118 @@ public final class DalalMessageOuterClass {
                   requestCase_ = 13;
                   break;
                 }
+                case 114: {
+                  dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileRequest.Builder subBuilder = null;
+                  if (requestCase_ == 14) {
+                    subBuilder = ((dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileRequest) request_).toBuilder();
+                  }
+                  request_ =
+                       input.readMessage(dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom((dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileRequest) request_);
+                    request_ = subBuilder.buildPartial();
+                  }
+                  requestCase_ = 14;
+                  break;
+                }
+                case 122: {
+                  dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsRequest.Builder subBuilder = null;
+                  if (requestCase_ == 15) {
+                    subBuilder = ((dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsRequest) request_).toBuilder();
+                  }
+                  request_ =
+                       input.readMessage(dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom((dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsRequest) request_);
+                    request_ = subBuilder.buildPartial();
+                  }
+                  requestCase_ = 15;
+                  break;
+                }
+                case 130: {
+                  dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksRequest.Builder subBuilder = null;
+                  if (requestCase_ == 16) {
+                    subBuilder = ((dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksRequest) request_).toBuilder();
+                  }
+                  request_ =
+                       input.readMessage(dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom((dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksRequest) request_);
+                    request_ = subBuilder.buildPartial();
+                  }
+                  requestCase_ = 16;
+                  break;
+                }
+                case 138: {
+                  dalalstreet.socketapi.actions.GetMyBids.GetMyBidsRequest.Builder subBuilder = null;
+                  if (requestCase_ == 17) {
+                    subBuilder = ((dalalstreet.socketapi.actions.GetMyBids.GetMyBidsRequest) request_).toBuilder();
+                  }
+                  request_ =
+                       input.readMessage(dalalstreet.socketapi.actions.GetMyBids.GetMyBidsRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom((dalalstreet.socketapi.actions.GetMyBids.GetMyBidsRequest) request_);
+                    request_ = subBuilder.buildPartial();
+                  }
+                  requestCase_ = 17;
+                  break;
+                }
+                case 146: {
+                  dalalstreet.socketapi.actions.GetNotifications.GetNotificationsRequest.Builder subBuilder = null;
+                  if (requestCase_ == 18) {
+                    subBuilder = ((dalalstreet.socketapi.actions.GetNotifications.GetNotificationsRequest) request_).toBuilder();
+                  }
+                  request_ =
+                       input.readMessage(dalalstreet.socketapi.actions.GetNotifications.GetNotificationsRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom((dalalstreet.socketapi.actions.GetNotifications.GetNotificationsRequest) request_);
+                    request_ = subBuilder.buildPartial();
+                  }
+                  requestCase_ = 18;
+                  break;
+                }
+                case 154: {
+                  dalalstreet.socketapi.actions.GetTransactions.GetTransactionsRequest.Builder subBuilder = null;
+                  if (requestCase_ == 19) {
+                    subBuilder = ((dalalstreet.socketapi.actions.GetTransactions.GetTransactionsRequest) request_).toBuilder();
+                  }
+                  request_ =
+                       input.readMessage(dalalstreet.socketapi.actions.GetTransactions.GetTransactionsRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom((dalalstreet.socketapi.actions.GetTransactions.GetTransactionsRequest) request_);
+                    request_ = subBuilder.buildPartial();
+                  }
+                  requestCase_ = 19;
+                  break;
+                }
+                case 162: {
+                  dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsRequest.Builder subBuilder = null;
+                  if (requestCase_ == 20) {
+                    subBuilder = ((dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsRequest) request_).toBuilder();
+                  }
+                  request_ =
+                       input.readMessage(dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom((dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsRequest) request_);
+                    request_ = subBuilder.buildPartial();
+                  }
+                  requestCase_ = 20;
+                  break;
+                }
+                case 170: {
+                  dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardRequest.Builder subBuilder = null;
+                  if (requestCase_ == 21) {
+                    subBuilder = ((dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardRequest) request_).toBuilder();
+                  }
+                  request_ =
+                       input.readMessage(dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardRequest.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom((dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardRequest) request_);
+                    request_ = subBuilder.buildPartial();
+                  }
+                  requestCase_ = 21;
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -2091,6 +2956,46 @@ public final class DalalMessageOuterClass {
      */
     dalalstreet.socketapi.actions.Unsubscribe.UnsubscribeResponse getUnsubscribeResponse();
 
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileResponse get_company_profile_response = 14;</code>
+     */
+    dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileResponse getGetCompanyProfileResponse();
+
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsResponse get_market_events_response = 15;</code>
+     */
+    dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsResponse getGetMarketEventsResponse();
+
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyAsksResponse get_my_asks_response = 16;</code>
+     */
+    dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksResponse getGetMyAsksResponse();
+
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyBidsResponse get_my_bids_response = 17;</code>
+     */
+    dalalstreet.socketapi.actions.GetMyBids.GetMyBidsResponse getGetMyBidsResponse();
+
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetNotificationsResponse get_notifications_response = 18;</code>
+     */
+    dalalstreet.socketapi.actions.GetNotifications.GetNotificationsResponse getGetNotificationsResponse();
+
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetTransactionsResponse get_transactions_response = 19;</code>
+     */
+    dalalstreet.socketapi.actions.GetTransactions.GetTransactionsResponse getGetTransactionsResponse();
+
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsResponse get_mortgage_details_response = 20;</code>
+     */
+    dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsResponse getGetMortgageDetailsResponse();
+
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardResponse get_leaderboard_response = 21;</code>
+     */
+    dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardResponse getGetLeaderboardResponse();
+
     public dalalstreet.socketapi.DalalMessageOuterClass.ResponseWrapper.ResponseCase getResponseCase();
   }
   /**
@@ -2119,6 +3024,14 @@ public final class DalalMessageOuterClass {
       RETRIEVE_MORTGAGE_STOCKS_RESPONSE(11),
       SUBSCRIBE_RESPONSE(12),
       UNSUBSCRIBE_RESPONSE(13),
+      GET_COMPANY_PROFILE_RESPONSE(14),
+      GET_MARKET_EVENTS_RESPONSE(15),
+      GET_MY_ASKS_RESPONSE(16),
+      GET_MY_BIDS_RESPONSE(17),
+      GET_NOTIFICATIONS_RESPONSE(18),
+      GET_TRANSACTIONS_RESPONSE(19),
+      GET_MORTGAGE_DETAILS_RESPONSE(20),
+      GET_LEADERBOARD_RESPONSE(21),
       RESPONSE_NOT_SET(0);
       private final int value;
       private ResponseCase(int value) {
@@ -2145,6 +3058,14 @@ public final class DalalMessageOuterClass {
           case 11: return RETRIEVE_MORTGAGE_STOCKS_RESPONSE;
           case 12: return SUBSCRIBE_RESPONSE;
           case 13: return UNSUBSCRIBE_RESPONSE;
+          case 14: return GET_COMPANY_PROFILE_RESPONSE;
+          case 15: return GET_MARKET_EVENTS_RESPONSE;
+          case 16: return GET_MY_ASKS_RESPONSE;
+          case 17: return GET_MY_BIDS_RESPONSE;
+          case 18: return GET_NOTIFICATIONS_RESPONSE;
+          case 19: return GET_TRANSACTIONS_RESPONSE;
+          case 20: return GET_MORTGAGE_DETAILS_RESPONSE;
+          case 21: return GET_LEADERBOARD_RESPONSE;
           case 0: return RESPONSE_NOT_SET;
           default: return null;
         }
@@ -2772,6 +3693,414 @@ public final class DalalMessageOuterClass {
       }
     }
 
+    public static final int GET_COMPANY_PROFILE_RESPONSE_FIELD_NUMBER = 14;
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileResponse get_company_profile_response = 14;</code>
+     */
+    public dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileResponse getGetCompanyProfileResponse() {
+      if (responseCase_ == 14) {
+         return (dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileResponse) response_;
+      }
+      return dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileResponse.getDefaultInstance();
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileResponse get_company_profile_response = 14;</code>
+     */
+    private void setGetCompanyProfileResponse(dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileResponse value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      response_ = value;
+      responseCase_ = 14;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileResponse get_company_profile_response = 14;</code>
+     */
+    private void setGetCompanyProfileResponse(
+        dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileResponse.Builder builderForValue) {
+      response_ = builderForValue.build();
+      responseCase_ = 14;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileResponse get_company_profile_response = 14;</code>
+     */
+    private void mergeGetCompanyProfileResponse(dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileResponse value) {
+      if (responseCase_ == 14 &&
+          response_ != dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileResponse.getDefaultInstance()) {
+        response_ = dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileResponse.newBuilder((dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileResponse) response_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        response_ = value;
+      }
+      responseCase_ = 14;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileResponse get_company_profile_response = 14;</code>
+     */
+    private void clearGetCompanyProfileResponse() {
+      if (responseCase_ == 14) {
+        responseCase_ = 0;
+        response_ = null;
+      }
+    }
+
+    public static final int GET_MARKET_EVENTS_RESPONSE_FIELD_NUMBER = 15;
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsResponse get_market_events_response = 15;</code>
+     */
+    public dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsResponse getGetMarketEventsResponse() {
+      if (responseCase_ == 15) {
+         return (dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsResponse) response_;
+      }
+      return dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsResponse.getDefaultInstance();
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsResponse get_market_events_response = 15;</code>
+     */
+    private void setGetMarketEventsResponse(dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsResponse value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      response_ = value;
+      responseCase_ = 15;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsResponse get_market_events_response = 15;</code>
+     */
+    private void setGetMarketEventsResponse(
+        dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsResponse.Builder builderForValue) {
+      response_ = builderForValue.build();
+      responseCase_ = 15;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsResponse get_market_events_response = 15;</code>
+     */
+    private void mergeGetMarketEventsResponse(dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsResponse value) {
+      if (responseCase_ == 15 &&
+          response_ != dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsResponse.getDefaultInstance()) {
+        response_ = dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsResponse.newBuilder((dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsResponse) response_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        response_ = value;
+      }
+      responseCase_ = 15;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsResponse get_market_events_response = 15;</code>
+     */
+    private void clearGetMarketEventsResponse() {
+      if (responseCase_ == 15) {
+        responseCase_ = 0;
+        response_ = null;
+      }
+    }
+
+    public static final int GET_MY_ASKS_RESPONSE_FIELD_NUMBER = 16;
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyAsksResponse get_my_asks_response = 16;</code>
+     */
+    public dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksResponse getGetMyAsksResponse() {
+      if (responseCase_ == 16) {
+         return (dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksResponse) response_;
+      }
+      return dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksResponse.getDefaultInstance();
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyAsksResponse get_my_asks_response = 16;</code>
+     */
+    private void setGetMyAsksResponse(dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksResponse value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      response_ = value;
+      responseCase_ = 16;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyAsksResponse get_my_asks_response = 16;</code>
+     */
+    private void setGetMyAsksResponse(
+        dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksResponse.Builder builderForValue) {
+      response_ = builderForValue.build();
+      responseCase_ = 16;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyAsksResponse get_my_asks_response = 16;</code>
+     */
+    private void mergeGetMyAsksResponse(dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksResponse value) {
+      if (responseCase_ == 16 &&
+          response_ != dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksResponse.getDefaultInstance()) {
+        response_ = dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksResponse.newBuilder((dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksResponse) response_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        response_ = value;
+      }
+      responseCase_ = 16;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyAsksResponse get_my_asks_response = 16;</code>
+     */
+    private void clearGetMyAsksResponse() {
+      if (responseCase_ == 16) {
+        responseCase_ = 0;
+        response_ = null;
+      }
+    }
+
+    public static final int GET_MY_BIDS_RESPONSE_FIELD_NUMBER = 17;
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyBidsResponse get_my_bids_response = 17;</code>
+     */
+    public dalalstreet.socketapi.actions.GetMyBids.GetMyBidsResponse getGetMyBidsResponse() {
+      if (responseCase_ == 17) {
+         return (dalalstreet.socketapi.actions.GetMyBids.GetMyBidsResponse) response_;
+      }
+      return dalalstreet.socketapi.actions.GetMyBids.GetMyBidsResponse.getDefaultInstance();
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyBidsResponse get_my_bids_response = 17;</code>
+     */
+    private void setGetMyBidsResponse(dalalstreet.socketapi.actions.GetMyBids.GetMyBidsResponse value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      response_ = value;
+      responseCase_ = 17;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyBidsResponse get_my_bids_response = 17;</code>
+     */
+    private void setGetMyBidsResponse(
+        dalalstreet.socketapi.actions.GetMyBids.GetMyBidsResponse.Builder builderForValue) {
+      response_ = builderForValue.build();
+      responseCase_ = 17;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyBidsResponse get_my_bids_response = 17;</code>
+     */
+    private void mergeGetMyBidsResponse(dalalstreet.socketapi.actions.GetMyBids.GetMyBidsResponse value) {
+      if (responseCase_ == 17 &&
+          response_ != dalalstreet.socketapi.actions.GetMyBids.GetMyBidsResponse.getDefaultInstance()) {
+        response_ = dalalstreet.socketapi.actions.GetMyBids.GetMyBidsResponse.newBuilder((dalalstreet.socketapi.actions.GetMyBids.GetMyBidsResponse) response_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        response_ = value;
+      }
+      responseCase_ = 17;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMyBidsResponse get_my_bids_response = 17;</code>
+     */
+    private void clearGetMyBidsResponse() {
+      if (responseCase_ == 17) {
+        responseCase_ = 0;
+        response_ = null;
+      }
+    }
+
+    public static final int GET_NOTIFICATIONS_RESPONSE_FIELD_NUMBER = 18;
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetNotificationsResponse get_notifications_response = 18;</code>
+     */
+    public dalalstreet.socketapi.actions.GetNotifications.GetNotificationsResponse getGetNotificationsResponse() {
+      if (responseCase_ == 18) {
+         return (dalalstreet.socketapi.actions.GetNotifications.GetNotificationsResponse) response_;
+      }
+      return dalalstreet.socketapi.actions.GetNotifications.GetNotificationsResponse.getDefaultInstance();
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetNotificationsResponse get_notifications_response = 18;</code>
+     */
+    private void setGetNotificationsResponse(dalalstreet.socketapi.actions.GetNotifications.GetNotificationsResponse value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      response_ = value;
+      responseCase_ = 18;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetNotificationsResponse get_notifications_response = 18;</code>
+     */
+    private void setGetNotificationsResponse(
+        dalalstreet.socketapi.actions.GetNotifications.GetNotificationsResponse.Builder builderForValue) {
+      response_ = builderForValue.build();
+      responseCase_ = 18;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetNotificationsResponse get_notifications_response = 18;</code>
+     */
+    private void mergeGetNotificationsResponse(dalalstreet.socketapi.actions.GetNotifications.GetNotificationsResponse value) {
+      if (responseCase_ == 18 &&
+          response_ != dalalstreet.socketapi.actions.GetNotifications.GetNotificationsResponse.getDefaultInstance()) {
+        response_ = dalalstreet.socketapi.actions.GetNotifications.GetNotificationsResponse.newBuilder((dalalstreet.socketapi.actions.GetNotifications.GetNotificationsResponse) response_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        response_ = value;
+      }
+      responseCase_ = 18;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetNotificationsResponse get_notifications_response = 18;</code>
+     */
+    private void clearGetNotificationsResponse() {
+      if (responseCase_ == 18) {
+        responseCase_ = 0;
+        response_ = null;
+      }
+    }
+
+    public static final int GET_TRANSACTIONS_RESPONSE_FIELD_NUMBER = 19;
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetTransactionsResponse get_transactions_response = 19;</code>
+     */
+    public dalalstreet.socketapi.actions.GetTransactions.GetTransactionsResponse getGetTransactionsResponse() {
+      if (responseCase_ == 19) {
+         return (dalalstreet.socketapi.actions.GetTransactions.GetTransactionsResponse) response_;
+      }
+      return dalalstreet.socketapi.actions.GetTransactions.GetTransactionsResponse.getDefaultInstance();
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetTransactionsResponse get_transactions_response = 19;</code>
+     */
+    private void setGetTransactionsResponse(dalalstreet.socketapi.actions.GetTransactions.GetTransactionsResponse value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      response_ = value;
+      responseCase_ = 19;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetTransactionsResponse get_transactions_response = 19;</code>
+     */
+    private void setGetTransactionsResponse(
+        dalalstreet.socketapi.actions.GetTransactions.GetTransactionsResponse.Builder builderForValue) {
+      response_ = builderForValue.build();
+      responseCase_ = 19;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetTransactionsResponse get_transactions_response = 19;</code>
+     */
+    private void mergeGetTransactionsResponse(dalalstreet.socketapi.actions.GetTransactions.GetTransactionsResponse value) {
+      if (responseCase_ == 19 &&
+          response_ != dalalstreet.socketapi.actions.GetTransactions.GetTransactionsResponse.getDefaultInstance()) {
+        response_ = dalalstreet.socketapi.actions.GetTransactions.GetTransactionsResponse.newBuilder((dalalstreet.socketapi.actions.GetTransactions.GetTransactionsResponse) response_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        response_ = value;
+      }
+      responseCase_ = 19;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetTransactionsResponse get_transactions_response = 19;</code>
+     */
+    private void clearGetTransactionsResponse() {
+      if (responseCase_ == 19) {
+        responseCase_ = 0;
+        response_ = null;
+      }
+    }
+
+    public static final int GET_MORTGAGE_DETAILS_RESPONSE_FIELD_NUMBER = 20;
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsResponse get_mortgage_details_response = 20;</code>
+     */
+    public dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsResponse getGetMortgageDetailsResponse() {
+      if (responseCase_ == 20) {
+         return (dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsResponse) response_;
+      }
+      return dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsResponse.getDefaultInstance();
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsResponse get_mortgage_details_response = 20;</code>
+     */
+    private void setGetMortgageDetailsResponse(dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsResponse value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      response_ = value;
+      responseCase_ = 20;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsResponse get_mortgage_details_response = 20;</code>
+     */
+    private void setGetMortgageDetailsResponse(
+        dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsResponse.Builder builderForValue) {
+      response_ = builderForValue.build();
+      responseCase_ = 20;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsResponse get_mortgage_details_response = 20;</code>
+     */
+    private void mergeGetMortgageDetailsResponse(dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsResponse value) {
+      if (responseCase_ == 20 &&
+          response_ != dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsResponse.getDefaultInstance()) {
+        response_ = dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsResponse.newBuilder((dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsResponse) response_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        response_ = value;
+      }
+      responseCase_ = 20;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsResponse get_mortgage_details_response = 20;</code>
+     */
+    private void clearGetMortgageDetailsResponse() {
+      if (responseCase_ == 20) {
+        responseCase_ = 0;
+        response_ = null;
+      }
+    }
+
+    public static final int GET_LEADERBOARD_RESPONSE_FIELD_NUMBER = 21;
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardResponse get_leaderboard_response = 21;</code>
+     */
+    public dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardResponse getGetLeaderboardResponse() {
+      if (responseCase_ == 21) {
+         return (dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardResponse) response_;
+      }
+      return dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardResponse.getDefaultInstance();
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardResponse get_leaderboard_response = 21;</code>
+     */
+    private void setGetLeaderboardResponse(dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardResponse value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      response_ = value;
+      responseCase_ = 21;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardResponse get_leaderboard_response = 21;</code>
+     */
+    private void setGetLeaderboardResponse(
+        dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardResponse.Builder builderForValue) {
+      response_ = builderForValue.build();
+      responseCase_ = 21;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardResponse get_leaderboard_response = 21;</code>
+     */
+    private void mergeGetLeaderboardResponse(dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardResponse value) {
+      if (responseCase_ == 21 &&
+          response_ != dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardResponse.getDefaultInstance()) {
+        response_ = dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardResponse.newBuilder((dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardResponse) response_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        response_ = value;
+      }
+      responseCase_ = 21;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardResponse get_leaderboard_response = 21;</code>
+     */
+    private void clearGetLeaderboardResponse() {
+      if (responseCase_ == 21) {
+        responseCase_ = 0;
+        response_ = null;
+      }
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!requestId_.isEmpty()) {
@@ -2809,6 +4138,30 @@ public final class DalalMessageOuterClass {
       }
       if (responseCase_ == 13) {
         output.writeMessage(13, (dalalstreet.socketapi.actions.Unsubscribe.UnsubscribeResponse) response_);
+      }
+      if (responseCase_ == 14) {
+        output.writeMessage(14, (dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileResponse) response_);
+      }
+      if (responseCase_ == 15) {
+        output.writeMessage(15, (dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsResponse) response_);
+      }
+      if (responseCase_ == 16) {
+        output.writeMessage(16, (dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksResponse) response_);
+      }
+      if (responseCase_ == 17) {
+        output.writeMessage(17, (dalalstreet.socketapi.actions.GetMyBids.GetMyBidsResponse) response_);
+      }
+      if (responseCase_ == 18) {
+        output.writeMessage(18, (dalalstreet.socketapi.actions.GetNotifications.GetNotificationsResponse) response_);
+      }
+      if (responseCase_ == 19) {
+        output.writeMessage(19, (dalalstreet.socketapi.actions.GetTransactions.GetTransactionsResponse) response_);
+      }
+      if (responseCase_ == 20) {
+        output.writeMessage(20, (dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsResponse) response_);
+      }
+      if (responseCase_ == 21) {
+        output.writeMessage(21, (dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardResponse) response_);
       }
     }
 
@@ -2864,6 +4217,38 @@ public final class DalalMessageOuterClass {
       if (responseCase_ == 13) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(13, (dalalstreet.socketapi.actions.Unsubscribe.UnsubscribeResponse) response_);
+      }
+      if (responseCase_ == 14) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(14, (dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileResponse) response_);
+      }
+      if (responseCase_ == 15) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(15, (dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsResponse) response_);
+      }
+      if (responseCase_ == 16) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(16, (dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksResponse) response_);
+      }
+      if (responseCase_ == 17) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(17, (dalalstreet.socketapi.actions.GetMyBids.GetMyBidsResponse) response_);
+      }
+      if (responseCase_ == 18) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(18, (dalalstreet.socketapi.actions.GetNotifications.GetNotificationsResponse) response_);
+      }
+      if (responseCase_ == 19) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(19, (dalalstreet.socketapi.actions.GetTransactions.GetTransactionsResponse) response_);
+      }
+      if (responseCase_ == 20) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(20, (dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsResponse) response_);
+      }
+      if (responseCase_ == 21) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(21, (dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardResponse) response_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -3442,6 +4827,326 @@ public final class DalalMessageOuterClass {
         return this;
       }
 
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileResponse get_company_profile_response = 14;</code>
+       */
+      public dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileResponse getGetCompanyProfileResponse() {
+        return instance.getGetCompanyProfileResponse();
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileResponse get_company_profile_response = 14;</code>
+       */
+      public Builder setGetCompanyProfileResponse(dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileResponse value) {
+        copyOnWrite();
+        instance.setGetCompanyProfileResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileResponse get_company_profile_response = 14;</code>
+       */
+      public Builder setGetCompanyProfileResponse(
+          dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.setGetCompanyProfileResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileResponse get_company_profile_response = 14;</code>
+       */
+      public Builder mergeGetCompanyProfileResponse(dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileResponse value) {
+        copyOnWrite();
+        instance.mergeGetCompanyProfileResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetCompanyProfileResponse get_company_profile_response = 14;</code>
+       */
+      public Builder clearGetCompanyProfileResponse() {
+        copyOnWrite();
+        instance.clearGetCompanyProfileResponse();
+        return this;
+      }
+
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsResponse get_market_events_response = 15;</code>
+       */
+      public dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsResponse getGetMarketEventsResponse() {
+        return instance.getGetMarketEventsResponse();
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsResponse get_market_events_response = 15;</code>
+       */
+      public Builder setGetMarketEventsResponse(dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsResponse value) {
+        copyOnWrite();
+        instance.setGetMarketEventsResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsResponse get_market_events_response = 15;</code>
+       */
+      public Builder setGetMarketEventsResponse(
+          dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.setGetMarketEventsResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsResponse get_market_events_response = 15;</code>
+       */
+      public Builder mergeGetMarketEventsResponse(dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsResponse value) {
+        copyOnWrite();
+        instance.mergeGetMarketEventsResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMarketEventsResponse get_market_events_response = 15;</code>
+       */
+      public Builder clearGetMarketEventsResponse() {
+        copyOnWrite();
+        instance.clearGetMarketEventsResponse();
+        return this;
+      }
+
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMyAsksResponse get_my_asks_response = 16;</code>
+       */
+      public dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksResponse getGetMyAsksResponse() {
+        return instance.getGetMyAsksResponse();
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMyAsksResponse get_my_asks_response = 16;</code>
+       */
+      public Builder setGetMyAsksResponse(dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksResponse value) {
+        copyOnWrite();
+        instance.setGetMyAsksResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMyAsksResponse get_my_asks_response = 16;</code>
+       */
+      public Builder setGetMyAsksResponse(
+          dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.setGetMyAsksResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMyAsksResponse get_my_asks_response = 16;</code>
+       */
+      public Builder mergeGetMyAsksResponse(dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksResponse value) {
+        copyOnWrite();
+        instance.mergeGetMyAsksResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMyAsksResponse get_my_asks_response = 16;</code>
+       */
+      public Builder clearGetMyAsksResponse() {
+        copyOnWrite();
+        instance.clearGetMyAsksResponse();
+        return this;
+      }
+
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMyBidsResponse get_my_bids_response = 17;</code>
+       */
+      public dalalstreet.socketapi.actions.GetMyBids.GetMyBidsResponse getGetMyBidsResponse() {
+        return instance.getGetMyBidsResponse();
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMyBidsResponse get_my_bids_response = 17;</code>
+       */
+      public Builder setGetMyBidsResponse(dalalstreet.socketapi.actions.GetMyBids.GetMyBidsResponse value) {
+        copyOnWrite();
+        instance.setGetMyBidsResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMyBidsResponse get_my_bids_response = 17;</code>
+       */
+      public Builder setGetMyBidsResponse(
+          dalalstreet.socketapi.actions.GetMyBids.GetMyBidsResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.setGetMyBidsResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMyBidsResponse get_my_bids_response = 17;</code>
+       */
+      public Builder mergeGetMyBidsResponse(dalalstreet.socketapi.actions.GetMyBids.GetMyBidsResponse value) {
+        copyOnWrite();
+        instance.mergeGetMyBidsResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMyBidsResponse get_my_bids_response = 17;</code>
+       */
+      public Builder clearGetMyBidsResponse() {
+        copyOnWrite();
+        instance.clearGetMyBidsResponse();
+        return this;
+      }
+
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetNotificationsResponse get_notifications_response = 18;</code>
+       */
+      public dalalstreet.socketapi.actions.GetNotifications.GetNotificationsResponse getGetNotificationsResponse() {
+        return instance.getGetNotificationsResponse();
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetNotificationsResponse get_notifications_response = 18;</code>
+       */
+      public Builder setGetNotificationsResponse(dalalstreet.socketapi.actions.GetNotifications.GetNotificationsResponse value) {
+        copyOnWrite();
+        instance.setGetNotificationsResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetNotificationsResponse get_notifications_response = 18;</code>
+       */
+      public Builder setGetNotificationsResponse(
+          dalalstreet.socketapi.actions.GetNotifications.GetNotificationsResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.setGetNotificationsResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetNotificationsResponse get_notifications_response = 18;</code>
+       */
+      public Builder mergeGetNotificationsResponse(dalalstreet.socketapi.actions.GetNotifications.GetNotificationsResponse value) {
+        copyOnWrite();
+        instance.mergeGetNotificationsResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetNotificationsResponse get_notifications_response = 18;</code>
+       */
+      public Builder clearGetNotificationsResponse() {
+        copyOnWrite();
+        instance.clearGetNotificationsResponse();
+        return this;
+      }
+
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetTransactionsResponse get_transactions_response = 19;</code>
+       */
+      public dalalstreet.socketapi.actions.GetTransactions.GetTransactionsResponse getGetTransactionsResponse() {
+        return instance.getGetTransactionsResponse();
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetTransactionsResponse get_transactions_response = 19;</code>
+       */
+      public Builder setGetTransactionsResponse(dalalstreet.socketapi.actions.GetTransactions.GetTransactionsResponse value) {
+        copyOnWrite();
+        instance.setGetTransactionsResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetTransactionsResponse get_transactions_response = 19;</code>
+       */
+      public Builder setGetTransactionsResponse(
+          dalalstreet.socketapi.actions.GetTransactions.GetTransactionsResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.setGetTransactionsResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetTransactionsResponse get_transactions_response = 19;</code>
+       */
+      public Builder mergeGetTransactionsResponse(dalalstreet.socketapi.actions.GetTransactions.GetTransactionsResponse value) {
+        copyOnWrite();
+        instance.mergeGetTransactionsResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetTransactionsResponse get_transactions_response = 19;</code>
+       */
+      public Builder clearGetTransactionsResponse() {
+        copyOnWrite();
+        instance.clearGetTransactionsResponse();
+        return this;
+      }
+
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsResponse get_mortgage_details_response = 20;</code>
+       */
+      public dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsResponse getGetMortgageDetailsResponse() {
+        return instance.getGetMortgageDetailsResponse();
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsResponse get_mortgage_details_response = 20;</code>
+       */
+      public Builder setGetMortgageDetailsResponse(dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsResponse value) {
+        copyOnWrite();
+        instance.setGetMortgageDetailsResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsResponse get_mortgage_details_response = 20;</code>
+       */
+      public Builder setGetMortgageDetailsResponse(
+          dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.setGetMortgageDetailsResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsResponse get_mortgage_details_response = 20;</code>
+       */
+      public Builder mergeGetMortgageDetailsResponse(dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsResponse value) {
+        copyOnWrite();
+        instance.mergeGetMortgageDetailsResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetMortgageDetailsResponse get_mortgage_details_response = 20;</code>
+       */
+      public Builder clearGetMortgageDetailsResponse() {
+        copyOnWrite();
+        instance.clearGetMortgageDetailsResponse();
+        return this;
+      }
+
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardResponse get_leaderboard_response = 21;</code>
+       */
+      public dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardResponse getGetLeaderboardResponse() {
+        return instance.getGetLeaderboardResponse();
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardResponse get_leaderboard_response = 21;</code>
+       */
+      public Builder setGetLeaderboardResponse(dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardResponse value) {
+        copyOnWrite();
+        instance.setGetLeaderboardResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardResponse get_leaderboard_response = 21;</code>
+       */
+      public Builder setGetLeaderboardResponse(
+          dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardResponse.Builder builderForValue) {
+        copyOnWrite();
+        instance.setGetLeaderboardResponse(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardResponse get_leaderboard_response = 21;</code>
+       */
+      public Builder mergeGetLeaderboardResponse(dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardResponse value) {
+        copyOnWrite();
+        instance.mergeGetLeaderboardResponse(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.GetLeaderboardResponse get_leaderboard_response = 21;</code>
+       */
+      public Builder clearGetLeaderboardResponse() {
+        copyOnWrite();
+        instance.clearGetLeaderboardResponse();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:dalalstreet.socketapi.ResponseWrapper)
     }
     protected final Object dynamicMethod(
@@ -3539,6 +5244,62 @@ public final class DalalMessageOuterClass {
             case UNSUBSCRIBE_RESPONSE: {
               response_ = visitor.visitOneofMessage(
                   responseCase_ == 13,
+                  response_,
+                  other.response_);
+              break;
+            }
+            case GET_COMPANY_PROFILE_RESPONSE: {
+              response_ = visitor.visitOneofMessage(
+                  responseCase_ == 14,
+                  response_,
+                  other.response_);
+              break;
+            }
+            case GET_MARKET_EVENTS_RESPONSE: {
+              response_ = visitor.visitOneofMessage(
+                  responseCase_ == 15,
+                  response_,
+                  other.response_);
+              break;
+            }
+            case GET_MY_ASKS_RESPONSE: {
+              response_ = visitor.visitOneofMessage(
+                  responseCase_ == 16,
+                  response_,
+                  other.response_);
+              break;
+            }
+            case GET_MY_BIDS_RESPONSE: {
+              response_ = visitor.visitOneofMessage(
+                  responseCase_ == 17,
+                  response_,
+                  other.response_);
+              break;
+            }
+            case GET_NOTIFICATIONS_RESPONSE: {
+              response_ = visitor.visitOneofMessage(
+                  responseCase_ == 18,
+                  response_,
+                  other.response_);
+              break;
+            }
+            case GET_TRANSACTIONS_RESPONSE: {
+              response_ = visitor.visitOneofMessage(
+                  responseCase_ == 19,
+                  response_,
+                  other.response_);
+              break;
+            }
+            case GET_MORTGAGE_DETAILS_RESPONSE: {
+              response_ = visitor.visitOneofMessage(
+                  responseCase_ == 20,
+                  response_,
+                  other.response_);
+              break;
+            }
+            case GET_LEADERBOARD_RESPONSE: {
+              response_ = visitor.visitOneofMessage(
+                  responseCase_ == 21,
                   response_,
                   other.response_);
               break;
@@ -3735,6 +5496,118 @@ public final class DalalMessageOuterClass {
                   responseCase_ = 13;
                   break;
                 }
+                case 114: {
+                  dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileResponse.Builder subBuilder = null;
+                  if (responseCase_ == 14) {
+                    subBuilder = ((dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileResponse) response_).toBuilder();
+                  }
+                  response_ =
+                       input.readMessage(dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileResponse.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom((dalalstreet.socketapi.actions.GetCompanyProfile.GetCompanyProfileResponse) response_);
+                    response_ = subBuilder.buildPartial();
+                  }
+                  responseCase_ = 14;
+                  break;
+                }
+                case 122: {
+                  dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsResponse.Builder subBuilder = null;
+                  if (responseCase_ == 15) {
+                    subBuilder = ((dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsResponse) response_).toBuilder();
+                  }
+                  response_ =
+                       input.readMessage(dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsResponse.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom((dalalstreet.socketapi.actions.GetMarketEvents.GetMarketEventsResponse) response_);
+                    response_ = subBuilder.buildPartial();
+                  }
+                  responseCase_ = 15;
+                  break;
+                }
+                case 130: {
+                  dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksResponse.Builder subBuilder = null;
+                  if (responseCase_ == 16) {
+                    subBuilder = ((dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksResponse) response_).toBuilder();
+                  }
+                  response_ =
+                       input.readMessage(dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksResponse.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom((dalalstreet.socketapi.actions.GetMyAsks.GetMyAsksResponse) response_);
+                    response_ = subBuilder.buildPartial();
+                  }
+                  responseCase_ = 16;
+                  break;
+                }
+                case 138: {
+                  dalalstreet.socketapi.actions.GetMyBids.GetMyBidsResponse.Builder subBuilder = null;
+                  if (responseCase_ == 17) {
+                    subBuilder = ((dalalstreet.socketapi.actions.GetMyBids.GetMyBidsResponse) response_).toBuilder();
+                  }
+                  response_ =
+                       input.readMessage(dalalstreet.socketapi.actions.GetMyBids.GetMyBidsResponse.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom((dalalstreet.socketapi.actions.GetMyBids.GetMyBidsResponse) response_);
+                    response_ = subBuilder.buildPartial();
+                  }
+                  responseCase_ = 17;
+                  break;
+                }
+                case 146: {
+                  dalalstreet.socketapi.actions.GetNotifications.GetNotificationsResponse.Builder subBuilder = null;
+                  if (responseCase_ == 18) {
+                    subBuilder = ((dalalstreet.socketapi.actions.GetNotifications.GetNotificationsResponse) response_).toBuilder();
+                  }
+                  response_ =
+                       input.readMessage(dalalstreet.socketapi.actions.GetNotifications.GetNotificationsResponse.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom((dalalstreet.socketapi.actions.GetNotifications.GetNotificationsResponse) response_);
+                    response_ = subBuilder.buildPartial();
+                  }
+                  responseCase_ = 18;
+                  break;
+                }
+                case 154: {
+                  dalalstreet.socketapi.actions.GetTransactions.GetTransactionsResponse.Builder subBuilder = null;
+                  if (responseCase_ == 19) {
+                    subBuilder = ((dalalstreet.socketapi.actions.GetTransactions.GetTransactionsResponse) response_).toBuilder();
+                  }
+                  response_ =
+                       input.readMessage(dalalstreet.socketapi.actions.GetTransactions.GetTransactionsResponse.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom((dalalstreet.socketapi.actions.GetTransactions.GetTransactionsResponse) response_);
+                    response_ = subBuilder.buildPartial();
+                  }
+                  responseCase_ = 19;
+                  break;
+                }
+                case 162: {
+                  dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsResponse.Builder subBuilder = null;
+                  if (responseCase_ == 20) {
+                    subBuilder = ((dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsResponse) response_).toBuilder();
+                  }
+                  response_ =
+                       input.readMessage(dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsResponse.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom((dalalstreet.socketapi.actions.GetMortgageDetails.GetMortgageDetailsResponse) response_);
+                    response_ = subBuilder.buildPartial();
+                  }
+                  responseCase_ = 20;
+                  break;
+                }
+                case 170: {
+                  dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardResponse.Builder subBuilder = null;
+                  if (responseCase_ == 21) {
+                    subBuilder = ((dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardResponse) response_).toBuilder();
+                  }
+                  response_ =
+                       input.readMessage(dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardResponse.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom((dalalstreet.socketapi.actions.GetLeaderboard.GetLeaderboardResponse) response_);
+                    response_ = subBuilder.buildPartial();
+                  }
+                  responseCase_ = 21;
+                  break;
+                }
               }
             }
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -3834,6 +5707,11 @@ public final class DalalMessageOuterClass {
      */
     dalalstreet.socketapi.datastreams.StockExchange.StockExchangeUpdate getStockExchangeUpdate();
 
+    /**
+     * <code>optional .dalalstreet.socketapi.datastreams.MyOrderUpdate my_order_update = 9;</code>
+     */
+    dalalstreet.socketapi.datastreams.MyOrders.MyOrderUpdate getMyOrderUpdate();
+
     public dalalstreet.socketapi.DalalMessageOuterClass.DataStreamUpdateWrapper.UpdateCase getUpdateCase();
   }
   /**
@@ -3857,6 +5735,7 @@ public final class DalalMessageOuterClass {
       STOCK_PRICES_UPDATE(6),
       MARKET_EVENTS_UPDATE(7),
       STOCK_EXCHANGE_UPDATE(8),
+      MY_ORDER_UPDATE(9),
       UPDATE_NOT_SET(0);
       private final int value;
       private UpdateCase(int value) {
@@ -3878,6 +5757,7 @@ public final class DalalMessageOuterClass {
           case 6: return STOCK_PRICES_UPDATE;
           case 7: return MARKET_EVENTS_UPDATE;
           case 8: return STOCK_EXCHANGE_UPDATE;
+          case 9: return MY_ORDER_UPDATE;
           case 0: return UPDATE_NOT_SET;
           default: return null;
         }
@@ -4289,6 +6169,57 @@ public final class DalalMessageOuterClass {
       }
     }
 
+    public static final int MY_ORDER_UPDATE_FIELD_NUMBER = 9;
+    /**
+     * <code>optional .dalalstreet.socketapi.datastreams.MyOrderUpdate my_order_update = 9;</code>
+     */
+    public dalalstreet.socketapi.datastreams.MyOrders.MyOrderUpdate getMyOrderUpdate() {
+      if (updateCase_ == 9) {
+         return (dalalstreet.socketapi.datastreams.MyOrders.MyOrderUpdate) update_;
+      }
+      return dalalstreet.socketapi.datastreams.MyOrders.MyOrderUpdate.getDefaultInstance();
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.datastreams.MyOrderUpdate my_order_update = 9;</code>
+     */
+    private void setMyOrderUpdate(dalalstreet.socketapi.datastreams.MyOrders.MyOrderUpdate value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      update_ = value;
+      updateCase_ = 9;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.datastreams.MyOrderUpdate my_order_update = 9;</code>
+     */
+    private void setMyOrderUpdate(
+        dalalstreet.socketapi.datastreams.MyOrders.MyOrderUpdate.Builder builderForValue) {
+      update_ = builderForValue.build();
+      updateCase_ = 9;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.datastreams.MyOrderUpdate my_order_update = 9;</code>
+     */
+    private void mergeMyOrderUpdate(dalalstreet.socketapi.datastreams.MyOrders.MyOrderUpdate value) {
+      if (updateCase_ == 9 &&
+          update_ != dalalstreet.socketapi.datastreams.MyOrders.MyOrderUpdate.getDefaultInstance()) {
+        update_ = dalalstreet.socketapi.datastreams.MyOrders.MyOrderUpdate.newBuilder((dalalstreet.socketapi.datastreams.MyOrders.MyOrderUpdate) update_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        update_ = value;
+      }
+      updateCase_ = 9;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.datastreams.MyOrderUpdate my_order_update = 9;</code>
+     */
+    private void clearMyOrderUpdate() {
+      if (updateCase_ == 9) {
+        updateCase_ = 0;
+        update_ = null;
+      }
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (dataStreamType_ != dalalstreet.socketapi.datastreams.DataStreamTypeOuterClass.DataStreamType.MARKET_DEPTH.getNumber()) {
@@ -4314,6 +6245,9 @@ public final class DalalMessageOuterClass {
       }
       if (updateCase_ == 8) {
         output.writeMessage(8, (dalalstreet.socketapi.datastreams.StockExchange.StockExchangeUpdate) update_);
+      }
+      if (updateCase_ == 9) {
+        output.writeMessage(9, (dalalstreet.socketapi.datastreams.MyOrders.MyOrderUpdate) update_);
       }
     }
 
@@ -4353,6 +6287,10 @@ public final class DalalMessageOuterClass {
       if (updateCase_ == 8) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(8, (dalalstreet.socketapi.datastreams.StockExchange.StockExchangeUpdate) update_);
+      }
+      if (updateCase_ == 9) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(9, (dalalstreet.socketapi.datastreams.MyOrders.MyOrderUpdate) update_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -4768,6 +6706,46 @@ public final class DalalMessageOuterClass {
         return this;
       }
 
+      /**
+       * <code>optional .dalalstreet.socketapi.datastreams.MyOrderUpdate my_order_update = 9;</code>
+       */
+      public dalalstreet.socketapi.datastreams.MyOrders.MyOrderUpdate getMyOrderUpdate() {
+        return instance.getMyOrderUpdate();
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.datastreams.MyOrderUpdate my_order_update = 9;</code>
+       */
+      public Builder setMyOrderUpdate(dalalstreet.socketapi.datastreams.MyOrders.MyOrderUpdate value) {
+        copyOnWrite();
+        instance.setMyOrderUpdate(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.datastreams.MyOrderUpdate my_order_update = 9;</code>
+       */
+      public Builder setMyOrderUpdate(
+          dalalstreet.socketapi.datastreams.MyOrders.MyOrderUpdate.Builder builderForValue) {
+        copyOnWrite();
+        instance.setMyOrderUpdate(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.datastreams.MyOrderUpdate my_order_update = 9;</code>
+       */
+      public Builder mergeMyOrderUpdate(dalalstreet.socketapi.datastreams.MyOrders.MyOrderUpdate value) {
+        copyOnWrite();
+        instance.mergeMyOrderUpdate(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.datastreams.MyOrderUpdate my_order_update = 9;</code>
+       */
+      public Builder clearMyOrderUpdate() {
+        copyOnWrite();
+        instance.clearMyOrderUpdate();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:dalalstreet.socketapi.DataStreamUpdateWrapper)
     }
     protected final Object dynamicMethod(
@@ -4831,6 +6809,13 @@ public final class DalalMessageOuterClass {
             case STOCK_EXCHANGE_UPDATE: {
               update_ = visitor.visitOneofMessage(
                   updateCase_ == 8,
+                  update_,
+                  other.update_);
+              break;
+            }
+            case MY_ORDER_UPDATE: {
+              update_ = visitor.visitOneofMessage(
+                  updateCase_ == 9,
                   update_,
                   other.update_);
               break;
@@ -4961,6 +6946,20 @@ public final class DalalMessageOuterClass {
                     update_ = subBuilder.buildPartial();
                   }
                   updateCase_ = 8;
+                  break;
+                }
+                case 74: {
+                  dalalstreet.socketapi.datastreams.MyOrders.MyOrderUpdate.Builder subBuilder = null;
+                  if (updateCase_ == 9) {
+                    subBuilder = ((dalalstreet.socketapi.datastreams.MyOrders.MyOrderUpdate) update_).toBuilder();
+                  }
+                  update_ =
+                       input.readMessage(dalalstreet.socketapi.datastreams.MyOrders.MyOrderUpdate.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom((dalalstreet.socketapi.datastreams.MyOrders.MyOrderUpdate) update_);
+                    update_ = subBuilder.buildPartial();
+                  }
+                  updateCase_ = 9;
                   break;
                 }
               }

@@ -481,6 +481,117 @@ public final class Login {
        */
       com.google.protobuf.ByteString
           getSessionIdBytes();
+
+      /**
+       * <code>optional .dalalstreet.socketapi.models.User user = 2;</code>
+       */
+      boolean hasUser();
+      /**
+       * <code>optional .dalalstreet.socketapi.models.User user = 2;</code>
+       */
+      dalalstreet.socketapi.models.UserOuterClass.User getUser();
+
+      /**
+       * <code>map&lt;uint32, int32&gt; stocks_owned = 3;</code>
+       */
+      int getStocksOwnedCount();
+      /**
+       * <code>map&lt;uint32, int32&gt; stocks_owned = 3;</code>
+       */
+      boolean containsStocksOwned(
+          int key);
+      /**
+       * Use {@link #getStocksOwnedMap()} instead.
+       */
+      @java.lang.Deprecated
+      java.util.Map<java.lang.Integer, java.lang.Integer>
+      getStocksOwned();
+      /**
+       * <code>map&lt;uint32, int32&gt; stocks_owned = 3;</code>
+       */
+      java.util.Map<java.lang.Integer, java.lang.Integer>
+      getStocksOwnedMap();
+      /**
+       * <code>map&lt;uint32, int32&gt; stocks_owned = 3;</code>
+       */
+
+      int getStocksOwnedOrDefault(
+          int key,
+          int defaultValue);
+      /**
+       * <code>map&lt;uint32, int32&gt; stocks_owned = 3;</code>
+       */
+
+      int getStocksOwnedOrThrow(
+          int key);
+
+      /**
+       * <code>map&lt;uint32, .dalalstreet.socketapi.models.Stock&gt; stock_list = 4;</code>
+       */
+      int getStockListCount();
+      /**
+       * <code>map&lt;uint32, .dalalstreet.socketapi.models.Stock&gt; stock_list = 4;</code>
+       */
+      boolean containsStockList(
+          int key);
+      /**
+       * Use {@link #getStockListMap()} instead.
+       */
+      @java.lang.Deprecated
+      java.util.Map<java.lang.Integer, dalalstreet.socketapi.models.StockOuterClass.Stock>
+      getStockList();
+      /**
+       * <code>map&lt;uint32, .dalalstreet.socketapi.models.Stock&gt; stock_list = 4;</code>
+       */
+      java.util.Map<java.lang.Integer, dalalstreet.socketapi.models.StockOuterClass.Stock>
+      getStockListMap();
+      /**
+       * <code>map&lt;uint32, .dalalstreet.socketapi.models.Stock&gt; stock_list = 4;</code>
+       */
+
+      dalalstreet.socketapi.models.StockOuterClass.Stock getStockListOrDefault(
+          int key,
+          dalalstreet.socketapi.models.StockOuterClass.Stock defaultValue);
+      /**
+       * <code>map&lt;uint32, .dalalstreet.socketapi.models.Stock&gt; stock_list = 4;</code>
+       */
+
+      dalalstreet.socketapi.models.StockOuterClass.Stock getStockListOrThrow(
+          int key);
+
+      /**
+       * <code>map&lt;string, int32&gt; constants = 5;</code>
+       */
+      int getConstantsCount();
+      /**
+       * <code>map&lt;string, int32&gt; constants = 5;</code>
+       */
+      boolean containsConstants(
+          java.lang.String key);
+      /**
+       * Use {@link #getConstantsMap()} instead.
+       */
+      @java.lang.Deprecated
+      java.util.Map<java.lang.String, java.lang.Integer>
+      getConstants();
+      /**
+       * <code>map&lt;string, int32&gt; constants = 5;</code>
+       */
+      java.util.Map<java.lang.String, java.lang.Integer>
+      getConstantsMap();
+      /**
+       * <code>map&lt;string, int32&gt; constants = 5;</code>
+       */
+
+      int getConstantsOrDefault(
+          java.lang.String key,
+          int defaultValue);
+      /**
+       * <code>map&lt;string, int32&gt; constants = 5;</code>
+       */
+
+      int getConstantsOrThrow(
+          java.lang.String key);
     }
     /**
      * Protobuf type {@code dalalstreet.socketapi.actions.LoginResponse.LoginSuccessResponse}
@@ -493,6 +604,7 @@ public final class Login {
       private LoginSuccessResponse() {
         sessionId_ = "";
       }
+      private int bitField0_;
       public static final int SESSION_ID_FIELD_NUMBER = 1;
       private java.lang.String sessionId_;
       /**
@@ -539,10 +651,341 @@ public final class Login {
         sessionId_ = value.toStringUtf8();
       }
 
+      public static final int USER_FIELD_NUMBER = 2;
+      private dalalstreet.socketapi.models.UserOuterClass.User user_;
+      /**
+       * <code>optional .dalalstreet.socketapi.models.User user = 2;</code>
+       */
+      public boolean hasUser() {
+        return user_ != null;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.models.User user = 2;</code>
+       */
+      public dalalstreet.socketapi.models.UserOuterClass.User getUser() {
+        return user_ == null ? dalalstreet.socketapi.models.UserOuterClass.User.getDefaultInstance() : user_;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.models.User user = 2;</code>
+       */
+      private void setUser(dalalstreet.socketapi.models.UserOuterClass.User value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        user_ = value;
+        
+        }
+      /**
+       * <code>optional .dalalstreet.socketapi.models.User user = 2;</code>
+       */
+      private void setUser(
+          dalalstreet.socketapi.models.UserOuterClass.User.Builder builderForValue) {
+        user_ = builderForValue.build();
+        
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.models.User user = 2;</code>
+       */
+      private void mergeUser(dalalstreet.socketapi.models.UserOuterClass.User value) {
+        if (user_ != null &&
+            user_ != dalalstreet.socketapi.models.UserOuterClass.User.getDefaultInstance()) {
+          user_ =
+            dalalstreet.socketapi.models.UserOuterClass.User.newBuilder(user_).mergeFrom(value).buildPartial();
+        } else {
+          user_ = value;
+        }
+        
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.models.User user = 2;</code>
+       */
+      private void clearUser() {  user_ = null;
+        
+      }
+
+      public static final int STOCKS_OWNED_FIELD_NUMBER = 3;
+      private static final class StocksOwnedDefaultEntryHolder {
+        static final com.google.protobuf.MapEntryLite<
+            java.lang.Integer, java.lang.Integer> defaultEntry =
+                com.google.protobuf.MapEntryLite
+                .<java.lang.Integer, java.lang.Integer>newDefaultInstance(
+                    com.google.protobuf.WireFormat.FieldType.UINT32,
+                    0,
+                    com.google.protobuf.WireFormat.FieldType.INT32,
+                    0);
+      }
+      private com.google.protobuf.MapFieldLite<
+          java.lang.Integer, java.lang.Integer> stocksOwned_ =
+              com.google.protobuf.MapFieldLite.emptyMapField();
+      private com.google.protobuf.MapFieldLite<java.lang.Integer, java.lang.Integer>
+      internalGetStocksOwned() {
+        return stocksOwned_;
+      }
+      private com.google.protobuf.MapFieldLite<java.lang.Integer, java.lang.Integer>
+      internalGetMutableStocksOwned() {
+        if (!stocksOwned_.isMutable()) {
+          stocksOwned_ = stocksOwned_.mutableCopy();
+        }
+        return stocksOwned_;
+      }
+
+      public int getStocksOwnedCount() {
+        return internalGetStocksOwned().size();
+      }
+      /**
+       * <code>map&lt;uint32, int32&gt; stocks_owned = 3;</code>
+       */
+
+      public boolean containsStocksOwned(
+          int key) {
+        
+        return internalGetStocksOwned().containsKey(key);
+      }
+      /**
+       * Use {@link #getStocksOwnedMap()} instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.Integer, java.lang.Integer> getStocksOwned() {
+        return getStocksOwnedMap();
+      }
+      /**
+       * <code>map&lt;uint32, int32&gt; stocks_owned = 3;</code>
+       */
+
+      public java.util.Map<java.lang.Integer, java.lang.Integer> getStocksOwnedMap() {
+        return java.util.Collections.unmodifiableMap(
+            internalGetStocksOwned());
+      }
+      /**
+       * <code>map&lt;uint32, int32&gt; stocks_owned = 3;</code>
+       */
+
+      public int getStocksOwnedOrDefault(
+          int key,
+          int defaultValue) {
+        
+        java.util.Map<java.lang.Integer, java.lang.Integer> map =
+            internalGetStocksOwned();
+        return map.containsKey(key) ? map.get(key) : defaultValue;
+      }
+      /**
+       * <code>map&lt;uint32, int32&gt; stocks_owned = 3;</code>
+       */
+
+      public int getStocksOwnedOrThrow(
+          int key) {
+        
+        java.util.Map<java.lang.Integer, java.lang.Integer> map =
+            internalGetStocksOwned();
+        if (!map.containsKey(key)) {
+          throw new java.lang.IllegalArgumentException();
+        }
+        return map.get(key);
+      }
+      /**
+       * <code>map&lt;uint32, int32&gt; stocks_owned = 3;</code>
+       */
+      private java.util.Map<java.lang.Integer, java.lang.Integer>
+      getMutableStocksOwnedMap() {
+        return internalGetMutableStocksOwned();
+      }
+
+      public static final int STOCK_LIST_FIELD_NUMBER = 4;
+      private static final class StockListDefaultEntryHolder {
+        static final com.google.protobuf.MapEntryLite<
+            java.lang.Integer, dalalstreet.socketapi.models.StockOuterClass.Stock> defaultEntry =
+                com.google.protobuf.MapEntryLite
+                .<java.lang.Integer, dalalstreet.socketapi.models.StockOuterClass.Stock>newDefaultInstance(
+                    com.google.protobuf.WireFormat.FieldType.UINT32,
+                    0,
+                    com.google.protobuf.WireFormat.FieldType.MESSAGE,
+                    dalalstreet.socketapi.models.StockOuterClass.Stock.getDefaultInstance());
+      }
+      private com.google.protobuf.MapFieldLite<
+          java.lang.Integer, dalalstreet.socketapi.models.StockOuterClass.Stock> stockList_ =
+              com.google.protobuf.MapFieldLite.emptyMapField();
+      private com.google.protobuf.MapFieldLite<java.lang.Integer, dalalstreet.socketapi.models.StockOuterClass.Stock>
+      internalGetStockList() {
+        return stockList_;
+      }
+      private com.google.protobuf.MapFieldLite<java.lang.Integer, dalalstreet.socketapi.models.StockOuterClass.Stock>
+      internalGetMutableStockList() {
+        if (!stockList_.isMutable()) {
+          stockList_ = stockList_.mutableCopy();
+        }
+        return stockList_;
+      }
+
+      public int getStockListCount() {
+        return internalGetStockList().size();
+      }
+      /**
+       * <code>map&lt;uint32, .dalalstreet.socketapi.models.Stock&gt; stock_list = 4;</code>
+       */
+
+      public boolean containsStockList(
+          int key) {
+        
+        return internalGetStockList().containsKey(key);
+      }
+      /**
+       * Use {@link #getStockListMap()} instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.Integer, dalalstreet.socketapi.models.StockOuterClass.Stock> getStockList() {
+        return getStockListMap();
+      }
+      /**
+       * <code>map&lt;uint32, .dalalstreet.socketapi.models.Stock&gt; stock_list = 4;</code>
+       */
+
+      public java.util.Map<java.lang.Integer, dalalstreet.socketapi.models.StockOuterClass.Stock> getStockListMap() {
+        return java.util.Collections.unmodifiableMap(
+            internalGetStockList());
+      }
+      /**
+       * <code>map&lt;uint32, .dalalstreet.socketapi.models.Stock&gt; stock_list = 4;</code>
+       */
+
+      public dalalstreet.socketapi.models.StockOuterClass.Stock getStockListOrDefault(
+          int key,
+          dalalstreet.socketapi.models.StockOuterClass.Stock defaultValue) {
+        
+        java.util.Map<java.lang.Integer, dalalstreet.socketapi.models.StockOuterClass.Stock> map =
+            internalGetStockList();
+        return map.containsKey(key) ? map.get(key) : defaultValue;
+      }
+      /**
+       * <code>map&lt;uint32, .dalalstreet.socketapi.models.Stock&gt; stock_list = 4;</code>
+       */
+
+      public dalalstreet.socketapi.models.StockOuterClass.Stock getStockListOrThrow(
+          int key) {
+        
+        java.util.Map<java.lang.Integer, dalalstreet.socketapi.models.StockOuterClass.Stock> map =
+            internalGetStockList();
+        if (!map.containsKey(key)) {
+          throw new java.lang.IllegalArgumentException();
+        }
+        return map.get(key);
+      }
+      /**
+       * <code>map&lt;uint32, .dalalstreet.socketapi.models.Stock&gt; stock_list = 4;</code>
+       */
+      private java.util.Map<java.lang.Integer, dalalstreet.socketapi.models.StockOuterClass.Stock>
+      getMutableStockListMap() {
+        return internalGetMutableStockList();
+      }
+
+      public static final int CONSTANTS_FIELD_NUMBER = 5;
+      private static final class ConstantsDefaultEntryHolder {
+        static final com.google.protobuf.MapEntryLite<
+            java.lang.String, java.lang.Integer> defaultEntry =
+                com.google.protobuf.MapEntryLite
+                .<java.lang.String, java.lang.Integer>newDefaultInstance(
+                    com.google.protobuf.WireFormat.FieldType.STRING,
+                    "",
+                    com.google.protobuf.WireFormat.FieldType.INT32,
+                    0);
+      }
+      private com.google.protobuf.MapFieldLite<
+          java.lang.String, java.lang.Integer> constants_ =
+              com.google.protobuf.MapFieldLite.emptyMapField();
+      private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.Integer>
+      internalGetConstants() {
+        return constants_;
+      }
+      private com.google.protobuf.MapFieldLite<java.lang.String, java.lang.Integer>
+      internalGetMutableConstants() {
+        if (!constants_.isMutable()) {
+          constants_ = constants_.mutableCopy();
+        }
+        return constants_;
+      }
+
+      public int getConstantsCount() {
+        return internalGetConstants().size();
+      }
+      /**
+       * <code>map&lt;string, int32&gt; constants = 5;</code>
+       */
+
+      public boolean containsConstants(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        return internalGetConstants().containsKey(key);
+      }
+      /**
+       * Use {@link #getConstantsMap()} instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.String, java.lang.Integer> getConstants() {
+        return getConstantsMap();
+      }
+      /**
+       * <code>map&lt;string, int32&gt; constants = 5;</code>
+       */
+
+      public java.util.Map<java.lang.String, java.lang.Integer> getConstantsMap() {
+        return java.util.Collections.unmodifiableMap(
+            internalGetConstants());
+      }
+      /**
+       * <code>map&lt;string, int32&gt; constants = 5;</code>
+       */
+
+      public int getConstantsOrDefault(
+          java.lang.String key,
+          int defaultValue) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, java.lang.Integer> map =
+            internalGetConstants();
+        return map.containsKey(key) ? map.get(key) : defaultValue;
+      }
+      /**
+       * <code>map&lt;string, int32&gt; constants = 5;</code>
+       */
+
+      public int getConstantsOrThrow(
+          java.lang.String key) {
+        if (key == null) { throw new java.lang.NullPointerException(); }
+        java.util.Map<java.lang.String, java.lang.Integer> map =
+            internalGetConstants();
+        if (!map.containsKey(key)) {
+          throw new java.lang.IllegalArgumentException();
+        }
+        return map.get(key);
+      }
+      /**
+       * <code>map&lt;string, int32&gt; constants = 5;</code>
+       */
+      private java.util.Map<java.lang.String, java.lang.Integer>
+      getMutableConstantsMap() {
+        return internalGetMutableConstants();
+      }
+
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
         if (!sessionId_.isEmpty()) {
           output.writeString(1, getSessionId());
+        }
+        if (user_ != null) {
+          output.writeMessage(2, getUser());
+        }
+        for (java.util.Map.Entry<java.lang.Integer, java.lang.Integer> entry
+             : internalGetStocksOwned().entrySet()) {
+          StocksOwnedDefaultEntryHolder.defaultEntry.serializeTo(
+              output, 3, entry.getKey(), entry.getValue());
+        }
+        for (java.util.Map.Entry<java.lang.Integer, dalalstreet.socketapi.models.StockOuterClass.Stock> entry
+             : internalGetStockList().entrySet()) {
+          StockListDefaultEntryHolder.defaultEntry.serializeTo(
+              output, 4, entry.getKey(), entry.getValue());
+        }
+        for (java.util.Map.Entry<java.lang.String, java.lang.Integer> entry
+             : internalGetConstants().entrySet()) {
+          ConstantsDefaultEntryHolder.defaultEntry.serializeTo(
+              output, 5, entry.getKey(), entry.getValue());
         }
       }
 
@@ -554,6 +997,25 @@ public final class Login {
         if (!sessionId_.isEmpty()) {
           size += com.google.protobuf.CodedOutputStream
             .computeStringSize(1, getSessionId());
+        }
+        if (user_ != null) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(2, getUser());
+        }
+        for (java.util.Map.Entry<java.lang.Integer, java.lang.Integer> entry
+             : internalGetStocksOwned().entrySet()) {
+          size += StocksOwnedDefaultEntryHolder.defaultEntry.computeMessageSize(
+            3, entry.getKey(), entry.getValue());
+        }
+        for (java.util.Map.Entry<java.lang.Integer, dalalstreet.socketapi.models.StockOuterClass.Stock> entry
+             : internalGetStockList().entrySet()) {
+          size += StockListDefaultEntryHolder.defaultEntry.computeMessageSize(
+            4, entry.getKey(), entry.getValue());
+        }
+        for (java.util.Map.Entry<java.lang.String, java.lang.Integer> entry
+             : internalGetConstants().entrySet()) {
+          size += ConstantsDefaultEntryHolder.defaultEntry.computeMessageSize(
+            5, entry.getKey(), entry.getValue());
         }
         memoizedSerializedSize = size;
         return size;
@@ -681,6 +1143,327 @@ public final class Login {
           return this;
         }
 
+        /**
+         * <code>optional .dalalstreet.socketapi.models.User user = 2;</code>
+         */
+        public boolean hasUser() {
+          return instance.hasUser();
+        }
+        /**
+         * <code>optional .dalalstreet.socketapi.models.User user = 2;</code>
+         */
+        public dalalstreet.socketapi.models.UserOuterClass.User getUser() {
+          return instance.getUser();
+        }
+        /**
+         * <code>optional .dalalstreet.socketapi.models.User user = 2;</code>
+         */
+        public Builder setUser(dalalstreet.socketapi.models.UserOuterClass.User value) {
+          copyOnWrite();
+          instance.setUser(value);
+          return this;
+          }
+        /**
+         * <code>optional .dalalstreet.socketapi.models.User user = 2;</code>
+         */
+        public Builder setUser(
+            dalalstreet.socketapi.models.UserOuterClass.User.Builder builderForValue) {
+          copyOnWrite();
+          instance.setUser(builderForValue);
+          return this;
+        }
+        /**
+         * <code>optional .dalalstreet.socketapi.models.User user = 2;</code>
+         */
+        public Builder mergeUser(dalalstreet.socketapi.models.UserOuterClass.User value) {
+          copyOnWrite();
+          instance.mergeUser(value);
+          return this;
+        }
+        /**
+         * <code>optional .dalalstreet.socketapi.models.User user = 2;</code>
+         */
+        public Builder clearUser() {  copyOnWrite();
+          instance.clearUser();
+          return this;
+        }
+
+
+        public int getStocksOwnedCount() {
+          return instance.getStocksOwnedMap().size();
+        }
+        /**
+         * <code>map&lt;uint32, int32&gt; stocks_owned = 3;</code>
+         */
+
+        public boolean containsStocksOwned(
+            int key) {
+          
+          return instance.getStocksOwnedMap().containsKey(key);
+        }
+
+        public Builder clearStocksOwned() {
+          copyOnWrite();
+          instance.getMutableStocksOwnedMap().clear();
+          return this;
+        }
+        /**
+         * <code>map&lt;uint32, int32&gt; stocks_owned = 3;</code>
+         */
+
+        public Builder removeStocksOwned(
+            int key) {
+          
+          copyOnWrite();
+          instance.getMutableStocksOwnedMap().remove(key);
+          return this;
+        }
+        /**
+         * Use {@link #getStocksOwnedMap()} instead.
+         */
+        @java.lang.Deprecated
+        public java.util.Map<java.lang.Integer, java.lang.Integer> getStocksOwned() {
+          return getStocksOwnedMap();
+        }
+        /**
+         * <code>map&lt;uint32, int32&gt; stocks_owned = 3;</code>
+         */
+        public java.util.Map<java.lang.Integer, java.lang.Integer> getStocksOwnedMap() {
+          return java.util.Collections.unmodifiableMap(
+              instance.getStocksOwnedMap());
+        }
+        /**
+         * <code>map&lt;uint32, int32&gt; stocks_owned = 3;</code>
+         */
+
+        public int getStocksOwnedOrDefault(
+            int key,
+            int defaultValue) {
+          
+          java.util.Map<java.lang.Integer, java.lang.Integer> map =
+              instance.getStocksOwnedMap();
+          return map.containsKey(key) ? map.get(key) : defaultValue;
+        }
+        /**
+         * <code>map&lt;uint32, int32&gt; stocks_owned = 3;</code>
+         */
+
+        public int getStocksOwnedOrThrow(
+            int key) {
+          
+          java.util.Map<java.lang.Integer, java.lang.Integer> map =
+              instance.getStocksOwnedMap();
+          if (!map.containsKey(key)) {
+            throw new java.lang.IllegalArgumentException();
+          }
+          return map.get(key);
+        }
+        /**
+         * <code>map&lt;uint32, int32&gt; stocks_owned = 3;</code>
+         */
+        public Builder putStocksOwned(
+            int key,
+            int value) {
+          
+          
+          copyOnWrite();
+          instance.getMutableStocksOwnedMap().put(key, value);
+          return this;
+        }
+        /**
+         * <code>map&lt;uint32, int32&gt; stocks_owned = 3;</code>
+         */
+        public Builder putAllStocksOwned(
+            java.util.Map<java.lang.Integer, java.lang.Integer> values) {
+          copyOnWrite();
+          instance.getMutableStocksOwnedMap().putAll(values);
+          return this;
+        }
+
+
+        public int getStockListCount() {
+          return instance.getStockListMap().size();
+        }
+        /**
+         * <code>map&lt;uint32, .dalalstreet.socketapi.models.Stock&gt; stock_list = 4;</code>
+         */
+
+        public boolean containsStockList(
+            int key) {
+          
+          return instance.getStockListMap().containsKey(key);
+        }
+
+        public Builder clearStockList() {
+          copyOnWrite();
+          instance.getMutableStockListMap().clear();
+          return this;
+        }
+        /**
+         * <code>map&lt;uint32, .dalalstreet.socketapi.models.Stock&gt; stock_list = 4;</code>
+         */
+
+        public Builder removeStockList(
+            int key) {
+          
+          copyOnWrite();
+          instance.getMutableStockListMap().remove(key);
+          return this;
+        }
+        /**
+         * Use {@link #getStockListMap()} instead.
+         */
+        @java.lang.Deprecated
+        public java.util.Map<java.lang.Integer, dalalstreet.socketapi.models.StockOuterClass.Stock> getStockList() {
+          return getStockListMap();
+        }
+        /**
+         * <code>map&lt;uint32, .dalalstreet.socketapi.models.Stock&gt; stock_list = 4;</code>
+         */
+        public java.util.Map<java.lang.Integer, dalalstreet.socketapi.models.StockOuterClass.Stock> getStockListMap() {
+          return java.util.Collections.unmodifiableMap(
+              instance.getStockListMap());
+        }
+        /**
+         * <code>map&lt;uint32, .dalalstreet.socketapi.models.Stock&gt; stock_list = 4;</code>
+         */
+
+        public dalalstreet.socketapi.models.StockOuterClass.Stock getStockListOrDefault(
+            int key,
+            dalalstreet.socketapi.models.StockOuterClass.Stock defaultValue) {
+          
+          java.util.Map<java.lang.Integer, dalalstreet.socketapi.models.StockOuterClass.Stock> map =
+              instance.getStockListMap();
+          return map.containsKey(key) ? map.get(key) : defaultValue;
+        }
+        /**
+         * <code>map&lt;uint32, .dalalstreet.socketapi.models.Stock&gt; stock_list = 4;</code>
+         */
+
+        public dalalstreet.socketapi.models.StockOuterClass.Stock getStockListOrThrow(
+            int key) {
+          
+          java.util.Map<java.lang.Integer, dalalstreet.socketapi.models.StockOuterClass.Stock> map =
+              instance.getStockListMap();
+          if (!map.containsKey(key)) {
+            throw new java.lang.IllegalArgumentException();
+          }
+          return map.get(key);
+        }
+        /**
+         * <code>map&lt;uint32, .dalalstreet.socketapi.models.Stock&gt; stock_list = 4;</code>
+         */
+        public Builder putStockList(
+            int key,
+            dalalstreet.socketapi.models.StockOuterClass.Stock value) {
+          
+          if (value == null) { throw new java.lang.NullPointerException(); }
+          copyOnWrite();
+          instance.getMutableStockListMap().put(key, value);
+          return this;
+        }
+        /**
+         * <code>map&lt;uint32, .dalalstreet.socketapi.models.Stock&gt; stock_list = 4;</code>
+         */
+        public Builder putAllStockList(
+            java.util.Map<java.lang.Integer, dalalstreet.socketapi.models.StockOuterClass.Stock> values) {
+          copyOnWrite();
+          instance.getMutableStockListMap().putAll(values);
+          return this;
+        }
+
+
+        public int getConstantsCount() {
+          return instance.getConstantsMap().size();
+        }
+        /**
+         * <code>map&lt;string, int32&gt; constants = 5;</code>
+         */
+
+        public boolean containsConstants(
+            java.lang.String key) {
+          if (key == null) { throw new java.lang.NullPointerException(); }
+          return instance.getConstantsMap().containsKey(key);
+        }
+
+        public Builder clearConstants() {
+          copyOnWrite();
+          instance.getMutableConstantsMap().clear();
+          return this;
+        }
+        /**
+         * <code>map&lt;string, int32&gt; constants = 5;</code>
+         */
+
+        public Builder removeConstants(
+            java.lang.String key) {
+          if (key == null) { throw new java.lang.NullPointerException(); }
+          copyOnWrite();
+          instance.getMutableConstantsMap().remove(key);
+          return this;
+        }
+        /**
+         * Use {@link #getConstantsMap()} instead.
+         */
+        @java.lang.Deprecated
+        public java.util.Map<java.lang.String, java.lang.Integer> getConstants() {
+          return getConstantsMap();
+        }
+        /**
+         * <code>map&lt;string, int32&gt; constants = 5;</code>
+         */
+        public java.util.Map<java.lang.String, java.lang.Integer> getConstantsMap() {
+          return java.util.Collections.unmodifiableMap(
+              instance.getConstantsMap());
+        }
+        /**
+         * <code>map&lt;string, int32&gt; constants = 5;</code>
+         */
+
+        public int getConstantsOrDefault(
+            java.lang.String key,
+            int defaultValue) {
+          if (key == null) { throw new java.lang.NullPointerException(); }
+          java.util.Map<java.lang.String, java.lang.Integer> map =
+              instance.getConstantsMap();
+          return map.containsKey(key) ? map.get(key) : defaultValue;
+        }
+        /**
+         * <code>map&lt;string, int32&gt; constants = 5;</code>
+         */
+
+        public int getConstantsOrThrow(
+            java.lang.String key) {
+          if (key == null) { throw new java.lang.NullPointerException(); }
+          java.util.Map<java.lang.String, java.lang.Integer> map =
+              instance.getConstantsMap();
+          if (!map.containsKey(key)) {
+            throw new java.lang.IllegalArgumentException();
+          }
+          return map.get(key);
+        }
+        /**
+         * <code>map&lt;string, int32&gt; constants = 5;</code>
+         */
+        public Builder putConstants(
+            java.lang.String key,
+            int value) {
+          if (key == null) { throw new java.lang.NullPointerException(); }
+          
+          copyOnWrite();
+          instance.getMutableConstantsMap().put(key, value);
+          return this;
+        }
+        /**
+         * <code>map&lt;string, int32&gt; constants = 5;</code>
+         */
+        public Builder putAllConstants(
+            java.util.Map<java.lang.String, java.lang.Integer> values) {
+          copyOnWrite();
+          instance.getMutableConstantsMap().putAll(values);
+          return this;
+        }
+
         // @@protoc_insertion_point(builder_scope:dalalstreet.socketapi.actions.LoginResponse.LoginSuccessResponse)
       }
       protected final Object dynamicMethod(
@@ -694,6 +1477,9 @@ public final class Login {
             return DEFAULT_INSTANCE;
           }
           case MAKE_IMMUTABLE: {
+            stocksOwned_.makeImmutable();
+            stockList_.makeImmutable();
+            constants_.makeImmutable();
             return null;
           }
           case NEW_BUILDER: {
@@ -704,8 +1490,16 @@ public final class Login {
             dalalstreet.socketapi.actions.Login.LoginResponse.LoginSuccessResponse other = (dalalstreet.socketapi.actions.Login.LoginResponse.LoginSuccessResponse) arg1;
             sessionId_ = visitor.visitString(!sessionId_.isEmpty(), sessionId_,
                 !other.sessionId_.isEmpty(), other.sessionId_);
+            user_ = visitor.visitMessage(user_, other.user_);
+            stocksOwned_ = visitor.visitMap(
+                stocksOwned_, other.internalGetStocksOwned());
+            stockList_ = visitor.visitMap(
+                stockList_, other.internalGetStockList());
+            constants_ = visitor.visitMap(
+                constants_, other.internalGetConstants());
             if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
                 .INSTANCE) {
+              bitField0_ |= other.bitField0_;
             }
             return this;
           }
@@ -733,6 +1527,37 @@ public final class Login {
 
                     sessionId_ = s;
                     break;
+                  }
+                  case 18: {
+                    dalalstreet.socketapi.models.UserOuterClass.User.Builder subBuilder = null;
+                    if (user_ != null) {
+                      subBuilder = user_.toBuilder();
+                    }
+                    user_ = input.readMessage(dalalstreet.socketapi.models.UserOuterClass.User.parser(), extensionRegistry);
+                    if (subBuilder != null) {
+                      subBuilder.mergeFrom(user_);
+                      user_ = subBuilder.buildPartial();
+                    }
+
+                    break;
+                  }
+                  case 26: {
+                    if (!stocksOwned_.isMutable()) {
+                      stocksOwned_ = stocksOwned_.mutableCopy();
+                    }
+                    StocksOwnedDefaultEntryHolder.defaultEntry.parseInto(stocksOwned_, input, extensionRegistry);  break;
+                  }
+                  case 34: {
+                    if (!stockList_.isMutable()) {
+                      stockList_ = stockList_.mutableCopy();
+                    }
+                    StockListDefaultEntryHolder.defaultEntry.parseInto(stockList_, input, extensionRegistry);  break;
+                  }
+                  case 42: {
+                    if (!constants_.isMutable()) {
+                      constants_ = constants_.mutableCopy();
+                    }
+                    ConstantsDefaultEntryHolder.defaultEntry.parseInto(constants_, input, extensionRegistry);  break;
                   }
                 }
               }

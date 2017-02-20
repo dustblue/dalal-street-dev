@@ -13,12 +13,12 @@ public final class MarketEventOuterClass {
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional int32 id = 1;</code>
+     * <code>optional uint32 id = 1;</code>
      */
     int getId();
 
     /**
-     * <code>optional int32 stock_id = 2;</code>
+     * <code>optional uint32 stock_id = 2;</code>
      */
     int getStockId();
 
@@ -62,20 +62,20 @@ public final class MarketEventOuterClass {
     public static final int ID_FIELD_NUMBER = 1;
     private int id_;
     /**
-     * <code>optional int32 id = 1;</code>
+     * <code>optional uint32 id = 1;</code>
      */
     public int getId() {
       return id_;
     }
     /**
-     * <code>optional int32 id = 1;</code>
+     * <code>optional uint32 id = 1;</code>
      */
     private void setId(int value) {
       
       id_ = value;
     }
     /**
-     * <code>optional int32 id = 1;</code>
+     * <code>optional uint32 id = 1;</code>
      */
     private void clearId() {
       
@@ -85,20 +85,20 @@ public final class MarketEventOuterClass {
     public static final int STOCK_ID_FIELD_NUMBER = 2;
     private int stockId_;
     /**
-     * <code>optional int32 stock_id = 2;</code>
+     * <code>optional uint32 stock_id = 2;</code>
      */
     public int getStockId() {
       return stockId_;
     }
     /**
-     * <code>optional int32 stock_id = 2;</code>
+     * <code>optional uint32 stock_id = 2;</code>
      */
     private void setStockId(int value) {
       
       stockId_ = value;
     }
     /**
-     * <code>optional int32 stock_id = 2;</code>
+     * <code>optional uint32 stock_id = 2;</code>
      */
     private void clearStockId() {
       
@@ -223,10 +223,10 @@ public final class MarketEventOuterClass {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (id_ != 0) {
-        output.writeInt32(1, id_);
+        output.writeUInt32(1, id_);
       }
       if (stockId_ != 0) {
-        output.writeInt32(2, stockId_);
+        output.writeUInt32(2, stockId_);
       }
       if (!text_.isEmpty()) {
         output.writeString(3, getText());
@@ -246,11 +246,11 @@ public final class MarketEventOuterClass {
       size = 0;
       if (id_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, id_);
+          .computeUInt32Size(1, id_);
       }
       if (stockId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, stockId_);
+          .computeUInt32Size(2, stockId_);
       }
       if (!text_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
@@ -351,13 +351,13 @@ public final class MarketEventOuterClass {
 
 
       /**
-       * <code>optional int32 id = 1;</code>
+       * <code>optional uint32 id = 1;</code>
        */
       public int getId() {
         return instance.getId();
       }
       /**
-       * <code>optional int32 id = 1;</code>
+       * <code>optional uint32 id = 1;</code>
        */
       public Builder setId(int value) {
         copyOnWrite();
@@ -365,7 +365,7 @@ public final class MarketEventOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 id = 1;</code>
+       * <code>optional uint32 id = 1;</code>
        */
       public Builder clearId() {
         copyOnWrite();
@@ -374,13 +374,13 @@ public final class MarketEventOuterClass {
       }
 
       /**
-       * <code>optional int32 stock_id = 2;</code>
+       * <code>optional uint32 stock_id = 2;</code>
        */
       public int getStockId() {
         return instance.getStockId();
       }
       /**
-       * <code>optional int32 stock_id = 2;</code>
+       * <code>optional uint32 stock_id = 2;</code>
        */
       public Builder setStockId(int value) {
         copyOnWrite();
@@ -388,7 +388,7 @@ public final class MarketEventOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 stock_id = 2;</code>
+       * <code>optional uint32 stock_id = 2;</code>
        */
       public Builder clearStockId() {
         copyOnWrite();
@@ -556,12 +556,12 @@ public final class MarketEventOuterClass {
                 }
                 case 8: {
 
-                  id_ = input.readInt32();
+                  id_ = input.readUInt32();
                   break;
                 }
                 case 16: {
 
-                  stockId_ = input.readInt32();
+                  stockId_ = input.readUInt32();
                   break;
                 }
                 case 26: {

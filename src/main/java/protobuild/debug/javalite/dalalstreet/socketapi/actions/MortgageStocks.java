@@ -379,18 +379,23 @@ public final class MortgageStocks {
         com.google.protobuf.MessageLiteOrBuilder {
 
       /**
-       * <code>optional bool success = 1;</code>
-       */
-      boolean getSuccess();
-
-      /**
        * <pre>
-       *price of stocks that the bank paid the user
+       *bool success = 1;
+       *uint32 trading_price = 2;   //price of stocks that the bank paid the user
        * </pre>
        *
-       * <code>optional uint32 trading_price = 2;</code>
+       * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
        */
-      int getTradingPrice();
+      boolean hasTransaction();
+      /**
+       * <pre>
+       *bool success = 1;
+       *uint32 trading_price = 2;   //price of stocks that the bank paid the user
+       * </pre>
+       *
+       * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
+       */
+      dalalstreet.socketapi.models.TransactionOuterClass.Transaction getTransaction();
     }
     /**
      * Protobuf type {@code dalalstreet.socketapi.actions.MortgageStocksResponse.MortgageStocksSuccessResponse}
@@ -402,71 +407,92 @@ public final class MortgageStocks {
         MortgageStocksSuccessResponseOrBuilder {
       private MortgageStocksSuccessResponse() {
       }
-      public static final int SUCCESS_FIELD_NUMBER = 1;
-      private boolean success_;
-      /**
-       * <code>optional bool success = 1;</code>
-       */
-      public boolean getSuccess() {
-        return success_;
-      }
-      /**
-       * <code>optional bool success = 1;</code>
-       */
-      private void setSuccess(boolean value) {
-        
-        success_ = value;
-      }
-      /**
-       * <code>optional bool success = 1;</code>
-       */
-      private void clearSuccess() {
-        
-        success_ = false;
-      }
-
-      public static final int TRADING_PRICE_FIELD_NUMBER = 2;
-      private int tradingPrice_;
+      public static final int TRANSACTION_FIELD_NUMBER = 3;
+      private dalalstreet.socketapi.models.TransactionOuterClass.Transaction transaction_;
       /**
        * <pre>
-       *price of stocks that the bank paid the user
+       *bool success = 1;
+       *uint32 trading_price = 2;   //price of stocks that the bank paid the user
        * </pre>
        *
-       * <code>optional uint32 trading_price = 2;</code>
+       * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
        */
-      public int getTradingPrice() {
-        return tradingPrice_;
+      public boolean hasTransaction() {
+        return transaction_ != null;
       }
       /**
        * <pre>
-       *price of stocks that the bank paid the user
+       *bool success = 1;
+       *uint32 trading_price = 2;   //price of stocks that the bank paid the user
        * </pre>
        *
-       * <code>optional uint32 trading_price = 2;</code>
+       * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
        */
-      private void setTradingPrice(int value) {
-        
-        tradingPrice_ = value;
+      public dalalstreet.socketapi.models.TransactionOuterClass.Transaction getTransaction() {
+        return transaction_ == null ? dalalstreet.socketapi.models.TransactionOuterClass.Transaction.getDefaultInstance() : transaction_;
       }
       /**
        * <pre>
-       *price of stocks that the bank paid the user
+       *bool success = 1;
+       *uint32 trading_price = 2;   //price of stocks that the bank paid the user
        * </pre>
        *
-       * <code>optional uint32 trading_price = 2;</code>
+       * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
        */
-      private void clearTradingPrice() {
+      private void setTransaction(dalalstreet.socketapi.models.TransactionOuterClass.Transaction value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        transaction_ = value;
         
-        tradingPrice_ = 0;
+        }
+      /**
+       * <pre>
+       *bool success = 1;
+       *uint32 trading_price = 2;   //price of stocks that the bank paid the user
+       * </pre>
+       *
+       * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
+       */
+      private void setTransaction(
+          dalalstreet.socketapi.models.TransactionOuterClass.Transaction.Builder builderForValue) {
+        transaction_ = builderForValue.build();
+        
+      }
+      /**
+       * <pre>
+       *bool success = 1;
+       *uint32 trading_price = 2;   //price of stocks that the bank paid the user
+       * </pre>
+       *
+       * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
+       */
+      private void mergeTransaction(dalalstreet.socketapi.models.TransactionOuterClass.Transaction value) {
+        if (transaction_ != null &&
+            transaction_ != dalalstreet.socketapi.models.TransactionOuterClass.Transaction.getDefaultInstance()) {
+          transaction_ =
+            dalalstreet.socketapi.models.TransactionOuterClass.Transaction.newBuilder(transaction_).mergeFrom(value).buildPartial();
+        } else {
+          transaction_ = value;
+        }
+        
+      }
+      /**
+       * <pre>
+       *bool success = 1;
+       *uint32 trading_price = 2;   //price of stocks that the bank paid the user
+       * </pre>
+       *
+       * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
+       */
+      private void clearTransaction() {  transaction_ = null;
+        
       }
 
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
-        if (success_ != false) {
-          output.writeBool(1, success_);
-        }
-        if (tradingPrice_ != 0) {
-          output.writeUInt32(2, tradingPrice_);
+        if (transaction_ != null) {
+          output.writeMessage(3, getTransaction());
         }
       }
 
@@ -475,13 +501,9 @@ public final class MortgageStocks {
         if (size != -1) return size;
 
         size = 0;
-        if (success_ != false) {
+        if (transaction_ != null) {
           size += com.google.protobuf.CodedOutputStream
-            .computeBoolSize(1, success_);
-        }
-        if (tradingPrice_ != 0) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeUInt32Size(2, tradingPrice_);
+            .computeMessageSize(3, getTransaction());
         }
         memoizedSerializedSize = size;
         return size;
@@ -570,60 +592,77 @@ public final class MortgageStocks {
 
 
         /**
-         * <code>optional bool success = 1;</code>
-         */
-        public boolean getSuccess() {
-          return instance.getSuccess();
-        }
-        /**
-         * <code>optional bool success = 1;</code>
-         */
-        public Builder setSuccess(boolean value) {
-          copyOnWrite();
-          instance.setSuccess(value);
-          return this;
-        }
-        /**
-         * <code>optional bool success = 1;</code>
-         */
-        public Builder clearSuccess() {
-          copyOnWrite();
-          instance.clearSuccess();
-          return this;
-        }
-
-        /**
          * <pre>
-         *price of stocks that the bank paid the user
+         *bool success = 1;
+         *uint32 trading_price = 2;   //price of stocks that the bank paid the user
          * </pre>
          *
-         * <code>optional uint32 trading_price = 2;</code>
+         * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
          */
-        public int getTradingPrice() {
-          return instance.getTradingPrice();
+        public boolean hasTransaction() {
+          return instance.hasTransaction();
         }
         /**
          * <pre>
-         *price of stocks that the bank paid the user
+         *bool success = 1;
+         *uint32 trading_price = 2;   //price of stocks that the bank paid the user
          * </pre>
          *
-         * <code>optional uint32 trading_price = 2;</code>
+         * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
          */
-        public Builder setTradingPrice(int value) {
+        public dalalstreet.socketapi.models.TransactionOuterClass.Transaction getTransaction() {
+          return instance.getTransaction();
+        }
+        /**
+         * <pre>
+         *bool success = 1;
+         *uint32 trading_price = 2;   //price of stocks that the bank paid the user
+         * </pre>
+         *
+         * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
+         */
+        public Builder setTransaction(dalalstreet.socketapi.models.TransactionOuterClass.Transaction value) {
           copyOnWrite();
-          instance.setTradingPrice(value);
+          instance.setTransaction(value);
+          return this;
+          }
+        /**
+         * <pre>
+         *bool success = 1;
+         *uint32 trading_price = 2;   //price of stocks that the bank paid the user
+         * </pre>
+         *
+         * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
+         */
+        public Builder setTransaction(
+            dalalstreet.socketapi.models.TransactionOuterClass.Transaction.Builder builderForValue) {
+          copyOnWrite();
+          instance.setTransaction(builderForValue);
           return this;
         }
         /**
          * <pre>
-         *price of stocks that the bank paid the user
+         *bool success = 1;
+         *uint32 trading_price = 2;   //price of stocks that the bank paid the user
          * </pre>
          *
-         * <code>optional uint32 trading_price = 2;</code>
+         * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
          */
-        public Builder clearTradingPrice() {
+        public Builder mergeTransaction(dalalstreet.socketapi.models.TransactionOuterClass.Transaction value) {
           copyOnWrite();
-          instance.clearTradingPrice();
+          instance.mergeTransaction(value);
+          return this;
+        }
+        /**
+         * <pre>
+         *bool success = 1;
+         *uint32 trading_price = 2;   //price of stocks that the bank paid the user
+         * </pre>
+         *
+         * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
+         */
+        public Builder clearTransaction() {  copyOnWrite();
+          instance.clearTransaction();
           return this;
         }
 
@@ -648,10 +687,7 @@ public final class MortgageStocks {
           case VISIT: {
             Visitor visitor = (Visitor) arg0;
             dalalstreet.socketapi.actions.MortgageStocks.MortgageStocksResponse.MortgageStocksSuccessResponse other = (dalalstreet.socketapi.actions.MortgageStocks.MortgageStocksResponse.MortgageStocksSuccessResponse) arg1;
-            success_ = visitor.visitBoolean(success_ != false, success_,
-                other.success_ != false, other.success_);
-            tradingPrice_ = visitor.visitInt(tradingPrice_ != 0, tradingPrice_,
-                other.tradingPrice_ != 0, other.tradingPrice_);
+            transaction_ = visitor.visitMessage(transaction_, other.transaction_);
             if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
                 .INSTANCE) {
             }
@@ -676,14 +712,17 @@ public final class MortgageStocks {
                     }
                     break;
                   }
-                  case 8: {
+                  case 26: {
+                    dalalstreet.socketapi.models.TransactionOuterClass.Transaction.Builder subBuilder = null;
+                    if (transaction_ != null) {
+                      subBuilder = transaction_.toBuilder();
+                    }
+                    transaction_ = input.readMessage(dalalstreet.socketapi.models.TransactionOuterClass.Transaction.parser(), extensionRegistry);
+                    if (subBuilder != null) {
+                      subBuilder.mergeFrom(transaction_);
+                      transaction_ = subBuilder.buildPartial();
+                    }
 
-                    success_ = input.readBool();
-                    break;
-                  }
-                  case 16: {
-
-                    tradingPrice_ = input.readUInt32();
                     break;
                   }
                 }

@@ -13,7 +13,7 @@ public final class StockOuterClass {
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional int32 id = 1;</code>
+     * <code>optional uint32 id = 1;</code>
      */
     int getId();
 
@@ -38,61 +38,76 @@ public final class StockOuterClass {
         getFullNameBytes();
 
     /**
-     * <code>optional int32 current_price = 4;</code>
+     * <code>optional string description = 4;</code>
+     */
+    java.lang.String getDescription();
+    /**
+     * <code>optional string description = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getDescriptionBytes();
+
+    /**
+     * <code>optional uint32 current_price = 5;</code>
      */
     int getCurrentPrice();
 
     /**
-     * <code>optional int32 day_high = 5;</code>
+     * <code>optional uint32 day_high = 6;</code>
      */
     int getDayHigh();
 
     /**
-     * <code>optional int32 day_low = 6;</code>
+     * <code>optional uint32 day_low = 7;</code>
      */
     int getDayLow();
 
     /**
-     * <code>optional int32 all_time_high = 7;</code>
+     * <code>optional uint32 all_time_high = 8;</code>
      */
     int getAllTimeHigh();
 
     /**
-     * <code>optional int32 all_time_low = 8;</code>
+     * <code>optional uint32 all_time_low = 9;</code>
      */
     int getAllTimeLow();
 
     /**
-     * <code>optional int32 stocks_in_exchange = 9;</code>
+     * <code>optional uint32 stocks_in_exchange = 10;</code>
      */
     int getStocksInExchange();
 
     /**
-     * <code>optional int32 stocks_in_market = 10;</code>
+     * <code>optional uint32 stocks_in_market = 11;</code>
      */
     int getStocksInMarket();
 
     /**
-     * <code>optional bool up_or_down = 11;</code>
+     * <code>optional bool up_or_down = 12;</code>
      */
     boolean getUpOrDown();
 
     /**
-     * <code>optional string created_at = 12;</code>
+     * <code>optional uint32 previous_day_close = 13;</code>
+     */
+    int getPreviousDayClose();
+
+    /**
+     * <code>optional string created_at = 14;</code>
      */
     java.lang.String getCreatedAt();
     /**
-     * <code>optional string created_at = 12;</code>
+     * <code>optional string created_at = 14;</code>
      */
     com.google.protobuf.ByteString
         getCreatedAtBytes();
 
     /**
-     * <code>optional string updated_at = 13;</code>
+     * <code>optional string updated_at = 15;</code>
      */
     java.lang.String getUpdatedAt();
     /**
-     * <code>optional string updated_at = 13;</code>
+     * <code>optional string updated_at = 15;</code>
      */
     com.google.protobuf.ByteString
         getUpdatedAtBytes();
@@ -108,26 +123,27 @@ public final class StockOuterClass {
     private Stock() {
       shortName_ = "";
       fullName_ = "";
+      description_ = "";
       createdAt_ = "";
       updatedAt_ = "";
     }
     public static final int ID_FIELD_NUMBER = 1;
     private int id_;
     /**
-     * <code>optional int32 id = 1;</code>
+     * <code>optional uint32 id = 1;</code>
      */
     public int getId() {
       return id_;
     }
     /**
-     * <code>optional int32 id = 1;</code>
+     * <code>optional uint32 id = 1;</code>
      */
     private void setId(int value) {
       
       id_ = value;
     }
     /**
-     * <code>optional int32 id = 1;</code>
+     * <code>optional uint32 id = 1;</code>
      */
     private void clearId() {
       
@@ -226,207 +242,276 @@ public final class StockOuterClass {
       fullName_ = value.toStringUtf8();
     }
 
-    public static final int CURRENT_PRICE_FIELD_NUMBER = 4;
+    public static final int DESCRIPTION_FIELD_NUMBER = 4;
+    private java.lang.String description_;
+    /**
+     * <code>optional string description = 4;</code>
+     */
+    public java.lang.String getDescription() {
+      return description_;
+    }
+    /**
+     * <code>optional string description = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getDescriptionBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(description_);
+    }
+    /**
+     * <code>optional string description = 4;</code>
+     */
+    private void setDescription(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      description_ = value;
+    }
+    /**
+     * <code>optional string description = 4;</code>
+     */
+    private void clearDescription() {
+      
+      description_ = getDefaultInstance().getDescription();
+    }
+    /**
+     * <code>optional string description = 4;</code>
+     */
+    private void setDescriptionBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      description_ = value.toStringUtf8();
+    }
+
+    public static final int CURRENT_PRICE_FIELD_NUMBER = 5;
     private int currentPrice_;
     /**
-     * <code>optional int32 current_price = 4;</code>
+     * <code>optional uint32 current_price = 5;</code>
      */
     public int getCurrentPrice() {
       return currentPrice_;
     }
     /**
-     * <code>optional int32 current_price = 4;</code>
+     * <code>optional uint32 current_price = 5;</code>
      */
     private void setCurrentPrice(int value) {
       
       currentPrice_ = value;
     }
     /**
-     * <code>optional int32 current_price = 4;</code>
+     * <code>optional uint32 current_price = 5;</code>
      */
     private void clearCurrentPrice() {
       
       currentPrice_ = 0;
     }
 
-    public static final int DAY_HIGH_FIELD_NUMBER = 5;
+    public static final int DAY_HIGH_FIELD_NUMBER = 6;
     private int dayHigh_;
     /**
-     * <code>optional int32 day_high = 5;</code>
+     * <code>optional uint32 day_high = 6;</code>
      */
     public int getDayHigh() {
       return dayHigh_;
     }
     /**
-     * <code>optional int32 day_high = 5;</code>
+     * <code>optional uint32 day_high = 6;</code>
      */
     private void setDayHigh(int value) {
       
       dayHigh_ = value;
     }
     /**
-     * <code>optional int32 day_high = 5;</code>
+     * <code>optional uint32 day_high = 6;</code>
      */
     private void clearDayHigh() {
       
       dayHigh_ = 0;
     }
 
-    public static final int DAY_LOW_FIELD_NUMBER = 6;
+    public static final int DAY_LOW_FIELD_NUMBER = 7;
     private int dayLow_;
     /**
-     * <code>optional int32 day_low = 6;</code>
+     * <code>optional uint32 day_low = 7;</code>
      */
     public int getDayLow() {
       return dayLow_;
     }
     /**
-     * <code>optional int32 day_low = 6;</code>
+     * <code>optional uint32 day_low = 7;</code>
      */
     private void setDayLow(int value) {
       
       dayLow_ = value;
     }
     /**
-     * <code>optional int32 day_low = 6;</code>
+     * <code>optional uint32 day_low = 7;</code>
      */
     private void clearDayLow() {
       
       dayLow_ = 0;
     }
 
-    public static final int ALL_TIME_HIGH_FIELD_NUMBER = 7;
+    public static final int ALL_TIME_HIGH_FIELD_NUMBER = 8;
     private int allTimeHigh_;
     /**
-     * <code>optional int32 all_time_high = 7;</code>
+     * <code>optional uint32 all_time_high = 8;</code>
      */
     public int getAllTimeHigh() {
       return allTimeHigh_;
     }
     /**
-     * <code>optional int32 all_time_high = 7;</code>
+     * <code>optional uint32 all_time_high = 8;</code>
      */
     private void setAllTimeHigh(int value) {
       
       allTimeHigh_ = value;
     }
     /**
-     * <code>optional int32 all_time_high = 7;</code>
+     * <code>optional uint32 all_time_high = 8;</code>
      */
     private void clearAllTimeHigh() {
       
       allTimeHigh_ = 0;
     }
 
-    public static final int ALL_TIME_LOW_FIELD_NUMBER = 8;
+    public static final int ALL_TIME_LOW_FIELD_NUMBER = 9;
     private int allTimeLow_;
     /**
-     * <code>optional int32 all_time_low = 8;</code>
+     * <code>optional uint32 all_time_low = 9;</code>
      */
     public int getAllTimeLow() {
       return allTimeLow_;
     }
     /**
-     * <code>optional int32 all_time_low = 8;</code>
+     * <code>optional uint32 all_time_low = 9;</code>
      */
     private void setAllTimeLow(int value) {
       
       allTimeLow_ = value;
     }
     /**
-     * <code>optional int32 all_time_low = 8;</code>
+     * <code>optional uint32 all_time_low = 9;</code>
      */
     private void clearAllTimeLow() {
       
       allTimeLow_ = 0;
     }
 
-    public static final int STOCKS_IN_EXCHANGE_FIELD_NUMBER = 9;
+    public static final int STOCKS_IN_EXCHANGE_FIELD_NUMBER = 10;
     private int stocksInExchange_;
     /**
-     * <code>optional int32 stocks_in_exchange = 9;</code>
+     * <code>optional uint32 stocks_in_exchange = 10;</code>
      */
     public int getStocksInExchange() {
       return stocksInExchange_;
     }
     /**
-     * <code>optional int32 stocks_in_exchange = 9;</code>
+     * <code>optional uint32 stocks_in_exchange = 10;</code>
      */
     private void setStocksInExchange(int value) {
       
       stocksInExchange_ = value;
     }
     /**
-     * <code>optional int32 stocks_in_exchange = 9;</code>
+     * <code>optional uint32 stocks_in_exchange = 10;</code>
      */
     private void clearStocksInExchange() {
       
       stocksInExchange_ = 0;
     }
 
-    public static final int STOCKS_IN_MARKET_FIELD_NUMBER = 10;
+    public static final int STOCKS_IN_MARKET_FIELD_NUMBER = 11;
     private int stocksInMarket_;
     /**
-     * <code>optional int32 stocks_in_market = 10;</code>
+     * <code>optional uint32 stocks_in_market = 11;</code>
      */
     public int getStocksInMarket() {
       return stocksInMarket_;
     }
     /**
-     * <code>optional int32 stocks_in_market = 10;</code>
+     * <code>optional uint32 stocks_in_market = 11;</code>
      */
     private void setStocksInMarket(int value) {
       
       stocksInMarket_ = value;
     }
     /**
-     * <code>optional int32 stocks_in_market = 10;</code>
+     * <code>optional uint32 stocks_in_market = 11;</code>
      */
     private void clearStocksInMarket() {
       
       stocksInMarket_ = 0;
     }
 
-    public static final int UP_OR_DOWN_FIELD_NUMBER = 11;
+    public static final int UP_OR_DOWN_FIELD_NUMBER = 12;
     private boolean upOrDown_;
     /**
-     * <code>optional bool up_or_down = 11;</code>
+     * <code>optional bool up_or_down = 12;</code>
      */
     public boolean getUpOrDown() {
       return upOrDown_;
     }
     /**
-     * <code>optional bool up_or_down = 11;</code>
+     * <code>optional bool up_or_down = 12;</code>
      */
     private void setUpOrDown(boolean value) {
       
       upOrDown_ = value;
     }
     /**
-     * <code>optional bool up_or_down = 11;</code>
+     * <code>optional bool up_or_down = 12;</code>
      */
     private void clearUpOrDown() {
       
       upOrDown_ = false;
     }
 
-    public static final int CREATED_AT_FIELD_NUMBER = 12;
+    public static final int PREVIOUS_DAY_CLOSE_FIELD_NUMBER = 13;
+    private int previousDayClose_;
+    /**
+     * <code>optional uint32 previous_day_close = 13;</code>
+     */
+    public int getPreviousDayClose() {
+      return previousDayClose_;
+    }
+    /**
+     * <code>optional uint32 previous_day_close = 13;</code>
+     */
+    private void setPreviousDayClose(int value) {
+      
+      previousDayClose_ = value;
+    }
+    /**
+     * <code>optional uint32 previous_day_close = 13;</code>
+     */
+    private void clearPreviousDayClose() {
+      
+      previousDayClose_ = 0;
+    }
+
+    public static final int CREATED_AT_FIELD_NUMBER = 14;
     private java.lang.String createdAt_;
     /**
-     * <code>optional string created_at = 12;</code>
+     * <code>optional string created_at = 14;</code>
      */
     public java.lang.String getCreatedAt() {
       return createdAt_;
     }
     /**
-     * <code>optional string created_at = 12;</code>
+     * <code>optional string created_at = 14;</code>
      */
     public com.google.protobuf.ByteString
         getCreatedAtBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(createdAt_);
     }
     /**
-     * <code>optional string created_at = 12;</code>
+     * <code>optional string created_at = 14;</code>
      */
     private void setCreatedAt(
         java.lang.String value) {
@@ -437,14 +522,14 @@ public final class StockOuterClass {
       createdAt_ = value;
     }
     /**
-     * <code>optional string created_at = 12;</code>
+     * <code>optional string created_at = 14;</code>
      */
     private void clearCreatedAt() {
       
       createdAt_ = getDefaultInstance().getCreatedAt();
     }
     /**
-     * <code>optional string created_at = 12;</code>
+     * <code>optional string created_at = 14;</code>
      */
     private void setCreatedAtBytes(
         com.google.protobuf.ByteString value) {
@@ -456,23 +541,23 @@ public final class StockOuterClass {
       createdAt_ = value.toStringUtf8();
     }
 
-    public static final int UPDATED_AT_FIELD_NUMBER = 13;
+    public static final int UPDATED_AT_FIELD_NUMBER = 15;
     private java.lang.String updatedAt_;
     /**
-     * <code>optional string updated_at = 13;</code>
+     * <code>optional string updated_at = 15;</code>
      */
     public java.lang.String getUpdatedAt() {
       return updatedAt_;
     }
     /**
-     * <code>optional string updated_at = 13;</code>
+     * <code>optional string updated_at = 15;</code>
      */
     public com.google.protobuf.ByteString
         getUpdatedAtBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(updatedAt_);
     }
     /**
-     * <code>optional string updated_at = 13;</code>
+     * <code>optional string updated_at = 15;</code>
      */
     private void setUpdatedAt(
         java.lang.String value) {
@@ -483,14 +568,14 @@ public final class StockOuterClass {
       updatedAt_ = value;
     }
     /**
-     * <code>optional string updated_at = 13;</code>
+     * <code>optional string updated_at = 15;</code>
      */
     private void clearUpdatedAt() {
       
       updatedAt_ = getDefaultInstance().getUpdatedAt();
     }
     /**
-     * <code>optional string updated_at = 13;</code>
+     * <code>optional string updated_at = 15;</code>
      */
     private void setUpdatedAtBytes(
         com.google.protobuf.ByteString value) {
@@ -505,7 +590,7 @@ public final class StockOuterClass {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (id_ != 0) {
-        output.writeInt32(1, id_);
+        output.writeUInt32(1, id_);
       }
       if (!shortName_.isEmpty()) {
         output.writeString(2, getShortName());
@@ -513,35 +598,41 @@ public final class StockOuterClass {
       if (!fullName_.isEmpty()) {
         output.writeString(3, getFullName());
       }
+      if (!description_.isEmpty()) {
+        output.writeString(4, getDescription());
+      }
       if (currentPrice_ != 0) {
-        output.writeInt32(4, currentPrice_);
+        output.writeUInt32(5, currentPrice_);
       }
       if (dayHigh_ != 0) {
-        output.writeInt32(5, dayHigh_);
+        output.writeUInt32(6, dayHigh_);
       }
       if (dayLow_ != 0) {
-        output.writeInt32(6, dayLow_);
+        output.writeUInt32(7, dayLow_);
       }
       if (allTimeHigh_ != 0) {
-        output.writeInt32(7, allTimeHigh_);
+        output.writeUInt32(8, allTimeHigh_);
       }
       if (allTimeLow_ != 0) {
-        output.writeInt32(8, allTimeLow_);
+        output.writeUInt32(9, allTimeLow_);
       }
       if (stocksInExchange_ != 0) {
-        output.writeInt32(9, stocksInExchange_);
+        output.writeUInt32(10, stocksInExchange_);
       }
       if (stocksInMarket_ != 0) {
-        output.writeInt32(10, stocksInMarket_);
+        output.writeUInt32(11, stocksInMarket_);
       }
       if (upOrDown_ != false) {
-        output.writeBool(11, upOrDown_);
+        output.writeBool(12, upOrDown_);
+      }
+      if (previousDayClose_ != 0) {
+        output.writeUInt32(13, previousDayClose_);
       }
       if (!createdAt_.isEmpty()) {
-        output.writeString(12, getCreatedAt());
+        output.writeString(14, getCreatedAt());
       }
       if (!updatedAt_.isEmpty()) {
-        output.writeString(13, getUpdatedAt());
+        output.writeString(15, getUpdatedAt());
       }
     }
 
@@ -552,7 +643,7 @@ public final class StockOuterClass {
       size = 0;
       if (id_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, id_);
+          .computeUInt32Size(1, id_);
       }
       if (!shortName_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
@@ -562,45 +653,53 @@ public final class StockOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(3, getFullName());
       }
+      if (!description_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(4, getDescription());
+      }
       if (currentPrice_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, currentPrice_);
+          .computeUInt32Size(5, currentPrice_);
       }
       if (dayHigh_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(5, dayHigh_);
+          .computeUInt32Size(6, dayHigh_);
       }
       if (dayLow_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(6, dayLow_);
+          .computeUInt32Size(7, dayLow_);
       }
       if (allTimeHigh_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(7, allTimeHigh_);
+          .computeUInt32Size(8, allTimeHigh_);
       }
       if (allTimeLow_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(8, allTimeLow_);
+          .computeUInt32Size(9, allTimeLow_);
       }
       if (stocksInExchange_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(9, stocksInExchange_);
+          .computeUInt32Size(10, stocksInExchange_);
       }
       if (stocksInMarket_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(10, stocksInMarket_);
+          .computeUInt32Size(11, stocksInMarket_);
       }
       if (upOrDown_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(11, upOrDown_);
+          .computeBoolSize(12, upOrDown_);
+      }
+      if (previousDayClose_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(13, previousDayClose_);
       }
       if (!createdAt_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(12, getCreatedAt());
+          .computeStringSize(14, getCreatedAt());
       }
       if (!updatedAt_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(13, getUpdatedAt());
+          .computeStringSize(15, getUpdatedAt());
       }
       memoizedSerializedSize = size;
       return size;
@@ -689,13 +788,13 @@ public final class StockOuterClass {
 
 
       /**
-       * <code>optional int32 id = 1;</code>
+       * <code>optional uint32 id = 1;</code>
        */
       public int getId() {
         return instance.getId();
       }
       /**
-       * <code>optional int32 id = 1;</code>
+       * <code>optional uint32 id = 1;</code>
        */
       public Builder setId(int value) {
         copyOnWrite();
@@ -703,7 +802,7 @@ public final class StockOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 id = 1;</code>
+       * <code>optional uint32 id = 1;</code>
        */
       public Builder clearId() {
         copyOnWrite();
@@ -792,13 +891,53 @@ public final class StockOuterClass {
       }
 
       /**
-       * <code>optional int32 current_price = 4;</code>
+       * <code>optional string description = 4;</code>
+       */
+      public java.lang.String getDescription() {
+        return instance.getDescription();
+      }
+      /**
+       * <code>optional string description = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getDescriptionBytes() {
+        return instance.getDescriptionBytes();
+      }
+      /**
+       * <code>optional string description = 4;</code>
+       */
+      public Builder setDescription(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setDescription(value);
+        return this;
+      }
+      /**
+       * <code>optional string description = 4;</code>
+       */
+      public Builder clearDescription() {
+        copyOnWrite();
+        instance.clearDescription();
+        return this;
+      }
+      /**
+       * <code>optional string description = 4;</code>
+       */
+      public Builder setDescriptionBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setDescriptionBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional uint32 current_price = 5;</code>
        */
       public int getCurrentPrice() {
         return instance.getCurrentPrice();
       }
       /**
-       * <code>optional int32 current_price = 4;</code>
+       * <code>optional uint32 current_price = 5;</code>
        */
       public Builder setCurrentPrice(int value) {
         copyOnWrite();
@@ -806,7 +945,7 @@ public final class StockOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 current_price = 4;</code>
+       * <code>optional uint32 current_price = 5;</code>
        */
       public Builder clearCurrentPrice() {
         copyOnWrite();
@@ -815,13 +954,13 @@ public final class StockOuterClass {
       }
 
       /**
-       * <code>optional int32 day_high = 5;</code>
+       * <code>optional uint32 day_high = 6;</code>
        */
       public int getDayHigh() {
         return instance.getDayHigh();
       }
       /**
-       * <code>optional int32 day_high = 5;</code>
+       * <code>optional uint32 day_high = 6;</code>
        */
       public Builder setDayHigh(int value) {
         copyOnWrite();
@@ -829,7 +968,7 @@ public final class StockOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 day_high = 5;</code>
+       * <code>optional uint32 day_high = 6;</code>
        */
       public Builder clearDayHigh() {
         copyOnWrite();
@@ -838,13 +977,13 @@ public final class StockOuterClass {
       }
 
       /**
-       * <code>optional int32 day_low = 6;</code>
+       * <code>optional uint32 day_low = 7;</code>
        */
       public int getDayLow() {
         return instance.getDayLow();
       }
       /**
-       * <code>optional int32 day_low = 6;</code>
+       * <code>optional uint32 day_low = 7;</code>
        */
       public Builder setDayLow(int value) {
         copyOnWrite();
@@ -852,7 +991,7 @@ public final class StockOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 day_low = 6;</code>
+       * <code>optional uint32 day_low = 7;</code>
        */
       public Builder clearDayLow() {
         copyOnWrite();
@@ -861,13 +1000,13 @@ public final class StockOuterClass {
       }
 
       /**
-       * <code>optional int32 all_time_high = 7;</code>
+       * <code>optional uint32 all_time_high = 8;</code>
        */
       public int getAllTimeHigh() {
         return instance.getAllTimeHigh();
       }
       /**
-       * <code>optional int32 all_time_high = 7;</code>
+       * <code>optional uint32 all_time_high = 8;</code>
        */
       public Builder setAllTimeHigh(int value) {
         copyOnWrite();
@@ -875,7 +1014,7 @@ public final class StockOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 all_time_high = 7;</code>
+       * <code>optional uint32 all_time_high = 8;</code>
        */
       public Builder clearAllTimeHigh() {
         copyOnWrite();
@@ -884,13 +1023,13 @@ public final class StockOuterClass {
       }
 
       /**
-       * <code>optional int32 all_time_low = 8;</code>
+       * <code>optional uint32 all_time_low = 9;</code>
        */
       public int getAllTimeLow() {
         return instance.getAllTimeLow();
       }
       /**
-       * <code>optional int32 all_time_low = 8;</code>
+       * <code>optional uint32 all_time_low = 9;</code>
        */
       public Builder setAllTimeLow(int value) {
         copyOnWrite();
@@ -898,7 +1037,7 @@ public final class StockOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 all_time_low = 8;</code>
+       * <code>optional uint32 all_time_low = 9;</code>
        */
       public Builder clearAllTimeLow() {
         copyOnWrite();
@@ -907,13 +1046,13 @@ public final class StockOuterClass {
       }
 
       /**
-       * <code>optional int32 stocks_in_exchange = 9;</code>
+       * <code>optional uint32 stocks_in_exchange = 10;</code>
        */
       public int getStocksInExchange() {
         return instance.getStocksInExchange();
       }
       /**
-       * <code>optional int32 stocks_in_exchange = 9;</code>
+       * <code>optional uint32 stocks_in_exchange = 10;</code>
        */
       public Builder setStocksInExchange(int value) {
         copyOnWrite();
@@ -921,7 +1060,7 @@ public final class StockOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 stocks_in_exchange = 9;</code>
+       * <code>optional uint32 stocks_in_exchange = 10;</code>
        */
       public Builder clearStocksInExchange() {
         copyOnWrite();
@@ -930,13 +1069,13 @@ public final class StockOuterClass {
       }
 
       /**
-       * <code>optional int32 stocks_in_market = 10;</code>
+       * <code>optional uint32 stocks_in_market = 11;</code>
        */
       public int getStocksInMarket() {
         return instance.getStocksInMarket();
       }
       /**
-       * <code>optional int32 stocks_in_market = 10;</code>
+       * <code>optional uint32 stocks_in_market = 11;</code>
        */
       public Builder setStocksInMarket(int value) {
         copyOnWrite();
@@ -944,7 +1083,7 @@ public final class StockOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 stocks_in_market = 10;</code>
+       * <code>optional uint32 stocks_in_market = 11;</code>
        */
       public Builder clearStocksInMarket() {
         copyOnWrite();
@@ -953,13 +1092,13 @@ public final class StockOuterClass {
       }
 
       /**
-       * <code>optional bool up_or_down = 11;</code>
+       * <code>optional bool up_or_down = 12;</code>
        */
       public boolean getUpOrDown() {
         return instance.getUpOrDown();
       }
       /**
-       * <code>optional bool up_or_down = 11;</code>
+       * <code>optional bool up_or_down = 12;</code>
        */
       public Builder setUpOrDown(boolean value) {
         copyOnWrite();
@@ -967,7 +1106,7 @@ public final class StockOuterClass {
         return this;
       }
       /**
-       * <code>optional bool up_or_down = 11;</code>
+       * <code>optional bool up_or_down = 12;</code>
        */
       public Builder clearUpOrDown() {
         copyOnWrite();
@@ -976,20 +1115,43 @@ public final class StockOuterClass {
       }
 
       /**
-       * <code>optional string created_at = 12;</code>
+       * <code>optional uint32 previous_day_close = 13;</code>
+       */
+      public int getPreviousDayClose() {
+        return instance.getPreviousDayClose();
+      }
+      /**
+       * <code>optional uint32 previous_day_close = 13;</code>
+       */
+      public Builder setPreviousDayClose(int value) {
+        copyOnWrite();
+        instance.setPreviousDayClose(value);
+        return this;
+      }
+      /**
+       * <code>optional uint32 previous_day_close = 13;</code>
+       */
+      public Builder clearPreviousDayClose() {
+        copyOnWrite();
+        instance.clearPreviousDayClose();
+        return this;
+      }
+
+      /**
+       * <code>optional string created_at = 14;</code>
        */
       public java.lang.String getCreatedAt() {
         return instance.getCreatedAt();
       }
       /**
-       * <code>optional string created_at = 12;</code>
+       * <code>optional string created_at = 14;</code>
        */
       public com.google.protobuf.ByteString
           getCreatedAtBytes() {
         return instance.getCreatedAtBytes();
       }
       /**
-       * <code>optional string created_at = 12;</code>
+       * <code>optional string created_at = 14;</code>
        */
       public Builder setCreatedAt(
           java.lang.String value) {
@@ -998,7 +1160,7 @@ public final class StockOuterClass {
         return this;
       }
       /**
-       * <code>optional string created_at = 12;</code>
+       * <code>optional string created_at = 14;</code>
        */
       public Builder clearCreatedAt() {
         copyOnWrite();
@@ -1006,7 +1168,7 @@ public final class StockOuterClass {
         return this;
       }
       /**
-       * <code>optional string created_at = 12;</code>
+       * <code>optional string created_at = 14;</code>
        */
       public Builder setCreatedAtBytes(
           com.google.protobuf.ByteString value) {
@@ -1016,20 +1178,20 @@ public final class StockOuterClass {
       }
 
       /**
-       * <code>optional string updated_at = 13;</code>
+       * <code>optional string updated_at = 15;</code>
        */
       public java.lang.String getUpdatedAt() {
         return instance.getUpdatedAt();
       }
       /**
-       * <code>optional string updated_at = 13;</code>
+       * <code>optional string updated_at = 15;</code>
        */
       public com.google.protobuf.ByteString
           getUpdatedAtBytes() {
         return instance.getUpdatedAtBytes();
       }
       /**
-       * <code>optional string updated_at = 13;</code>
+       * <code>optional string updated_at = 15;</code>
        */
       public Builder setUpdatedAt(
           java.lang.String value) {
@@ -1038,7 +1200,7 @@ public final class StockOuterClass {
         return this;
       }
       /**
-       * <code>optional string updated_at = 13;</code>
+       * <code>optional string updated_at = 15;</code>
        */
       public Builder clearUpdatedAt() {
         copyOnWrite();
@@ -1046,7 +1208,7 @@ public final class StockOuterClass {
         return this;
       }
       /**
-       * <code>optional string updated_at = 13;</code>
+       * <code>optional string updated_at = 15;</code>
        */
       public Builder setUpdatedAtBytes(
           com.google.protobuf.ByteString value) {
@@ -1082,6 +1244,8 @@ public final class StockOuterClass {
               !other.shortName_.isEmpty(), other.shortName_);
           fullName_ = visitor.visitString(!fullName_.isEmpty(), fullName_,
               !other.fullName_.isEmpty(), other.fullName_);
+          description_ = visitor.visitString(!description_.isEmpty(), description_,
+              !other.description_.isEmpty(), other.description_);
           currentPrice_ = visitor.visitInt(currentPrice_ != 0, currentPrice_,
               other.currentPrice_ != 0, other.currentPrice_);
           dayHigh_ = visitor.visitInt(dayHigh_ != 0, dayHigh_,
@@ -1098,6 +1262,8 @@ public final class StockOuterClass {
               other.stocksInMarket_ != 0, other.stocksInMarket_);
           upOrDown_ = visitor.visitBoolean(upOrDown_ != false, upOrDown_,
               other.upOrDown_ != false, other.upOrDown_);
+          previousDayClose_ = visitor.visitInt(previousDayClose_ != 0, previousDayClose_,
+              other.previousDayClose_ != 0, other.previousDayClose_);
           createdAt_ = visitor.visitString(!createdAt_.isEmpty(), createdAt_,
               !other.createdAt_.isEmpty(), other.createdAt_);
           updatedAt_ = visitor.visitString(!updatedAt_.isEmpty(), updatedAt_,
@@ -1128,7 +1294,7 @@ public final class StockOuterClass {
                 }
                 case 8: {
 
-                  id_ = input.readInt32();
+                  id_ = input.readUInt32();
                   break;
                 }
                 case 18: {
@@ -1143,53 +1309,64 @@ public final class StockOuterClass {
                   fullName_ = s;
                   break;
                 }
-                case 32: {
+                case 34: {
+                  String s = input.readStringRequireUtf8();
 
-                  currentPrice_ = input.readInt32();
+                  description_ = s;
                   break;
                 }
                 case 40: {
 
-                  dayHigh_ = input.readInt32();
+                  currentPrice_ = input.readUInt32();
                   break;
                 }
                 case 48: {
 
-                  dayLow_ = input.readInt32();
+                  dayHigh_ = input.readUInt32();
                   break;
                 }
                 case 56: {
 
-                  allTimeHigh_ = input.readInt32();
+                  dayLow_ = input.readUInt32();
                   break;
                 }
                 case 64: {
 
-                  allTimeLow_ = input.readInt32();
+                  allTimeHigh_ = input.readUInt32();
                   break;
                 }
                 case 72: {
 
-                  stocksInExchange_ = input.readInt32();
+                  allTimeLow_ = input.readUInt32();
                   break;
                 }
                 case 80: {
 
-                  stocksInMarket_ = input.readInt32();
+                  stocksInExchange_ = input.readUInt32();
                   break;
                 }
                 case 88: {
 
+                  stocksInMarket_ = input.readUInt32();
+                  break;
+                }
+                case 96: {
+
                   upOrDown_ = input.readBool();
                   break;
                 }
-                case 98: {
+                case 104: {
+
+                  previousDayClose_ = input.readUInt32();
+                  break;
+                }
+                case 114: {
                   String s = input.readStringRequireUtf8();
 
                   createdAt_ = s;
                   break;
                 }
-                case 106: {
+                case 122: {
                   String s = input.readStringRequireUtf8();
 
                   updatedAt_ = s;

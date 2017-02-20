@@ -367,6 +367,11 @@ public final class BuyStocksFromExchange {
      */
     dalalstreet.socketapi.errors.Errors.InternalServerError getInternalServerError();
 
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeResponse.NotEnoughStocksError not_enough_stocks_error = 6;</code>
+     */
+    dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError getNotEnoughStocksError();
+
     public dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.ResponseCase getResponseCase();
   }
   /**
@@ -385,12 +390,22 @@ public final class BuyStocksFromExchange {
 
       /**
        * <pre>
-       *price of stocks when the server processed the request
+       *uint32 trading_price = 1;   //price of stocks when the server processed the request
+       *int32 stock_quantity = 2;
        * </pre>
        *
-       * <code>optional uint32 trading_price = 1;</code>
+       * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
        */
-      int getTradingPrice();
+      boolean hasTransaction();
+      /**
+       * <pre>
+       *uint32 trading_price = 1;   //price of stocks when the server processed the request
+       *int32 stock_quantity = 2;
+       * </pre>
+       *
+       * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
+       */
+      dalalstreet.socketapi.models.TransactionOuterClass.Transaction getTransaction();
     }
     /**
      * Protobuf type {@code dalalstreet.socketapi.actions.BuyStocksFromExchangeResponse.BuyStocksFromExchangeSuccessResponse}
@@ -402,45 +417,92 @@ public final class BuyStocksFromExchange {
         BuyStocksFromExchangeSuccessResponseOrBuilder {
       private BuyStocksFromExchangeSuccessResponse() {
       }
-      public static final int TRADING_PRICE_FIELD_NUMBER = 1;
-      private int tradingPrice_;
+      public static final int TRANSACTION_FIELD_NUMBER = 3;
+      private dalalstreet.socketapi.models.TransactionOuterClass.Transaction transaction_;
       /**
        * <pre>
-       *price of stocks when the server processed the request
+       *uint32 trading_price = 1;   //price of stocks when the server processed the request
+       *int32 stock_quantity = 2;
        * </pre>
        *
-       * <code>optional uint32 trading_price = 1;</code>
+       * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
        */
-      public int getTradingPrice() {
-        return tradingPrice_;
+      public boolean hasTransaction() {
+        return transaction_ != null;
       }
       /**
        * <pre>
-       *price of stocks when the server processed the request
+       *uint32 trading_price = 1;   //price of stocks when the server processed the request
+       *int32 stock_quantity = 2;
        * </pre>
        *
-       * <code>optional uint32 trading_price = 1;</code>
+       * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
        */
-      private void setTradingPrice(int value) {
-        
-        tradingPrice_ = value;
+      public dalalstreet.socketapi.models.TransactionOuterClass.Transaction getTransaction() {
+        return transaction_ == null ? dalalstreet.socketapi.models.TransactionOuterClass.Transaction.getDefaultInstance() : transaction_;
       }
       /**
        * <pre>
-       *price of stocks when the server processed the request
+       *uint32 trading_price = 1;   //price of stocks when the server processed the request
+       *int32 stock_quantity = 2;
        * </pre>
        *
-       * <code>optional uint32 trading_price = 1;</code>
+       * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
        */
-      private void clearTradingPrice() {
+      private void setTransaction(dalalstreet.socketapi.models.TransactionOuterClass.Transaction value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        transaction_ = value;
         
-        tradingPrice_ = 0;
+        }
+      /**
+       * <pre>
+       *uint32 trading_price = 1;   //price of stocks when the server processed the request
+       *int32 stock_quantity = 2;
+       * </pre>
+       *
+       * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
+       */
+      private void setTransaction(
+          dalalstreet.socketapi.models.TransactionOuterClass.Transaction.Builder builderForValue) {
+        transaction_ = builderForValue.build();
+        
+      }
+      /**
+       * <pre>
+       *uint32 trading_price = 1;   //price of stocks when the server processed the request
+       *int32 stock_quantity = 2;
+       * </pre>
+       *
+       * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
+       */
+      private void mergeTransaction(dalalstreet.socketapi.models.TransactionOuterClass.Transaction value) {
+        if (transaction_ != null &&
+            transaction_ != dalalstreet.socketapi.models.TransactionOuterClass.Transaction.getDefaultInstance()) {
+          transaction_ =
+            dalalstreet.socketapi.models.TransactionOuterClass.Transaction.newBuilder(transaction_).mergeFrom(value).buildPartial();
+        } else {
+          transaction_ = value;
+        }
+        
+      }
+      /**
+       * <pre>
+       *uint32 trading_price = 1;   //price of stocks when the server processed the request
+       *int32 stock_quantity = 2;
+       * </pre>
+       *
+       * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
+       */
+      private void clearTransaction() {  transaction_ = null;
+        
       }
 
       public void writeTo(com.google.protobuf.CodedOutputStream output)
                           throws java.io.IOException {
-        if (tradingPrice_ != 0) {
-          output.writeUInt32(1, tradingPrice_);
+        if (transaction_ != null) {
+          output.writeMessage(3, getTransaction());
         }
       }
 
@@ -449,9 +511,9 @@ public final class BuyStocksFromExchange {
         if (size != -1) return size;
 
         size = 0;
-        if (tradingPrice_ != 0) {
+        if (transaction_ != null) {
           size += com.google.protobuf.CodedOutputStream
-            .computeUInt32Size(1, tradingPrice_);
+            .computeMessageSize(3, getTransaction());
         }
         memoizedSerializedSize = size;
         return size;
@@ -541,36 +603,76 @@ public final class BuyStocksFromExchange {
 
         /**
          * <pre>
-         *price of stocks when the server processed the request
+         *uint32 trading_price = 1;   //price of stocks when the server processed the request
+         *int32 stock_quantity = 2;
          * </pre>
          *
-         * <code>optional uint32 trading_price = 1;</code>
+         * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
          */
-        public int getTradingPrice() {
-          return instance.getTradingPrice();
+        public boolean hasTransaction() {
+          return instance.hasTransaction();
         }
         /**
          * <pre>
-         *price of stocks when the server processed the request
+         *uint32 trading_price = 1;   //price of stocks when the server processed the request
+         *int32 stock_quantity = 2;
          * </pre>
          *
-         * <code>optional uint32 trading_price = 1;</code>
+         * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
          */
-        public Builder setTradingPrice(int value) {
+        public dalalstreet.socketapi.models.TransactionOuterClass.Transaction getTransaction() {
+          return instance.getTransaction();
+        }
+        /**
+         * <pre>
+         *uint32 trading_price = 1;   //price of stocks when the server processed the request
+         *int32 stock_quantity = 2;
+         * </pre>
+         *
+         * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
+         */
+        public Builder setTransaction(dalalstreet.socketapi.models.TransactionOuterClass.Transaction value) {
           copyOnWrite();
-          instance.setTradingPrice(value);
+          instance.setTransaction(value);
+          return this;
+          }
+        /**
+         * <pre>
+         *uint32 trading_price = 1;   //price of stocks when the server processed the request
+         *int32 stock_quantity = 2;
+         * </pre>
+         *
+         * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
+         */
+        public Builder setTransaction(
+            dalalstreet.socketapi.models.TransactionOuterClass.Transaction.Builder builderForValue) {
+          copyOnWrite();
+          instance.setTransaction(builderForValue);
           return this;
         }
         /**
          * <pre>
-         *price of stocks when the server processed the request
+         *uint32 trading_price = 1;   //price of stocks when the server processed the request
+         *int32 stock_quantity = 2;
          * </pre>
          *
-         * <code>optional uint32 trading_price = 1;</code>
+         * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
          */
-        public Builder clearTradingPrice() {
+        public Builder mergeTransaction(dalalstreet.socketapi.models.TransactionOuterClass.Transaction value) {
           copyOnWrite();
-          instance.clearTradingPrice();
+          instance.mergeTransaction(value);
+          return this;
+        }
+        /**
+         * <pre>
+         *uint32 trading_price = 1;   //price of stocks when the server processed the request
+         *int32 stock_quantity = 2;
+         * </pre>
+         *
+         * <code>optional .dalalstreet.socketapi.models.Transaction transaction = 3;</code>
+         */
+        public Builder clearTransaction() {  copyOnWrite();
+          instance.clearTransaction();
           return this;
         }
 
@@ -595,8 +697,7 @@ public final class BuyStocksFromExchange {
           case VISIT: {
             Visitor visitor = (Visitor) arg0;
             dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.BuyStocksFromExchangeSuccessResponse other = (dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.BuyStocksFromExchangeSuccessResponse) arg1;
-            tradingPrice_ = visitor.visitInt(tradingPrice_ != 0, tradingPrice_,
-                other.tradingPrice_ != 0, other.tradingPrice_);
+            transaction_ = visitor.visitMessage(transaction_, other.transaction_);
             if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
                 .INSTANCE) {
             }
@@ -621,9 +722,17 @@ public final class BuyStocksFromExchange {
                     }
                     break;
                   }
-                  case 8: {
+                  case 26: {
+                    dalalstreet.socketapi.models.TransactionOuterClass.Transaction.Builder subBuilder = null;
+                    if (transaction_ != null) {
+                      subBuilder = transaction_.toBuilder();
+                    }
+                    transaction_ = input.readMessage(dalalstreet.socketapi.models.TransactionOuterClass.Transaction.parser(), extensionRegistry);
+                    if (subBuilder != null) {
+                      subBuilder.mergeFrom(transaction_);
+                      transaction_ = subBuilder.buildPartial();
+                    }
 
-                    tradingPrice_ = input.readUInt32();
                     break;
                   }
                 }
@@ -1296,6 +1405,318 @@ public final class BuyStocksFromExchange {
       }
     }
 
+    public interface NotEnoughStocksErrorOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:dalalstreet.socketapi.actions.BuyStocksFromExchangeResponse.NotEnoughStocksError)
+        com.google.protobuf.MessageLiteOrBuilder {
+
+      /**
+       * <code>optional string reason = 1;</code>
+       */
+      java.lang.String getReason();
+      /**
+       * <code>optional string reason = 1;</code>
+       */
+      com.google.protobuf.ByteString
+          getReasonBytes();
+    }
+    /**
+     * Protobuf type {@code dalalstreet.socketapi.actions.BuyStocksFromExchangeResponse.NotEnoughStocksError}
+     */
+    public  static final class NotEnoughStocksError extends
+        com.google.protobuf.GeneratedMessageLite<
+            NotEnoughStocksError, NotEnoughStocksError.Builder> implements
+        // @@protoc_insertion_point(message_implements:dalalstreet.socketapi.actions.BuyStocksFromExchangeResponse.NotEnoughStocksError)
+        NotEnoughStocksErrorOrBuilder {
+      private NotEnoughStocksError() {
+        reason_ = "";
+      }
+      public static final int REASON_FIELD_NUMBER = 1;
+      private java.lang.String reason_;
+      /**
+       * <code>optional string reason = 1;</code>
+       */
+      public java.lang.String getReason() {
+        return reason_;
+      }
+      /**
+       * <code>optional string reason = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getReasonBytes() {
+        return com.google.protobuf.ByteString.copyFromUtf8(reason_);
+      }
+      /**
+       * <code>optional string reason = 1;</code>
+       */
+      private void setReason(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        reason_ = value;
+      }
+      /**
+       * <code>optional string reason = 1;</code>
+       */
+      private void clearReason() {
+        
+        reason_ = getDefaultInstance().getReason();
+      }
+      /**
+       * <code>optional string reason = 1;</code>
+       */
+      private void setReasonBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        reason_ = value.toStringUtf8();
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (!reason_.isEmpty()) {
+          output.writeString(1, getReason());
+        }
+      }
+
+      public int getSerializedSize() {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (!reason_.isEmpty()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeStringSize(1, getReason());
+        }
+        memoizedSerializedSize = size;
+        return size;
+      }
+
+      public static dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
+      public static dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data);
+      }
+      public static dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, data, extensionRegistry);
+      }
+      public static dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input);
+      }
+      public static dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+      public static dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+      }
+      public static dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+      public static dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input);
+      }
+      public static dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageLite.parseFrom(
+            DEFAULT_INSTANCE, input, extensionRegistry);
+      }
+
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+
+      /**
+       * Protobuf type {@code dalalstreet.socketapi.actions.BuyStocksFromExchangeResponse.NotEnoughStocksError}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageLite.Builder<
+            dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError, Builder> implements
+          // @@protoc_insertion_point(builder_implements:dalalstreet.socketapi.actions.BuyStocksFromExchangeResponse.NotEnoughStocksError)
+          dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksErrorOrBuilder {
+        // Construct using dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError.newBuilder()
+        private Builder() {
+          super(DEFAULT_INSTANCE);
+        }
+
+
+        /**
+         * <code>optional string reason = 1;</code>
+         */
+        public java.lang.String getReason() {
+          return instance.getReason();
+        }
+        /**
+         * <code>optional string reason = 1;</code>
+         */
+        public com.google.protobuf.ByteString
+            getReasonBytes() {
+          return instance.getReasonBytes();
+        }
+        /**
+         * <code>optional string reason = 1;</code>
+         */
+        public Builder setReason(
+            java.lang.String value) {
+          copyOnWrite();
+          instance.setReason(value);
+          return this;
+        }
+        /**
+         * <code>optional string reason = 1;</code>
+         */
+        public Builder clearReason() {
+          copyOnWrite();
+          instance.clearReason();
+          return this;
+        }
+        /**
+         * <code>optional string reason = 1;</code>
+         */
+        public Builder setReasonBytes(
+            com.google.protobuf.ByteString value) {
+          copyOnWrite();
+          instance.setReasonBytes(value);
+          return this;
+        }
+
+        // @@protoc_insertion_point(builder_scope:dalalstreet.socketapi.actions.BuyStocksFromExchangeResponse.NotEnoughStocksError)
+      }
+      protected final Object dynamicMethod(
+          com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+          Object arg0, Object arg1) {
+        switch (method) {
+          case NEW_MUTABLE_INSTANCE: {
+            return new dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError();
+          }
+          case IS_INITIALIZED: {
+            return DEFAULT_INSTANCE;
+          }
+          case MAKE_IMMUTABLE: {
+            return null;
+          }
+          case NEW_BUILDER: {
+            return new Builder();
+          }
+          case VISIT: {
+            Visitor visitor = (Visitor) arg0;
+            dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError other = (dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError) arg1;
+            reason_ = visitor.visitString(!reason_.isEmpty(), reason_,
+                !other.reason_.isEmpty(), other.reason_);
+            if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+                .INSTANCE) {
+            }
+            return this;
+          }
+          case MERGE_FROM_STREAM: {
+            com.google.protobuf.CodedInputStream input =
+                (com.google.protobuf.CodedInputStream) arg0;
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+                (com.google.protobuf.ExtensionRegistryLite) arg1;
+            try {
+              boolean done = false;
+              while (!done) {
+                int tag = input.readTag();
+                switch (tag) {
+                  case 0:
+                    done = true;
+                    break;
+                  default: {
+                    if (!input.skipField(tag)) {
+                      done = true;
+                    }
+                    break;
+                  }
+                  case 10: {
+                    String s = input.readStringRequireUtf8();
+
+                    reason_ = s;
+                    break;
+                  }
+                }
+              }
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+              throw new RuntimeException(e.setUnfinishedMessage(this));
+            } catch (java.io.IOException e) {
+              throw new RuntimeException(
+                  new com.google.protobuf.InvalidProtocolBufferException(
+                      e.getMessage()).setUnfinishedMessage(this));
+            } finally {
+            }
+          }
+          case GET_DEFAULT_INSTANCE: {
+            return DEFAULT_INSTANCE;
+          }
+          case GET_PARSER: {
+            if (PARSER == null) {    synchronized (dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError.class) {
+                if (PARSER == null) {
+                  PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+                }
+              }
+            }
+            return PARSER;
+          }
+        }
+        throw new UnsupportedOperationException();
+      }
+
+
+      // @@protoc_insertion_point(class_scope:dalalstreet.socketapi.actions.BuyStocksFromExchangeResponse.NotEnoughStocksError)
+      private static final dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new NotEnoughStocksError();
+        DEFAULT_INSTANCE.makeImmutable();
+      }
+
+      public static dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static volatile com.google.protobuf.Parser<NotEnoughStocksError> PARSER;
+
+      public static com.google.protobuf.Parser<NotEnoughStocksError> parser() {
+        return DEFAULT_INSTANCE.getParserForType();
+      }
+    }
+
     private int responseCase_ = 0;
     private java.lang.Object response_;
     public enum ResponseCase
@@ -1305,6 +1726,7 @@ public final class BuyStocksFromExchange {
       BUY_LIMIT_EXCEEDED_ERROR(3),
       BAD_REQUEST_ERROR(4),
       INTERNAL_SERVER_ERROR(5),
+      NOT_ENOUGH_STOCKS_ERROR(6),
       RESPONSE_NOT_SET(0);
       private final int value;
       private ResponseCase(int value) {
@@ -1325,6 +1747,7 @@ public final class BuyStocksFromExchange {
           case 3: return BUY_LIMIT_EXCEEDED_ERROR;
           case 4: return BAD_REQUEST_ERROR;
           case 5: return INTERNAL_SERVER_ERROR;
+          case 6: return NOT_ENOUGH_STOCKS_ERROR;
           case 0: return RESPONSE_NOT_SET;
           default: return null;
         }
@@ -1600,6 +2023,57 @@ public final class BuyStocksFromExchange {
       }
     }
 
+    public static final int NOT_ENOUGH_STOCKS_ERROR_FIELD_NUMBER = 6;
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeResponse.NotEnoughStocksError not_enough_stocks_error = 6;</code>
+     */
+    public dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError getNotEnoughStocksError() {
+      if (responseCase_ == 6) {
+         return (dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError) response_;
+      }
+      return dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError.getDefaultInstance();
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeResponse.NotEnoughStocksError not_enough_stocks_error = 6;</code>
+     */
+    private void setNotEnoughStocksError(dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      response_ = value;
+      responseCase_ = 6;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeResponse.NotEnoughStocksError not_enough_stocks_error = 6;</code>
+     */
+    private void setNotEnoughStocksError(
+        dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError.Builder builderForValue) {
+      response_ = builderForValue.build();
+      responseCase_ = 6;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeResponse.NotEnoughStocksError not_enough_stocks_error = 6;</code>
+     */
+    private void mergeNotEnoughStocksError(dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError value) {
+      if (responseCase_ == 6 &&
+          response_ != dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError.getDefaultInstance()) {
+        response_ = dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError.newBuilder((dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError) response_)
+            .mergeFrom(value).buildPartial();
+      } else {
+        response_ = value;
+      }
+      responseCase_ = 6;
+    }
+    /**
+     * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeResponse.NotEnoughStocksError not_enough_stocks_error = 6;</code>
+     */
+    private void clearNotEnoughStocksError() {
+      if (responseCase_ == 6) {
+        responseCase_ = 0;
+        response_ = null;
+      }
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (responseCase_ == 1) {
@@ -1616,6 +2090,9 @@ public final class BuyStocksFromExchange {
       }
       if (responseCase_ == 5) {
         output.writeMessage(5, (dalalstreet.socketapi.errors.Errors.InternalServerError) response_);
+      }
+      if (responseCase_ == 6) {
+        output.writeMessage(6, (dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError) response_);
       }
     }
 
@@ -1643,6 +2120,10 @@ public final class BuyStocksFromExchange {
       if (responseCase_ == 5) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(5, (dalalstreet.socketapi.errors.Errors.InternalServerError) response_);
+      }
+      if (responseCase_ == 6) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, (dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError) response_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -1941,6 +2422,46 @@ public final class BuyStocksFromExchange {
         return this;
       }
 
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeResponse.NotEnoughStocksError not_enough_stocks_error = 6;</code>
+       */
+      public dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError getNotEnoughStocksError() {
+        return instance.getNotEnoughStocksError();
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeResponse.NotEnoughStocksError not_enough_stocks_error = 6;</code>
+       */
+      public Builder setNotEnoughStocksError(dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError value) {
+        copyOnWrite();
+        instance.setNotEnoughStocksError(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeResponse.NotEnoughStocksError not_enough_stocks_error = 6;</code>
+       */
+      public Builder setNotEnoughStocksError(
+          dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError.Builder builderForValue) {
+        copyOnWrite();
+        instance.setNotEnoughStocksError(builderForValue);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeResponse.NotEnoughStocksError not_enough_stocks_error = 6;</code>
+       */
+      public Builder mergeNotEnoughStocksError(dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError value) {
+        copyOnWrite();
+        instance.mergeNotEnoughStocksError(value);
+        return this;
+      }
+      /**
+       * <code>optional .dalalstreet.socketapi.actions.BuyStocksFromExchangeResponse.NotEnoughStocksError not_enough_stocks_error = 6;</code>
+       */
+      public Builder clearNotEnoughStocksError() {
+        copyOnWrite();
+        instance.clearNotEnoughStocksError();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:dalalstreet.socketapi.actions.BuyStocksFromExchangeResponse)
     }
     protected final Object dynamicMethod(
@@ -1994,6 +2515,13 @@ public final class BuyStocksFromExchange {
             case INTERNAL_SERVER_ERROR: {
               response_ = visitor.visitOneofMessage(
                   responseCase_ == 5,
+                  response_,
+                  other.response_);
+              break;
+            }
+            case NOT_ENOUGH_STOCKS_ERROR: {
+              response_ = visitor.visitOneofMessage(
+                  responseCase_ == 6,
                   response_,
                   other.response_);
               break;
@@ -2098,6 +2626,20 @@ public final class BuyStocksFromExchange {
                     response_ = subBuilder.buildPartial();
                   }
                   responseCase_ = 5;
+                  break;
+                }
+                case 50: {
+                  dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError.Builder subBuilder = null;
+                  if (responseCase_ == 6) {
+                    subBuilder = ((dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError) response_).toBuilder();
+                  }
+                  response_ =
+                       input.readMessage(dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError.parser(), extensionRegistry);
+                  if (subBuilder != null) {
+                    subBuilder.mergeFrom((dalalstreet.socketapi.actions.BuyStocksFromExchange.BuyStocksFromExchangeResponse.NotEnoughStocksError) response_);
+                    response_ = subBuilder.buildPartial();
+                  }
+                  responseCase_ = 6;
                   break;
                 }
               }

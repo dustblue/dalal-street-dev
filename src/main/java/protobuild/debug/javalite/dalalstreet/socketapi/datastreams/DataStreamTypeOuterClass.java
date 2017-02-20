@@ -37,6 +37,10 @@ public final class DataStreamTypeOuterClass {
      * <code>MARKET_EVENTS = 5;</code>
      */
     MARKET_EVENTS(5),
+    /**
+     * <code>MY_ORDERS = 6;</code>
+     */
+    MY_ORDERS(6),
     UNRECOGNIZED(-1),
     ;
 
@@ -64,6 +68,10 @@ public final class DataStreamTypeOuterClass {
      * <code>MARKET_EVENTS = 5;</code>
      */
     public static final int MARKET_EVENTS_VALUE = 5;
+    /**
+     * <code>MY_ORDERS = 6;</code>
+     */
+    public static final int MY_ORDERS_VALUE = 6;
 
 
     public final int getNumber() {
@@ -86,6 +94,7 @@ public final class DataStreamTypeOuterClass {
         case 3: return STOCK_PRICES;
         case 4: return STOCK_EXCHANGE;
         case 5: return MARKET_EVENTS;
+        case 6: return MY_ORDERS;
         default: return null;
       }
     }

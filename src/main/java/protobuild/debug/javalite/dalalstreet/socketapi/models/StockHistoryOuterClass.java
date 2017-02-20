@@ -13,12 +13,12 @@ public final class StockHistoryOuterClass {
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional int32 stock_id = 1;</code>
+     * <code>optional uint32 stock_id = 1;</code>
      */
     int getStockId();
 
     /**
-     * <code>optional int32 stock_price = 2;</code>
+     * <code>optional uint32 stock_price = 2;</code>
      */
     int getStockPrice();
 
@@ -46,20 +46,20 @@ public final class StockHistoryOuterClass {
     public static final int STOCK_ID_FIELD_NUMBER = 1;
     private int stockId_;
     /**
-     * <code>optional int32 stock_id = 1;</code>
+     * <code>optional uint32 stock_id = 1;</code>
      */
     public int getStockId() {
       return stockId_;
     }
     /**
-     * <code>optional int32 stock_id = 1;</code>
+     * <code>optional uint32 stock_id = 1;</code>
      */
     private void setStockId(int value) {
       
       stockId_ = value;
     }
     /**
-     * <code>optional int32 stock_id = 1;</code>
+     * <code>optional uint32 stock_id = 1;</code>
      */
     private void clearStockId() {
       
@@ -69,20 +69,20 @@ public final class StockHistoryOuterClass {
     public static final int STOCK_PRICE_FIELD_NUMBER = 2;
     private int stockPrice_;
     /**
-     * <code>optional int32 stock_price = 2;</code>
+     * <code>optional uint32 stock_price = 2;</code>
      */
     public int getStockPrice() {
       return stockPrice_;
     }
     /**
-     * <code>optional int32 stock_price = 2;</code>
+     * <code>optional uint32 stock_price = 2;</code>
      */
     private void setStockPrice(int value) {
       
       stockPrice_ = value;
     }
     /**
-     * <code>optional int32 stock_price = 2;</code>
+     * <code>optional uint32 stock_price = 2;</code>
      */
     private void clearStockPrice() {
       
@@ -138,10 +138,10 @@ public final class StockHistoryOuterClass {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (stockId_ != 0) {
-        output.writeInt32(1, stockId_);
+        output.writeUInt32(1, stockId_);
       }
       if (stockPrice_ != 0) {
-        output.writeInt32(2, stockPrice_);
+        output.writeUInt32(2, stockPrice_);
       }
       if (!createdAt_.isEmpty()) {
         output.writeString(3, getCreatedAt());
@@ -155,11 +155,11 @@ public final class StockHistoryOuterClass {
       size = 0;
       if (stockId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, stockId_);
+          .computeUInt32Size(1, stockId_);
       }
       if (stockPrice_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, stockPrice_);
+          .computeUInt32Size(2, stockPrice_);
       }
       if (!createdAt_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
@@ -252,13 +252,13 @@ public final class StockHistoryOuterClass {
 
 
       /**
-       * <code>optional int32 stock_id = 1;</code>
+       * <code>optional uint32 stock_id = 1;</code>
        */
       public int getStockId() {
         return instance.getStockId();
       }
       /**
-       * <code>optional int32 stock_id = 1;</code>
+       * <code>optional uint32 stock_id = 1;</code>
        */
       public Builder setStockId(int value) {
         copyOnWrite();
@@ -266,7 +266,7 @@ public final class StockHistoryOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 stock_id = 1;</code>
+       * <code>optional uint32 stock_id = 1;</code>
        */
       public Builder clearStockId() {
         copyOnWrite();
@@ -275,13 +275,13 @@ public final class StockHistoryOuterClass {
       }
 
       /**
-       * <code>optional int32 stock_price = 2;</code>
+       * <code>optional uint32 stock_price = 2;</code>
        */
       public int getStockPrice() {
         return instance.getStockPrice();
       }
       /**
-       * <code>optional int32 stock_price = 2;</code>
+       * <code>optional uint32 stock_price = 2;</code>
        */
       public Builder setStockPrice(int value) {
         copyOnWrite();
@@ -289,7 +289,7 @@ public final class StockHistoryOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 stock_price = 2;</code>
+       * <code>optional uint32 stock_price = 2;</code>
        */
       public Builder clearStockPrice() {
         copyOnWrite();
@@ -390,12 +390,12 @@ public final class StockHistoryOuterClass {
                 }
                 case 8: {
 
-                  stockId_ = input.readInt32();
+                  stockId_ = input.readUInt32();
                   break;
                 }
                 case 16: {
 
-                  stockPrice_ = input.readInt32();
+                  stockPrice_ = input.readUInt32();
                   break;
                 }
                 case 26: {

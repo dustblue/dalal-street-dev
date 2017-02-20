@@ -13,22 +13,22 @@ public final class BidOuterClass {
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional int32 id = 1;</code>
+     * <code>optional uint32 id = 1;</code>
      */
     int getId();
 
     /**
-     * <code>optional int32 user_id = 2;</code>
+     * <code>optional uint32 user_id = 2;</code>
      */
     int getUserId();
 
     /**
-     * <code>optional int32 stock_id = 3;</code>
+     * <code>optional uint32 stock_id = 3;</code>
      */
     int getStockId();
 
     /**
-     * <code>optional int32 price = 4;</code>
+     * <code>optional uint32 price = 4;</code>
      */
     int getPrice();
 
@@ -42,12 +42,12 @@ public final class BidOuterClass {
     dalalstreet.socketapi.models.OrderTypeOuterClass.OrderType getOrderType();
 
     /**
-     * <code>optional int32 stock_quantity = 6;</code>
+     * <code>optional uint32 stock_quantity = 6;</code>
      */
     int getStockQuantity();
 
     /**
-     * <code>optional int32 stock_quantity_fulfilled = 7;</code>
+     * <code>optional uint32 stock_quantity_fulfilled = 7;</code>
      */
     int getStockQuantityFulfilled();
 
@@ -91,20 +91,20 @@ public final class BidOuterClass {
     public static final int ID_FIELD_NUMBER = 1;
     private int id_;
     /**
-     * <code>optional int32 id = 1;</code>
+     * <code>optional uint32 id = 1;</code>
      */
     public int getId() {
       return id_;
     }
     /**
-     * <code>optional int32 id = 1;</code>
+     * <code>optional uint32 id = 1;</code>
      */
     private void setId(int value) {
       
       id_ = value;
     }
     /**
-     * <code>optional int32 id = 1;</code>
+     * <code>optional uint32 id = 1;</code>
      */
     private void clearId() {
       
@@ -114,20 +114,20 @@ public final class BidOuterClass {
     public static final int USER_ID_FIELD_NUMBER = 2;
     private int userId_;
     /**
-     * <code>optional int32 user_id = 2;</code>
+     * <code>optional uint32 user_id = 2;</code>
      */
     public int getUserId() {
       return userId_;
     }
     /**
-     * <code>optional int32 user_id = 2;</code>
+     * <code>optional uint32 user_id = 2;</code>
      */
     private void setUserId(int value) {
       
       userId_ = value;
     }
     /**
-     * <code>optional int32 user_id = 2;</code>
+     * <code>optional uint32 user_id = 2;</code>
      */
     private void clearUserId() {
       
@@ -137,20 +137,20 @@ public final class BidOuterClass {
     public static final int STOCK_ID_FIELD_NUMBER = 3;
     private int stockId_;
     /**
-     * <code>optional int32 stock_id = 3;</code>
+     * <code>optional uint32 stock_id = 3;</code>
      */
     public int getStockId() {
       return stockId_;
     }
     /**
-     * <code>optional int32 stock_id = 3;</code>
+     * <code>optional uint32 stock_id = 3;</code>
      */
     private void setStockId(int value) {
       
       stockId_ = value;
     }
     /**
-     * <code>optional int32 stock_id = 3;</code>
+     * <code>optional uint32 stock_id = 3;</code>
      */
     private void clearStockId() {
       
@@ -160,20 +160,20 @@ public final class BidOuterClass {
     public static final int PRICE_FIELD_NUMBER = 4;
     private int price_;
     /**
-     * <code>optional int32 price = 4;</code>
+     * <code>optional uint32 price = 4;</code>
      */
     public int getPrice() {
       return price_;
     }
     /**
-     * <code>optional int32 price = 4;</code>
+     * <code>optional uint32 price = 4;</code>
      */
     private void setPrice(int value) {
       
       price_ = value;
     }
     /**
-     * <code>optional int32 price = 4;</code>
+     * <code>optional uint32 price = 4;</code>
      */
     private void clearPrice() {
       
@@ -222,20 +222,20 @@ public final class BidOuterClass {
     public static final int STOCK_QUANTITY_FIELD_NUMBER = 6;
     private int stockQuantity_;
     /**
-     * <code>optional int32 stock_quantity = 6;</code>
+     * <code>optional uint32 stock_quantity = 6;</code>
      */
     public int getStockQuantity() {
       return stockQuantity_;
     }
     /**
-     * <code>optional int32 stock_quantity = 6;</code>
+     * <code>optional uint32 stock_quantity = 6;</code>
      */
     private void setStockQuantity(int value) {
       
       stockQuantity_ = value;
     }
     /**
-     * <code>optional int32 stock_quantity = 6;</code>
+     * <code>optional uint32 stock_quantity = 6;</code>
      */
     private void clearStockQuantity() {
       
@@ -245,20 +245,20 @@ public final class BidOuterClass {
     public static final int STOCK_QUANTITY_FULFILLED_FIELD_NUMBER = 7;
     private int stockQuantityFulfilled_;
     /**
-     * <code>optional int32 stock_quantity_fulfilled = 7;</code>
+     * <code>optional uint32 stock_quantity_fulfilled = 7;</code>
      */
     public int getStockQuantityFulfilled() {
       return stockQuantityFulfilled_;
     }
     /**
-     * <code>optional int32 stock_quantity_fulfilled = 7;</code>
+     * <code>optional uint32 stock_quantity_fulfilled = 7;</code>
      */
     private void setStockQuantityFulfilled(int value) {
       
       stockQuantityFulfilled_ = value;
     }
     /**
-     * <code>optional int32 stock_quantity_fulfilled = 7;</code>
+     * <code>optional uint32 stock_quantity_fulfilled = 7;</code>
      */
     private void clearStockQuantityFulfilled() {
       
@@ -383,25 +383,25 @@ public final class BidOuterClass {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (id_ != 0) {
-        output.writeInt32(1, id_);
+        output.writeUInt32(1, id_);
       }
       if (userId_ != 0) {
-        output.writeInt32(2, userId_);
+        output.writeUInt32(2, userId_);
       }
       if (stockId_ != 0) {
-        output.writeInt32(3, stockId_);
+        output.writeUInt32(3, stockId_);
       }
       if (price_ != 0) {
-        output.writeInt32(4, price_);
+        output.writeUInt32(4, price_);
       }
       if (orderType_ != dalalstreet.socketapi.models.OrderTypeOuterClass.OrderType.LIMIT.getNumber()) {
         output.writeEnum(5, orderType_);
       }
       if (stockQuantity_ != 0) {
-        output.writeInt32(6, stockQuantity_);
+        output.writeUInt32(6, stockQuantity_);
       }
       if (stockQuantityFulfilled_ != 0) {
-        output.writeInt32(7, stockQuantityFulfilled_);
+        output.writeUInt32(7, stockQuantityFulfilled_);
       }
       if (isClosed_ != false) {
         output.writeBool(8, isClosed_);
@@ -421,19 +421,19 @@ public final class BidOuterClass {
       size = 0;
       if (id_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, id_);
+          .computeUInt32Size(1, id_);
       }
       if (userId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, userId_);
+          .computeUInt32Size(2, userId_);
       }
       if (stockId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, stockId_);
+          .computeUInt32Size(3, stockId_);
       }
       if (price_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, price_);
+          .computeUInt32Size(4, price_);
       }
       if (orderType_ != dalalstreet.socketapi.models.OrderTypeOuterClass.OrderType.LIMIT.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
@@ -441,11 +441,11 @@ public final class BidOuterClass {
       }
       if (stockQuantity_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(6, stockQuantity_);
+          .computeUInt32Size(6, stockQuantity_);
       }
       if (stockQuantityFulfilled_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(7, stockQuantityFulfilled_);
+          .computeUInt32Size(7, stockQuantityFulfilled_);
       }
       if (isClosed_ != false) {
         size += com.google.protobuf.CodedOutputStream
@@ -546,13 +546,13 @@ public final class BidOuterClass {
 
 
       /**
-       * <code>optional int32 id = 1;</code>
+       * <code>optional uint32 id = 1;</code>
        */
       public int getId() {
         return instance.getId();
       }
       /**
-       * <code>optional int32 id = 1;</code>
+       * <code>optional uint32 id = 1;</code>
        */
       public Builder setId(int value) {
         copyOnWrite();
@@ -560,7 +560,7 @@ public final class BidOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 id = 1;</code>
+       * <code>optional uint32 id = 1;</code>
        */
       public Builder clearId() {
         copyOnWrite();
@@ -569,13 +569,13 @@ public final class BidOuterClass {
       }
 
       /**
-       * <code>optional int32 user_id = 2;</code>
+       * <code>optional uint32 user_id = 2;</code>
        */
       public int getUserId() {
         return instance.getUserId();
       }
       /**
-       * <code>optional int32 user_id = 2;</code>
+       * <code>optional uint32 user_id = 2;</code>
        */
       public Builder setUserId(int value) {
         copyOnWrite();
@@ -583,7 +583,7 @@ public final class BidOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 user_id = 2;</code>
+       * <code>optional uint32 user_id = 2;</code>
        */
       public Builder clearUserId() {
         copyOnWrite();
@@ -592,13 +592,13 @@ public final class BidOuterClass {
       }
 
       /**
-       * <code>optional int32 stock_id = 3;</code>
+       * <code>optional uint32 stock_id = 3;</code>
        */
       public int getStockId() {
         return instance.getStockId();
       }
       /**
-       * <code>optional int32 stock_id = 3;</code>
+       * <code>optional uint32 stock_id = 3;</code>
        */
       public Builder setStockId(int value) {
         copyOnWrite();
@@ -606,7 +606,7 @@ public final class BidOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 stock_id = 3;</code>
+       * <code>optional uint32 stock_id = 3;</code>
        */
       public Builder clearStockId() {
         copyOnWrite();
@@ -615,13 +615,13 @@ public final class BidOuterClass {
       }
 
       /**
-       * <code>optional int32 price = 4;</code>
+       * <code>optional uint32 price = 4;</code>
        */
       public int getPrice() {
         return instance.getPrice();
       }
       /**
-       * <code>optional int32 price = 4;</code>
+       * <code>optional uint32 price = 4;</code>
        */
       public Builder setPrice(int value) {
         copyOnWrite();
@@ -629,7 +629,7 @@ public final class BidOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 price = 4;</code>
+       * <code>optional uint32 price = 4;</code>
        */
       public Builder clearPrice() {
         copyOnWrite();
@@ -675,13 +675,13 @@ public final class BidOuterClass {
       }
 
       /**
-       * <code>optional int32 stock_quantity = 6;</code>
+       * <code>optional uint32 stock_quantity = 6;</code>
        */
       public int getStockQuantity() {
         return instance.getStockQuantity();
       }
       /**
-       * <code>optional int32 stock_quantity = 6;</code>
+       * <code>optional uint32 stock_quantity = 6;</code>
        */
       public Builder setStockQuantity(int value) {
         copyOnWrite();
@@ -689,7 +689,7 @@ public final class BidOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 stock_quantity = 6;</code>
+       * <code>optional uint32 stock_quantity = 6;</code>
        */
       public Builder clearStockQuantity() {
         copyOnWrite();
@@ -698,13 +698,13 @@ public final class BidOuterClass {
       }
 
       /**
-       * <code>optional int32 stock_quantity_fulfilled = 7;</code>
+       * <code>optional uint32 stock_quantity_fulfilled = 7;</code>
        */
       public int getStockQuantityFulfilled() {
         return instance.getStockQuantityFulfilled();
       }
       /**
-       * <code>optional int32 stock_quantity_fulfilled = 7;</code>
+       * <code>optional uint32 stock_quantity_fulfilled = 7;</code>
        */
       public Builder setStockQuantityFulfilled(int value) {
         copyOnWrite();
@@ -712,7 +712,7 @@ public final class BidOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 stock_quantity_fulfilled = 7;</code>
+       * <code>optional uint32 stock_quantity_fulfilled = 7;</code>
        */
       public Builder clearStockQuantityFulfilled() {
         copyOnWrite();
@@ -889,22 +889,22 @@ public final class BidOuterClass {
                 }
                 case 8: {
 
-                  id_ = input.readInt32();
+                  id_ = input.readUInt32();
                   break;
                 }
                 case 16: {
 
-                  userId_ = input.readInt32();
+                  userId_ = input.readUInt32();
                   break;
                 }
                 case 24: {
 
-                  stockId_ = input.readInt32();
+                  stockId_ = input.readUInt32();
                   break;
                 }
                 case 32: {
 
-                  price_ = input.readInt32();
+                  price_ = input.readUInt32();
                   break;
                 }
                 case 40: {
@@ -915,12 +915,12 @@ public final class BidOuterClass {
                 }
                 case 48: {
 
-                  stockQuantity_ = input.readInt32();
+                  stockQuantity_ = input.readUInt32();
                   break;
                 }
                 case 56: {
 
-                  stockQuantityFulfilled_ = input.readInt32();
+                  stockQuantityFulfilled_ = input.readUInt32();
                   break;
                 }
                 case 64: {

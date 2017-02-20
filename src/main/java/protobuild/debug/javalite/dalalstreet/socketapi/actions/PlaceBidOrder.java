@@ -548,7 +548,7 @@ public final class PlaceBidOrder {
         com.google.protobuf.MessageLiteOrBuilder {
 
       /**
-       * <code>optional uint32 bidId = 1;</code>
+       * <code>optional uint32 bid_id = 1;</code>
        */
       int getBidId();
     }
@@ -562,23 +562,23 @@ public final class PlaceBidOrder {
         PlaceBidOrderSuccessResponseOrBuilder {
       private PlaceBidOrderSuccessResponse() {
       }
-      public static final int BIDID_FIELD_NUMBER = 1;
+      public static final int BID_ID_FIELD_NUMBER = 1;
       private int bidId_;
       /**
-       * <code>optional uint32 bidId = 1;</code>
+       * <code>optional uint32 bid_id = 1;</code>
        */
       public int getBidId() {
         return bidId_;
       }
       /**
-       * <code>optional uint32 bidId = 1;</code>
+       * <code>optional uint32 bid_id = 1;</code>
        */
       private void setBidId(int value) {
         
         bidId_ = value;
       }
       /**
-       * <code>optional uint32 bidId = 1;</code>
+       * <code>optional uint32 bid_id = 1;</code>
        */
       private void clearBidId() {
         
@@ -688,13 +688,13 @@ public final class PlaceBidOrder {
 
 
         /**
-         * <code>optional uint32 bidId = 1;</code>
+         * <code>optional uint32 bid_id = 1;</code>
          */
         public int getBidId() {
           return instance.getBidId();
         }
         /**
-         * <code>optional uint32 bidId = 1;</code>
+         * <code>optional uint32 bid_id = 1;</code>
          */
         public Builder setBidId(int value) {
           copyOnWrite();
@@ -702,7 +702,7 @@ public final class PlaceBidOrder {
           return this;
         }
         /**
-         * <code>optional uint32 bidId = 1;</code>
+         * <code>optional uint32 bid_id = 1;</code>
          */
         public Builder clearBidId() {
           copyOnWrite();

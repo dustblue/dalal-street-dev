@@ -38,7 +38,7 @@ public final class UserOuterClass {
         getNameBytes();
 
     /**
-     * <code>optional int32 cash = 4;</code>
+     * <code>optional uint32 cash = 4;</code>
      */
     int getCash();
 
@@ -188,20 +188,20 @@ public final class UserOuterClass {
     public static final int CASH_FIELD_NUMBER = 4;
     private int cash_;
     /**
-     * <code>optional int32 cash = 4;</code>
+     * <code>optional uint32 cash = 4;</code>
      */
     public int getCash() {
       return cash_;
     }
     /**
-     * <code>optional int32 cash = 4;</code>
+     * <code>optional uint32 cash = 4;</code>
      */
     private void setCash(int value) {
       
       cash_ = value;
     }
     /**
-     * <code>optional int32 cash = 4;</code>
+     * <code>optional uint32 cash = 4;</code>
      */
     private void clearCash() {
       
@@ -289,7 +289,7 @@ public final class UserOuterClass {
         output.writeString(3, getName());
       }
       if (cash_ != 0) {
-        output.writeInt32(4, cash_);
+        output.writeUInt32(4, cash_);
       }
       if (total_ != 0) {
         output.writeInt32(5, total_);
@@ -318,7 +318,7 @@ public final class UserOuterClass {
       }
       if (cash_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, cash_);
+          .computeUInt32Size(4, cash_);
       }
       if (total_ != 0) {
         size += com.google.protobuf.CodedOutputStream
@@ -518,13 +518,13 @@ public final class UserOuterClass {
       }
 
       /**
-       * <code>optional int32 cash = 4;</code>
+       * <code>optional uint32 cash = 4;</code>
        */
       public int getCash() {
         return instance.getCash();
       }
       /**
-       * <code>optional int32 cash = 4;</code>
+       * <code>optional uint32 cash = 4;</code>
        */
       public Builder setCash(int value) {
         copyOnWrite();
@@ -532,7 +532,7 @@ public final class UserOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 cash = 4;</code>
+       * <code>optional uint32 cash = 4;</code>
        */
       public Builder clearCash() {
         copyOnWrite();
@@ -679,7 +679,7 @@ public final class UserOuterClass {
                 }
                 case 32: {
 
-                  cash_ = input.readInt32();
+                  cash_ = input.readUInt32();
                   break;
                 }
                 case 40: {

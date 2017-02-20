@@ -18,9 +18,14 @@ public final class StockExchange {
     int getPrice();
 
     /**
-     * <code>optional uint32 stock_count = 2;</code>
+     * <code>optional uint32 stocks_in_exchange = 2;</code>
      */
-    int getStockCount();
+    int getStocksInExchange();
+
+    /**
+     * <code>optional uint32 stocks_in_market = 3;</code>
+     */
+    int getStocksInMarket();
   }
   /**
    * Protobuf type {@code dalalstreet.socketapi.datastreams.StockExchangeDataPoint}
@@ -55,27 +60,50 @@ public final class StockExchange {
       price_ = 0;
     }
 
-    public static final int STOCK_COUNT_FIELD_NUMBER = 2;
-    private int stockCount_;
+    public static final int STOCKS_IN_EXCHANGE_FIELD_NUMBER = 2;
+    private int stocksInExchange_;
     /**
-     * <code>optional uint32 stock_count = 2;</code>
+     * <code>optional uint32 stocks_in_exchange = 2;</code>
      */
-    public int getStockCount() {
-      return stockCount_;
+    public int getStocksInExchange() {
+      return stocksInExchange_;
     }
     /**
-     * <code>optional uint32 stock_count = 2;</code>
+     * <code>optional uint32 stocks_in_exchange = 2;</code>
      */
-    private void setStockCount(int value) {
+    private void setStocksInExchange(int value) {
       
-      stockCount_ = value;
+      stocksInExchange_ = value;
     }
     /**
-     * <code>optional uint32 stock_count = 2;</code>
+     * <code>optional uint32 stocks_in_exchange = 2;</code>
      */
-    private void clearStockCount() {
+    private void clearStocksInExchange() {
       
-      stockCount_ = 0;
+      stocksInExchange_ = 0;
+    }
+
+    public static final int STOCKS_IN_MARKET_FIELD_NUMBER = 3;
+    private int stocksInMarket_;
+    /**
+     * <code>optional uint32 stocks_in_market = 3;</code>
+     */
+    public int getStocksInMarket() {
+      return stocksInMarket_;
+    }
+    /**
+     * <code>optional uint32 stocks_in_market = 3;</code>
+     */
+    private void setStocksInMarket(int value) {
+      
+      stocksInMarket_ = value;
+    }
+    /**
+     * <code>optional uint32 stocks_in_market = 3;</code>
+     */
+    private void clearStocksInMarket() {
+      
+      stocksInMarket_ = 0;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -83,8 +111,11 @@ public final class StockExchange {
       if (price_ != 0) {
         output.writeUInt32(1, price_);
       }
-      if (stockCount_ != 0) {
-        output.writeUInt32(2, stockCount_);
+      if (stocksInExchange_ != 0) {
+        output.writeUInt32(2, stocksInExchange_);
+      }
+      if (stocksInMarket_ != 0) {
+        output.writeUInt32(3, stocksInMarket_);
       }
     }
 
@@ -97,9 +128,13 @@ public final class StockExchange {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(1, price_);
       }
-      if (stockCount_ != 0) {
+      if (stocksInExchange_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(2, stockCount_);
+          .computeUInt32Size(2, stocksInExchange_);
+      }
+      if (stocksInMarket_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, stocksInMarket_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -211,25 +246,48 @@ public final class StockExchange {
       }
 
       /**
-       * <code>optional uint32 stock_count = 2;</code>
+       * <code>optional uint32 stocks_in_exchange = 2;</code>
        */
-      public int getStockCount() {
-        return instance.getStockCount();
+      public int getStocksInExchange() {
+        return instance.getStocksInExchange();
       }
       /**
-       * <code>optional uint32 stock_count = 2;</code>
+       * <code>optional uint32 stocks_in_exchange = 2;</code>
        */
-      public Builder setStockCount(int value) {
+      public Builder setStocksInExchange(int value) {
         copyOnWrite();
-        instance.setStockCount(value);
+        instance.setStocksInExchange(value);
         return this;
       }
       /**
-       * <code>optional uint32 stock_count = 2;</code>
+       * <code>optional uint32 stocks_in_exchange = 2;</code>
        */
-      public Builder clearStockCount() {
+      public Builder clearStocksInExchange() {
         copyOnWrite();
-        instance.clearStockCount();
+        instance.clearStocksInExchange();
+        return this;
+      }
+
+      /**
+       * <code>optional uint32 stocks_in_market = 3;</code>
+       */
+      public int getStocksInMarket() {
+        return instance.getStocksInMarket();
+      }
+      /**
+       * <code>optional uint32 stocks_in_market = 3;</code>
+       */
+      public Builder setStocksInMarket(int value) {
+        copyOnWrite();
+        instance.setStocksInMarket(value);
+        return this;
+      }
+      /**
+       * <code>optional uint32 stocks_in_market = 3;</code>
+       */
+      public Builder clearStocksInMarket() {
+        copyOnWrite();
+        instance.clearStocksInMarket();
         return this;
       }
 
@@ -256,8 +314,10 @@ public final class StockExchange {
           dalalstreet.socketapi.datastreams.StockExchange.StockExchangeDataPoint other = (dalalstreet.socketapi.datastreams.StockExchange.StockExchangeDataPoint) arg1;
           price_ = visitor.visitInt(price_ != 0, price_,
               other.price_ != 0, other.price_);
-          stockCount_ = visitor.visitInt(stockCount_ != 0, stockCount_,
-              other.stockCount_ != 0, other.stockCount_);
+          stocksInExchange_ = visitor.visitInt(stocksInExchange_ != 0, stocksInExchange_,
+              other.stocksInExchange_ != 0, other.stocksInExchange_);
+          stocksInMarket_ = visitor.visitInt(stocksInMarket_ != 0, stocksInMarket_,
+              other.stocksInMarket_ != 0, other.stocksInMarket_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
           }
@@ -289,7 +349,12 @@ public final class StockExchange {
                 }
                 case 16: {
 
-                  stockCount_ = input.readUInt32();
+                  stocksInExchange_ = input.readUInt32();
+                  break;
+                }
+                case 24: {
+
+                  stocksInMarket_ = input.readUInt32();
                   break;
                 }
               }

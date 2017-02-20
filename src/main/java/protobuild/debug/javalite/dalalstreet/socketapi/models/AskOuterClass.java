@@ -13,22 +13,22 @@ public final class AskOuterClass {
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional int32 id = 1;</code>
+     * <code>optional uint32 id = 1;</code>
      */
     int getId();
 
     /**
-     * <code>optional int32 user_id = 2;</code>
+     * <code>optional uint32 user_id = 2;</code>
      */
     int getUserId();
 
     /**
-     * <code>optional int32 stock_id = 3;</code>
+     * <code>optional uint32 stock_id = 3;</code>
      */
     int getStockId();
 
     /**
-     * <code>optional int32 price = 4;</code>
+     * <code>optional uint32 price = 4;</code>
      */
     int getPrice();
 
@@ -42,31 +42,36 @@ public final class AskOuterClass {
     dalalstreet.socketapi.models.OrderTypeOuterClass.OrderType getOrderType();
 
     /**
-     * <code>optional int32 stock_quantity = 6;</code>
+     * <code>optional uint32 stock_quantity = 6;</code>
      */
     int getStockQuantity();
 
     /**
-     * <code>optional bool is_closed = 7;</code>
+     * <code>optional uint32 stock_quantity_fulfilled = 7;</code>
+     */
+    int getStockQuantityFulfilled();
+
+    /**
+     * <code>optional bool is_closed = 8;</code>
      */
     boolean getIsClosed();
 
     /**
-     * <code>optional string created_at = 8;</code>
+     * <code>optional string created_at = 9;</code>
      */
     java.lang.String getCreatedAt();
     /**
-     * <code>optional string created_at = 8;</code>
+     * <code>optional string created_at = 9;</code>
      */
     com.google.protobuf.ByteString
         getCreatedAtBytes();
 
     /**
-     * <code>optional string updated_at = 9;</code>
+     * <code>optional string updated_at = 10;</code>
      */
     java.lang.String getUpdatedAt();
     /**
-     * <code>optional string updated_at = 9;</code>
+     * <code>optional string updated_at = 10;</code>
      */
     com.google.protobuf.ByteString
         getUpdatedAtBytes();
@@ -86,20 +91,20 @@ public final class AskOuterClass {
     public static final int ID_FIELD_NUMBER = 1;
     private int id_;
     /**
-     * <code>optional int32 id = 1;</code>
+     * <code>optional uint32 id = 1;</code>
      */
     public int getId() {
       return id_;
     }
     /**
-     * <code>optional int32 id = 1;</code>
+     * <code>optional uint32 id = 1;</code>
      */
     private void setId(int value) {
       
       id_ = value;
     }
     /**
-     * <code>optional int32 id = 1;</code>
+     * <code>optional uint32 id = 1;</code>
      */
     private void clearId() {
       
@@ -109,20 +114,20 @@ public final class AskOuterClass {
     public static final int USER_ID_FIELD_NUMBER = 2;
     private int userId_;
     /**
-     * <code>optional int32 user_id = 2;</code>
+     * <code>optional uint32 user_id = 2;</code>
      */
     public int getUserId() {
       return userId_;
     }
     /**
-     * <code>optional int32 user_id = 2;</code>
+     * <code>optional uint32 user_id = 2;</code>
      */
     private void setUserId(int value) {
       
       userId_ = value;
     }
     /**
-     * <code>optional int32 user_id = 2;</code>
+     * <code>optional uint32 user_id = 2;</code>
      */
     private void clearUserId() {
       
@@ -132,20 +137,20 @@ public final class AskOuterClass {
     public static final int STOCK_ID_FIELD_NUMBER = 3;
     private int stockId_;
     /**
-     * <code>optional int32 stock_id = 3;</code>
+     * <code>optional uint32 stock_id = 3;</code>
      */
     public int getStockId() {
       return stockId_;
     }
     /**
-     * <code>optional int32 stock_id = 3;</code>
+     * <code>optional uint32 stock_id = 3;</code>
      */
     private void setStockId(int value) {
       
       stockId_ = value;
     }
     /**
-     * <code>optional int32 stock_id = 3;</code>
+     * <code>optional uint32 stock_id = 3;</code>
      */
     private void clearStockId() {
       
@@ -155,20 +160,20 @@ public final class AskOuterClass {
     public static final int PRICE_FIELD_NUMBER = 4;
     private int price_;
     /**
-     * <code>optional int32 price = 4;</code>
+     * <code>optional uint32 price = 4;</code>
      */
     public int getPrice() {
       return price_;
     }
     /**
-     * <code>optional int32 price = 4;</code>
+     * <code>optional uint32 price = 4;</code>
      */
     private void setPrice(int value) {
       
       price_ = value;
     }
     /**
-     * <code>optional int32 price = 4;</code>
+     * <code>optional uint32 price = 4;</code>
      */
     private void clearPrice() {
       
@@ -217,66 +222,89 @@ public final class AskOuterClass {
     public static final int STOCK_QUANTITY_FIELD_NUMBER = 6;
     private int stockQuantity_;
     /**
-     * <code>optional int32 stock_quantity = 6;</code>
+     * <code>optional uint32 stock_quantity = 6;</code>
      */
     public int getStockQuantity() {
       return stockQuantity_;
     }
     /**
-     * <code>optional int32 stock_quantity = 6;</code>
+     * <code>optional uint32 stock_quantity = 6;</code>
      */
     private void setStockQuantity(int value) {
       
       stockQuantity_ = value;
     }
     /**
-     * <code>optional int32 stock_quantity = 6;</code>
+     * <code>optional uint32 stock_quantity = 6;</code>
      */
     private void clearStockQuantity() {
       
       stockQuantity_ = 0;
     }
 
-    public static final int IS_CLOSED_FIELD_NUMBER = 7;
+    public static final int STOCK_QUANTITY_FULFILLED_FIELD_NUMBER = 7;
+    private int stockQuantityFulfilled_;
+    /**
+     * <code>optional uint32 stock_quantity_fulfilled = 7;</code>
+     */
+    public int getStockQuantityFulfilled() {
+      return stockQuantityFulfilled_;
+    }
+    /**
+     * <code>optional uint32 stock_quantity_fulfilled = 7;</code>
+     */
+    private void setStockQuantityFulfilled(int value) {
+      
+      stockQuantityFulfilled_ = value;
+    }
+    /**
+     * <code>optional uint32 stock_quantity_fulfilled = 7;</code>
+     */
+    private void clearStockQuantityFulfilled() {
+      
+      stockQuantityFulfilled_ = 0;
+    }
+
+    public static final int IS_CLOSED_FIELD_NUMBER = 8;
     private boolean isClosed_;
     /**
-     * <code>optional bool is_closed = 7;</code>
+     * <code>optional bool is_closed = 8;</code>
      */
     public boolean getIsClosed() {
       return isClosed_;
     }
     /**
-     * <code>optional bool is_closed = 7;</code>
+     * <code>optional bool is_closed = 8;</code>
      */
     private void setIsClosed(boolean value) {
       
       isClosed_ = value;
     }
     /**
-     * <code>optional bool is_closed = 7;</code>
+     * <code>optional bool is_closed = 8;</code>
      */
     private void clearIsClosed() {
       
       isClosed_ = false;
     }
 
-    public static final int CREATED_AT_FIELD_NUMBER = 8;
+    public static final int CREATED_AT_FIELD_NUMBER = 9;
     private java.lang.String createdAt_;
     /**
-     * <code>optional string created_at = 8;</code>
+     * <code>optional string created_at = 9;</code>
      */
     public java.lang.String getCreatedAt() {
       return createdAt_;
     }
     /**
-     * <code>optional string created_at = 8;</code>
+     * <code>optional string created_at = 9;</code>
      */
     public com.google.protobuf.ByteString
         getCreatedAtBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(createdAt_);
     }
     /**
-     * <code>optional string created_at = 8;</code>
+     * <code>optional string created_at = 9;</code>
      */
     private void setCreatedAt(
         java.lang.String value) {
@@ -287,14 +315,14 @@ public final class AskOuterClass {
       createdAt_ = value;
     }
     /**
-     * <code>optional string created_at = 8;</code>
+     * <code>optional string created_at = 9;</code>
      */
     private void clearCreatedAt() {
       
       createdAt_ = getDefaultInstance().getCreatedAt();
     }
     /**
-     * <code>optional string created_at = 8;</code>
+     * <code>optional string created_at = 9;</code>
      */
     private void setCreatedAtBytes(
         com.google.protobuf.ByteString value) {
@@ -306,23 +334,23 @@ public final class AskOuterClass {
       createdAt_ = value.toStringUtf8();
     }
 
-    public static final int UPDATED_AT_FIELD_NUMBER = 9;
+    public static final int UPDATED_AT_FIELD_NUMBER = 10;
     private java.lang.String updatedAt_;
     /**
-     * <code>optional string updated_at = 9;</code>
+     * <code>optional string updated_at = 10;</code>
      */
     public java.lang.String getUpdatedAt() {
       return updatedAt_;
     }
     /**
-     * <code>optional string updated_at = 9;</code>
+     * <code>optional string updated_at = 10;</code>
      */
     public com.google.protobuf.ByteString
         getUpdatedAtBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(updatedAt_);
     }
     /**
-     * <code>optional string updated_at = 9;</code>
+     * <code>optional string updated_at = 10;</code>
      */
     private void setUpdatedAt(
         java.lang.String value) {
@@ -333,14 +361,14 @@ public final class AskOuterClass {
       updatedAt_ = value;
     }
     /**
-     * <code>optional string updated_at = 9;</code>
+     * <code>optional string updated_at = 10;</code>
      */
     private void clearUpdatedAt() {
       
       updatedAt_ = getDefaultInstance().getUpdatedAt();
     }
     /**
-     * <code>optional string updated_at = 9;</code>
+     * <code>optional string updated_at = 10;</code>
      */
     private void setUpdatedAtBytes(
         com.google.protobuf.ByteString value) {
@@ -355,31 +383,34 @@ public final class AskOuterClass {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (id_ != 0) {
-        output.writeInt32(1, id_);
+        output.writeUInt32(1, id_);
       }
       if (userId_ != 0) {
-        output.writeInt32(2, userId_);
+        output.writeUInt32(2, userId_);
       }
       if (stockId_ != 0) {
-        output.writeInt32(3, stockId_);
+        output.writeUInt32(3, stockId_);
       }
       if (price_ != 0) {
-        output.writeInt32(4, price_);
+        output.writeUInt32(4, price_);
       }
       if (orderType_ != dalalstreet.socketapi.models.OrderTypeOuterClass.OrderType.LIMIT.getNumber()) {
         output.writeEnum(5, orderType_);
       }
       if (stockQuantity_ != 0) {
-        output.writeInt32(6, stockQuantity_);
+        output.writeUInt32(6, stockQuantity_);
+      }
+      if (stockQuantityFulfilled_ != 0) {
+        output.writeUInt32(7, stockQuantityFulfilled_);
       }
       if (isClosed_ != false) {
-        output.writeBool(7, isClosed_);
+        output.writeBool(8, isClosed_);
       }
       if (!createdAt_.isEmpty()) {
-        output.writeString(8, getCreatedAt());
+        output.writeString(9, getCreatedAt());
       }
       if (!updatedAt_.isEmpty()) {
-        output.writeString(9, getUpdatedAt());
+        output.writeString(10, getUpdatedAt());
       }
     }
 
@@ -390,19 +421,19 @@ public final class AskOuterClass {
       size = 0;
       if (id_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, id_);
+          .computeUInt32Size(1, id_);
       }
       if (userId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, userId_);
+          .computeUInt32Size(2, userId_);
       }
       if (stockId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, stockId_);
+          .computeUInt32Size(3, stockId_);
       }
       if (price_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, price_);
+          .computeUInt32Size(4, price_);
       }
       if (orderType_ != dalalstreet.socketapi.models.OrderTypeOuterClass.OrderType.LIMIT.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
@@ -410,19 +441,23 @@ public final class AskOuterClass {
       }
       if (stockQuantity_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(6, stockQuantity_);
+          .computeUInt32Size(6, stockQuantity_);
+      }
+      if (stockQuantityFulfilled_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(7, stockQuantityFulfilled_);
       }
       if (isClosed_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(7, isClosed_);
+          .computeBoolSize(8, isClosed_);
       }
       if (!createdAt_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(8, getCreatedAt());
+          .computeStringSize(9, getCreatedAt());
       }
       if (!updatedAt_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(9, getUpdatedAt());
+          .computeStringSize(10, getUpdatedAt());
       }
       memoizedSerializedSize = size;
       return size;
@@ -511,13 +546,13 @@ public final class AskOuterClass {
 
 
       /**
-       * <code>optional int32 id = 1;</code>
+       * <code>optional uint32 id = 1;</code>
        */
       public int getId() {
         return instance.getId();
       }
       /**
-       * <code>optional int32 id = 1;</code>
+       * <code>optional uint32 id = 1;</code>
        */
       public Builder setId(int value) {
         copyOnWrite();
@@ -525,7 +560,7 @@ public final class AskOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 id = 1;</code>
+       * <code>optional uint32 id = 1;</code>
        */
       public Builder clearId() {
         copyOnWrite();
@@ -534,13 +569,13 @@ public final class AskOuterClass {
       }
 
       /**
-       * <code>optional int32 user_id = 2;</code>
+       * <code>optional uint32 user_id = 2;</code>
        */
       public int getUserId() {
         return instance.getUserId();
       }
       /**
-       * <code>optional int32 user_id = 2;</code>
+       * <code>optional uint32 user_id = 2;</code>
        */
       public Builder setUserId(int value) {
         copyOnWrite();
@@ -548,7 +583,7 @@ public final class AskOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 user_id = 2;</code>
+       * <code>optional uint32 user_id = 2;</code>
        */
       public Builder clearUserId() {
         copyOnWrite();
@@ -557,13 +592,13 @@ public final class AskOuterClass {
       }
 
       /**
-       * <code>optional int32 stock_id = 3;</code>
+       * <code>optional uint32 stock_id = 3;</code>
        */
       public int getStockId() {
         return instance.getStockId();
       }
       /**
-       * <code>optional int32 stock_id = 3;</code>
+       * <code>optional uint32 stock_id = 3;</code>
        */
       public Builder setStockId(int value) {
         copyOnWrite();
@@ -571,7 +606,7 @@ public final class AskOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 stock_id = 3;</code>
+       * <code>optional uint32 stock_id = 3;</code>
        */
       public Builder clearStockId() {
         copyOnWrite();
@@ -580,13 +615,13 @@ public final class AskOuterClass {
       }
 
       /**
-       * <code>optional int32 price = 4;</code>
+       * <code>optional uint32 price = 4;</code>
        */
       public int getPrice() {
         return instance.getPrice();
       }
       /**
-       * <code>optional int32 price = 4;</code>
+       * <code>optional uint32 price = 4;</code>
        */
       public Builder setPrice(int value) {
         copyOnWrite();
@@ -594,7 +629,7 @@ public final class AskOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 price = 4;</code>
+       * <code>optional uint32 price = 4;</code>
        */
       public Builder clearPrice() {
         copyOnWrite();
@@ -640,13 +675,13 @@ public final class AskOuterClass {
       }
 
       /**
-       * <code>optional int32 stock_quantity = 6;</code>
+       * <code>optional uint32 stock_quantity = 6;</code>
        */
       public int getStockQuantity() {
         return instance.getStockQuantity();
       }
       /**
-       * <code>optional int32 stock_quantity = 6;</code>
+       * <code>optional uint32 stock_quantity = 6;</code>
        */
       public Builder setStockQuantity(int value) {
         copyOnWrite();
@@ -654,7 +689,7 @@ public final class AskOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 stock_quantity = 6;</code>
+       * <code>optional uint32 stock_quantity = 6;</code>
        */
       public Builder clearStockQuantity() {
         copyOnWrite();
@@ -663,13 +698,36 @@ public final class AskOuterClass {
       }
 
       /**
-       * <code>optional bool is_closed = 7;</code>
+       * <code>optional uint32 stock_quantity_fulfilled = 7;</code>
+       */
+      public int getStockQuantityFulfilled() {
+        return instance.getStockQuantityFulfilled();
+      }
+      /**
+       * <code>optional uint32 stock_quantity_fulfilled = 7;</code>
+       */
+      public Builder setStockQuantityFulfilled(int value) {
+        copyOnWrite();
+        instance.setStockQuantityFulfilled(value);
+        return this;
+      }
+      /**
+       * <code>optional uint32 stock_quantity_fulfilled = 7;</code>
+       */
+      public Builder clearStockQuantityFulfilled() {
+        copyOnWrite();
+        instance.clearStockQuantityFulfilled();
+        return this;
+      }
+
+      /**
+       * <code>optional bool is_closed = 8;</code>
        */
       public boolean getIsClosed() {
         return instance.getIsClosed();
       }
       /**
-       * <code>optional bool is_closed = 7;</code>
+       * <code>optional bool is_closed = 8;</code>
        */
       public Builder setIsClosed(boolean value) {
         copyOnWrite();
@@ -677,7 +735,7 @@ public final class AskOuterClass {
         return this;
       }
       /**
-       * <code>optional bool is_closed = 7;</code>
+       * <code>optional bool is_closed = 8;</code>
        */
       public Builder clearIsClosed() {
         copyOnWrite();
@@ -686,20 +744,20 @@ public final class AskOuterClass {
       }
 
       /**
-       * <code>optional string created_at = 8;</code>
+       * <code>optional string created_at = 9;</code>
        */
       public java.lang.String getCreatedAt() {
         return instance.getCreatedAt();
       }
       /**
-       * <code>optional string created_at = 8;</code>
+       * <code>optional string created_at = 9;</code>
        */
       public com.google.protobuf.ByteString
           getCreatedAtBytes() {
         return instance.getCreatedAtBytes();
       }
       /**
-       * <code>optional string created_at = 8;</code>
+       * <code>optional string created_at = 9;</code>
        */
       public Builder setCreatedAt(
           java.lang.String value) {
@@ -708,7 +766,7 @@ public final class AskOuterClass {
         return this;
       }
       /**
-       * <code>optional string created_at = 8;</code>
+       * <code>optional string created_at = 9;</code>
        */
       public Builder clearCreatedAt() {
         copyOnWrite();
@@ -716,7 +774,7 @@ public final class AskOuterClass {
         return this;
       }
       /**
-       * <code>optional string created_at = 8;</code>
+       * <code>optional string created_at = 9;</code>
        */
       public Builder setCreatedAtBytes(
           com.google.protobuf.ByteString value) {
@@ -726,20 +784,20 @@ public final class AskOuterClass {
       }
 
       /**
-       * <code>optional string updated_at = 9;</code>
+       * <code>optional string updated_at = 10;</code>
        */
       public java.lang.String getUpdatedAt() {
         return instance.getUpdatedAt();
       }
       /**
-       * <code>optional string updated_at = 9;</code>
+       * <code>optional string updated_at = 10;</code>
        */
       public com.google.protobuf.ByteString
           getUpdatedAtBytes() {
         return instance.getUpdatedAtBytes();
       }
       /**
-       * <code>optional string updated_at = 9;</code>
+       * <code>optional string updated_at = 10;</code>
        */
       public Builder setUpdatedAt(
           java.lang.String value) {
@@ -748,7 +806,7 @@ public final class AskOuterClass {
         return this;
       }
       /**
-       * <code>optional string updated_at = 9;</code>
+       * <code>optional string updated_at = 10;</code>
        */
       public Builder clearUpdatedAt() {
         copyOnWrite();
@@ -756,7 +814,7 @@ public final class AskOuterClass {
         return this;
       }
       /**
-       * <code>optional string updated_at = 9;</code>
+       * <code>optional string updated_at = 10;</code>
        */
       public Builder setUpdatedAtBytes(
           com.google.protobuf.ByteString value) {
@@ -797,6 +855,8 @@ public final class AskOuterClass {
           orderType_ = visitor.visitInt(orderType_ != 0, orderType_,    other.orderType_ != 0, other.orderType_);
           stockQuantity_ = visitor.visitInt(stockQuantity_ != 0, stockQuantity_,
               other.stockQuantity_ != 0, other.stockQuantity_);
+          stockQuantityFulfilled_ = visitor.visitInt(stockQuantityFulfilled_ != 0, stockQuantityFulfilled_,
+              other.stockQuantityFulfilled_ != 0, other.stockQuantityFulfilled_);
           isClosed_ = visitor.visitBoolean(isClosed_ != false, isClosed_,
               other.isClosed_ != false, other.isClosed_);
           createdAt_ = visitor.visitString(!createdAt_.isEmpty(), createdAt_,
@@ -829,22 +889,22 @@ public final class AskOuterClass {
                 }
                 case 8: {
 
-                  id_ = input.readInt32();
+                  id_ = input.readUInt32();
                   break;
                 }
                 case 16: {
 
-                  userId_ = input.readInt32();
+                  userId_ = input.readUInt32();
                   break;
                 }
                 case 24: {
 
-                  stockId_ = input.readInt32();
+                  stockId_ = input.readUInt32();
                   break;
                 }
                 case 32: {
 
-                  price_ = input.readInt32();
+                  price_ = input.readUInt32();
                   break;
                 }
                 case 40: {
@@ -855,21 +915,26 @@ public final class AskOuterClass {
                 }
                 case 48: {
 
-                  stockQuantity_ = input.readInt32();
+                  stockQuantity_ = input.readUInt32();
                   break;
                 }
                 case 56: {
 
+                  stockQuantityFulfilled_ = input.readUInt32();
+                  break;
+                }
+                case 64: {
+
                   isClosed_ = input.readBool();
                   break;
                 }
-                case 66: {
+                case 74: {
                   String s = input.readStringRequireUtf8();
 
                   createdAt_ = s;
                   break;
                 }
-                case 74: {
+                case 82: {
                   String s = input.readStringRequireUtf8();
 
                   updatedAt_ = s;

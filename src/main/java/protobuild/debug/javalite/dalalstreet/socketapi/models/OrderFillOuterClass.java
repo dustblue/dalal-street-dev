@@ -13,17 +13,17 @@ public final class OrderFillOuterClass {
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>optional int32 transaction_id = 1;</code>
+     * <code>optional uint32 transaction_id = 1;</code>
      */
     int getTransactionId();
 
     /**
-     * <code>optional int32 bid_id = 2;</code>
+     * <code>optional uint32 bid_id = 2;</code>
      */
     int getBidId();
 
     /**
-     * <code>optional int32 ask_id = 3;</code>
+     * <code>optional uint32 ask_id = 3;</code>
      */
     int getAskId();
   }
@@ -40,20 +40,20 @@ public final class OrderFillOuterClass {
     public static final int TRANSACTION_ID_FIELD_NUMBER = 1;
     private int transactionId_;
     /**
-     * <code>optional int32 transaction_id = 1;</code>
+     * <code>optional uint32 transaction_id = 1;</code>
      */
     public int getTransactionId() {
       return transactionId_;
     }
     /**
-     * <code>optional int32 transaction_id = 1;</code>
+     * <code>optional uint32 transaction_id = 1;</code>
      */
     private void setTransactionId(int value) {
       
       transactionId_ = value;
     }
     /**
-     * <code>optional int32 transaction_id = 1;</code>
+     * <code>optional uint32 transaction_id = 1;</code>
      */
     private void clearTransactionId() {
       
@@ -63,20 +63,20 @@ public final class OrderFillOuterClass {
     public static final int BID_ID_FIELD_NUMBER = 2;
     private int bidId_;
     /**
-     * <code>optional int32 bid_id = 2;</code>
+     * <code>optional uint32 bid_id = 2;</code>
      */
     public int getBidId() {
       return bidId_;
     }
     /**
-     * <code>optional int32 bid_id = 2;</code>
+     * <code>optional uint32 bid_id = 2;</code>
      */
     private void setBidId(int value) {
       
       bidId_ = value;
     }
     /**
-     * <code>optional int32 bid_id = 2;</code>
+     * <code>optional uint32 bid_id = 2;</code>
      */
     private void clearBidId() {
       
@@ -86,20 +86,20 @@ public final class OrderFillOuterClass {
     public static final int ASK_ID_FIELD_NUMBER = 3;
     private int askId_;
     /**
-     * <code>optional int32 ask_id = 3;</code>
+     * <code>optional uint32 ask_id = 3;</code>
      */
     public int getAskId() {
       return askId_;
     }
     /**
-     * <code>optional int32 ask_id = 3;</code>
+     * <code>optional uint32 ask_id = 3;</code>
      */
     private void setAskId(int value) {
       
       askId_ = value;
     }
     /**
-     * <code>optional int32 ask_id = 3;</code>
+     * <code>optional uint32 ask_id = 3;</code>
      */
     private void clearAskId() {
       
@@ -109,13 +109,13 @@ public final class OrderFillOuterClass {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (transactionId_ != 0) {
-        output.writeInt32(1, transactionId_);
+        output.writeUInt32(1, transactionId_);
       }
       if (bidId_ != 0) {
-        output.writeInt32(2, bidId_);
+        output.writeUInt32(2, bidId_);
       }
       if (askId_ != 0) {
-        output.writeInt32(3, askId_);
+        output.writeUInt32(3, askId_);
       }
     }
 
@@ -126,15 +126,15 @@ public final class OrderFillOuterClass {
       size = 0;
       if (transactionId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, transactionId_);
+          .computeUInt32Size(1, transactionId_);
       }
       if (bidId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, bidId_);
+          .computeUInt32Size(2, bidId_);
       }
       if (askId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, askId_);
+          .computeUInt32Size(3, askId_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -223,13 +223,13 @@ public final class OrderFillOuterClass {
 
 
       /**
-       * <code>optional int32 transaction_id = 1;</code>
+       * <code>optional uint32 transaction_id = 1;</code>
        */
       public int getTransactionId() {
         return instance.getTransactionId();
       }
       /**
-       * <code>optional int32 transaction_id = 1;</code>
+       * <code>optional uint32 transaction_id = 1;</code>
        */
       public Builder setTransactionId(int value) {
         copyOnWrite();
@@ -237,7 +237,7 @@ public final class OrderFillOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 transaction_id = 1;</code>
+       * <code>optional uint32 transaction_id = 1;</code>
        */
       public Builder clearTransactionId() {
         copyOnWrite();
@@ -246,13 +246,13 @@ public final class OrderFillOuterClass {
       }
 
       /**
-       * <code>optional int32 bid_id = 2;</code>
+       * <code>optional uint32 bid_id = 2;</code>
        */
       public int getBidId() {
         return instance.getBidId();
       }
       /**
-       * <code>optional int32 bid_id = 2;</code>
+       * <code>optional uint32 bid_id = 2;</code>
        */
       public Builder setBidId(int value) {
         copyOnWrite();
@@ -260,7 +260,7 @@ public final class OrderFillOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 bid_id = 2;</code>
+       * <code>optional uint32 bid_id = 2;</code>
        */
       public Builder clearBidId() {
         copyOnWrite();
@@ -269,13 +269,13 @@ public final class OrderFillOuterClass {
       }
 
       /**
-       * <code>optional int32 ask_id = 3;</code>
+       * <code>optional uint32 ask_id = 3;</code>
        */
       public int getAskId() {
         return instance.getAskId();
       }
       /**
-       * <code>optional int32 ask_id = 3;</code>
+       * <code>optional uint32 ask_id = 3;</code>
        */
       public Builder setAskId(int value) {
         copyOnWrite();
@@ -283,7 +283,7 @@ public final class OrderFillOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 ask_id = 3;</code>
+       * <code>optional uint32 ask_id = 3;</code>
        */
       public Builder clearAskId() {
         copyOnWrite();
@@ -344,17 +344,17 @@ public final class OrderFillOuterClass {
                 }
                 case 8: {
 
-                  transactionId_ = input.readInt32();
+                  transactionId_ = input.readUInt32();
                   break;
                 }
                 case 16: {
 
-                  bidId_ = input.readInt32();
+                  bidId_ = input.readUInt32();
                   break;
                 }
                 case 24: {
 
-                  askId_ = input.readInt32();
+                  askId_ = input.readUInt32();
                   break;
                 }
               }
