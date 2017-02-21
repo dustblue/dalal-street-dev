@@ -21,19 +21,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Home extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, Listener {
 
-    TextView username;
+    WebSocketsService websocket;
     String name;
-
-    TextView stock, cash, total;
-
+    TextView username, stock, cash, total;
     int stockWorth, cashWorth, totalWorth;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +36,9 @@ public class Home extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        websocket = new WebSocketsService(this);
+        websocket.openWebSocket();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -51,21 +49,16 @@ public class Home extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        View headView=navigationView.inflateHeaderView(R.layout.nav_header_home);
+        View headView = navigationView.inflateHeaderView(R.layout.nav_header_home);
 
         displaySelectedScreen(R.id.nav_home);
 
-
-        username=(TextView)headView.findViewById(R.id.username);
-
-
-
-        stock=(TextView)findViewById(R.id.user_stock_worth);
-        cash=(TextView)findViewById(R.id.user_cash_worth);
-        total=(TextView)findViewById(R.id.user_total_worth);
+        username = (TextView) headView.findViewById(R.id.username);
+        stock = (TextView) findViewById(R.id.user_stock_worth);
+        cash = (TextView) findViewById(R.id.user_cash_worth);
+        total = (TextView) findViewById(R.id.user_total_worth);
 
         publish();
-
     }
 
     @Override
@@ -80,8 +73,20 @@ public class Home extends AppCompatActivity
 
     @Override
     protected void onStop() {
-
         super.onStop();
+        websocket.ws.close();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        websocket.ws.close();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        websocket.openWebSocket();
     }
 
     @Override
@@ -99,7 +104,7 @@ public class Home extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        switch (id){
+        switch (id) {
             case R.id.action_help:
                 help();
                 return true;
@@ -107,51 +112,43 @@ public class Home extends AppCompatActivity
                 logout();
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
-
-
-
-
-    public void displaySelectedScreen(int id){
-
-        Fragment fragment=null;
-
+    public void displaySelectedScreen(int id) {
+        Fragment fragment = null;
 
         switch (id) {
             case R.id.nav_home:
-                fragment=new Companies();
+                fragment = new Companies();
                 break;
             case R.id.nav_exchange:
-                fragment=new StockExchange();
+                fragment = new StockExchange();
                 break;
             case R.id.nav_company_profile:
-                fragment=new CompanyProfile();
+                fragment = new CompanyProfile();
                 break;
             case R.id.nav_news:
-                fragment=new News();
+                fragment = new News();
                 break;
             case R.id.nav_buy_sell:
-                fragment=new BuySell();
+                fragment = new BuySell();
                 break;
             case R.id.nav_mortgage:
-                fragment=new Mortgage();
+                fragment = new Mortgage();
                 break;
             case R.id.nav_my_orders:
-                fragment=new MyOrders();
+                fragment = new MyOrders();
                 break;
             case R.id.nav_transactions:
-                fragment=new Transactions();
+                fragment = new Transactions();
                 break;
             case R.id.nav_portfolio:
-                fragment=new Portfolio();
+                fragment = new Portfolio();
                 break;
             case R.id.nav_leaderboard:
-                fragment=new Leaderboard();
+                fragment = new Leaderboard();
                 break;
-
         }
 
         if (fragment != null) {
@@ -162,23 +159,20 @@ public class Home extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-
         displaySelectedScreen(item.getItemId());
-
         return true;
     }
 
-    public void help(){
-        LayoutInflater inflater= LayoutInflater.from(this);
-        View view=inflater.inflate(R.layout.help_box, null);
-        View view2=inflater.inflate(R.layout.help_title,null);
+    public void help() {
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View view = inflater.inflate(R.layout.help_box, null);
+        View view2 = inflater.inflate(R.layout.help_title, null);
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog.setCustomTitle(view2);
@@ -188,55 +182,55 @@ public class Home extends AppCompatActivity
         alert.show();
     }
 
-    public void logout(){
-        Toast.makeText(this, "logged out", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this,Login.class);
-        startActivity(intent); //todo : send logout request
-        finish();
+    public void logout() {
+        //Toast.makeText(this, "logged out", Toast.LENGTH_SHORT).show();
+        websocket.logout_request();
     }
 
-    public void publish(){
+    public void publish() {
 
         setValues();
 
         username.setText(name);
-        String stockText="Stock worth\n"+String.valueOf(stockWorth);
-        String cashText="Cash worth\n"+String.valueOf(cashWorth);
-        String totalText="Total worth\n"+String.valueOf(totalWorth);
+        String stockText = "Stock worth\n" + String.valueOf(stockWorth);
+        String cashText = "Cash worth\n" + String.valueOf(cashWorth);
+        String totalText = "Total worth\n" + String.valueOf(totalWorth);
 
 
-        SpannableString spannable1=new SpannableString(stockText);
-        spannable1.setSpan(new StyleSpan(Typeface.BOLD),12,stockText.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        spannable1.setSpan(new RelativeSizeSpan(0.8f), 0, 11,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        spannable1.setSpan(new RelativeSizeSpan(2.0f),12,stockText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        SpannableString spannable1 = new SpannableString(stockText);
+        spannable1.setSpan(new StyleSpan(Typeface.BOLD), 12, stockText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannable1.setSpan(new RelativeSizeSpan(0.8f), 0, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannable1.setSpan(new RelativeSizeSpan(2.0f), 12, stockText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         stock.setText(spannable1);
 
-        SpannableString spannable2=new SpannableString(cashText);
-        spannable2.setSpan(new StyleSpan(Typeface.BOLD),11,cashText.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        spannable2.setSpan(new RelativeSizeSpan(0.8f),0,10,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        spannable2.setSpan(new RelativeSizeSpan(2.0f),11,cashText.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        SpannableString spannable2 = new SpannableString(cashText);
+        spannable2.setSpan(new StyleSpan(Typeface.BOLD), 11, cashText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannable2.setSpan(new RelativeSizeSpan(0.8f), 0, 10, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannable2.setSpan(new RelativeSizeSpan(2.0f), 11, cashText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         cash.setText(spannable2);
 
-        SpannableString spannable3=new SpannableString(totalText);
-        spannable3.setSpan(new StyleSpan(Typeface.BOLD),12,totalText.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        spannable3.setSpan(new RelativeSizeSpan(0.8f), 0,11,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        spannable3.setSpan(new RelativeSizeSpan(2.0f),12,totalText.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        SpannableString spannable3 = new SpannableString(totalText);
+        spannable3.setSpan(new StyleSpan(Typeface.BOLD), 12, totalText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannable3.setSpan(new RelativeSizeSpan(0.8f), 0, 11, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannable3.setSpan(new RelativeSizeSpan(2.0f), 12, totalText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         total.setText(spannable3);
 
-
     }
 
-    public void setValues(){
-        name="username"; //todo : get from service
+    public void setValues() {
+        name = "username"; //todo : get from service
 
-        cashWorth=1500;
-        stockWorth=2000;
-        totalWorth=3500;
-
-
+        cashWorth = 1500;
+        stockWorth = 2000;
+        totalWorth = 3500;
     }
 
-
-
+    @Override
+    public void onCallback() {
+        //Logout callback
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
+        finish();
+    }
 
 }

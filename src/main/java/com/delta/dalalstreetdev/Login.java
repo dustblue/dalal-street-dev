@@ -5,24 +5,26 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class Login extends AppCompatActivity implements WebsocketsService.LoginListener {
+public class Login extends AppCompatActivity implements Listener {
 
     EditText email, password;
     TextInputLayout email_input, password_input;
     Button login;
+    WebSocketsService websocket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
+
+        websocket = new WebSocketsService(this);
+        websocket.openWebSocket();
 
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
@@ -40,15 +42,11 @@ public class Login extends AppCompatActivity implements WebsocketsService.LoginL
     }
 
     public void setLogin() {
-
         if (validateEmail()) {
             if (validatePassword()) {
-
-                WebsocketsService wss = new WebsocketsService(this, this);
-                wss.createWS();
-                Log.e("Zold", email.getText().toString());
-                wss.login_request(email.getText().toString(), password.getText().toString());
-
+                websocket = new WebSocketsService(this);
+                websocket.openWebSocket();
+                websocket.login_request(email.getText().toString(), password.getText().toString());
             }
         }
     }
@@ -65,9 +63,7 @@ public class Login extends AppCompatActivity implements WebsocketsService.LoginL
         } else {
             email_input.setErrorEnabled(false);
         }
-
         return true;
-
     }
 
     public boolean validatePassword() {
@@ -78,18 +74,33 @@ public class Login extends AppCompatActivity implements WebsocketsService.LoginL
         } else {
             password_input.setErrorEnabled(false);
         }
-
         return true;
-
     }
 
-
     @Override
-    public void OnloginListened() {
-        //Toast.makeText(this, "authenticated" , Toast.LENGTH_SHORT).show();//todo: login request
+    public void onCallback() {
+        //Login Callback
         Intent intent = new Intent(this, Home.class);
         intent.putExtra("username", email.getText().toString());
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        websocket.ws.close();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        websocket.ws.close();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        websocket.openWebSocket();
     }
 }
