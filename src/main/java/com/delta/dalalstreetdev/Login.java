@@ -1,6 +1,7 @@
 package com.delta.dalalstreetdev;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,8 @@ public class Login extends AppCompatActivity implements Listener {
     TextInputLayout email_input, password_input;
     Button login;
     WebSocketsService websocket;
+    String username, pass;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,31 +25,31 @@ public class Login extends AppCompatActivity implements Listener {
         setContentView(R.layout.activity_login);
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
-
-        websocket = new WebSocketsService(this);
+        sharedPreferences = getSharedPreferences("dalal",MODE_PRIVATE);
+        websocket = new WebSocketsService(this,this);
         websocket.openWebSocket();
-
-        email = (EditText) findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.password);
-        email_input = (TextInputLayout) findViewById(R.id.email_input);
-        password_input = (TextInputLayout) findViewById(R.id.password_input);
-        login = (Button) findViewById(R.id.button_login);
-
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setLogin();
-            }
-        });
-
+    }
+    private boolean retrieveSharedPrefs() {
+        try{
+            username = sharedPreferences.getString("username",null);
+            pass = sharedPreferences.getString("password",null);
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            return false;
+        }
+        if (username != null && pass != null)
+            return true;
+        else return false;
     }
 
     public void setLogin() {
         if (validateEmail()) {
             if (validatePassword()) {
-                websocket = new WebSocketsService(this);
+                websocket = new WebSocketsService(this,this);
                 websocket.openWebSocket();
-                websocket.login_request(email.getText().toString(), password.getText().toString());
+                username =email.getText().toString();
+                pass =password.getText().toString();
+                websocket.login_request(username, pass);
             }
         }
     }
@@ -81,26 +84,64 @@ public class Login extends AppCompatActivity implements Listener {
     public void onCallback() {
         //Login Callback
         Intent intent = new Intent(this, Home.class);
-        intent.putExtra("username", email.getText().toString());
+        intent.putExtra("username", username);
+        SharedPreferences.Editor editor =sharedPreferences.edit();
+        editor.putString("username",username);
+        editor.putString("password",pass);
+        editor.apply();
         startActivity(intent);
         finish();
     }
 
     @Override
+    public void connectionEstablished() {
+        if(retrieveSharedPrefs()){
+            websocket.login_request(username,pass);
+        }else{
+            email = (EditText) findViewById(R.id.email);
+            password = (EditText) findViewById(R.id.password);
+            email_input = (TextInputLayout) findViewById(R.id.email_input);
+            password_input = (TextInputLayout) findViewById(R.id.password_input);
+            login = (Button) findViewById(R.id.button_login);
+
+            login.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    setLogin();
+                }
+            });
+        }
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
-        websocket.ws.close();
+        try{
+            websocket.ws.close();
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        websocket.ws.close();
+//        try{
+//            websocket.ws.close();
+//        }catch (NullPointerException e){
+//            e.printStackTrace();
+//        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        websocket.openWebSocket();
+//        try{
+//            if(retrieveSharedPrefs()){
+//                websocket.login_request(username,pass);
+//            }
+//        }catch (NullPointerException e){
+//            e.printStackTrace();
+//        }
     }
 }

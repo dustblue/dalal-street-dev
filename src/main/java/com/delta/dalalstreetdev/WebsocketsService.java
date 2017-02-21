@@ -11,7 +11,10 @@ import com.koushikdutta.async.callback.CompletedCallback;
 import com.koushikdutta.async.callback.DataCallback;
 import com.koushikdutta.async.http.AsyncHttpClient;
 import com.koushikdutta.async.http.WebSocket;
+import com.koushikdutta.async.util.HashList;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import dalalstreet.socketapi.DalalMessageOuterClass;
@@ -39,36 +42,40 @@ import dalalstreet.socketapi.models.UserOuterClass;
 
 class WebSocketsService {
 
-    public WebSocket ws;
+    public static WebSocket ws;
     public String sessionId;
-    public int requestId = 0;
-    public UserOuterClass.User user;
-    public Map<Integer, Integer> stocks_owned;
-    public Map<Integer, StockOuterClass.Stock> stock_list;
-    public Map<String, Integer> constants;
-
+    public static int requestId = 0;
+    public static UserOuterClass.User user;
+    public static Map<Integer, Integer> stocks_owned;
+    public static Map<Integer, StockOuterClass.Stock> stock_list;
+    public static Map<String, Integer> constants;
     private Listener mListener;
     private SharedPreferences mSharedPreferences;
-    private String TAG = "WebSocketsService";
+    public static final String TAG = "WebSocketsService";
+    //TODO: to store requestID
 
-    WebSocketsService(Listener listener) {
+    WebSocketsService(Listener listener, Context context) {
+        mSharedPreferences = context.getSharedPreferences("dalal", Context.MODE_PRIVATE);
         this.mListener = listener;
         retrieveSharedPrefs();
     }
 
     void openWebSocket() {
-        String hostAddress = "http://192.168.43.79" + ":3000" + "/ws";
+        String hostAddress = "ws://10.1.94.138" + ":3000" + "/ws";
         AsyncHttpClient.getDefaultInstance().websocket(hostAddress, null, new AsyncHttpClient.WebSocketConnectCallback() {
             @Override
             public void onCompleted(Exception ex, WebSocket webSocket) {
                 Log.e(TAG, "Websockets Open");
 
                 if (ex != null) {
+                    Log.e(TAG, "Websockets" + ex.toString());
                     ex.printStackTrace();
                     return;
                 }
 
                 ws = webSocket;
+                mListener.connectionEstablished();
+                Log.e(TAG, "Websockets Open");
 
                 webSocket.setDataCallback(new DataCallback() {
                     public void onDataAvailable(DataEmitter emitter, ByteBufferList byteBufferList) {
@@ -186,19 +193,20 @@ class WebSocketsService {
     }
 
     private void updateSharedPrefs() {
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putInt("requestId", requestId);
-        editor.putString("username", user.getEmail());
-        editor.apply();
+//        SharedPreferences.Editor editor = mSharedPreferences.edit();
+//        editor.putInt("requestId", requestId);
+//        editor.putString("username", user.getEmail());
+//        editor.apply();
     }
 
     private void retrieveSharedPrefs() {
-        requestId = mSharedPreferences.getInt("requesId", requestId);
+//        requestId = mSharedPreferences.getInt("requestId", requestId);
     }
 
     void login_request(String username, String password) {
         DalalMessageOuterClass.RequestWrapper requestWrapper =
                 DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setRequestId(Integer.toString(++requestId))
                         .setLoginRequest(Login.LoginRequest.newBuilder()
                                 .setEmail(username)
                                 .setPassword(password)
@@ -210,265 +218,242 @@ class WebSocketsService {
     private void login_response(Login.LoginResponse loginResponse) {
         if (loginResponse.getResult() != null) {
             sessionId = loginResponse.getResult().getSessionId();
+            stock_list = loginResponse.getResult().getStockListMap();
             stocks_owned = loginResponse.getResult().getStocksOwnedMap();
+            user = loginResponse.getResult().getUser();
             mListener.onCallback();
-        }
-        if (loginResponse.getInvalidCredentialsError() != null)
+        } else if (loginResponse.getInvalidCredentialsError() != null) {
             Log.e(TAG, "Invalid Credentials Error : " + loginResponse.getInvalidCredentialsError().getReason());
-        if (loginResponse.getBadRequestError() != null)
+        } else if (loginResponse.getBadRequestError() != null) {
             Log.e(TAG, "Bad Request Error : " + loginResponse.getBadRequestError().getReason());
-        if (loginResponse.getInternalServerError() != null)
+        } else {
             Log.e(TAG, "Internal Server Error : " + loginResponse.getInternalServerError().getReason());
+        }
     }
 
     void logout_request() {
         DalalMessageOuterClass.RequestWrapper requestWrapper =
                 DalalMessageOuterClass.RequestWrapper.newBuilder()
                         .setLogoutRequest(Logout.LogoutRequest.newBuilder()
-                        .setRequestId("") //TODO Request id ?
-                        .setSessionId(sessionId)
-                        .build())
+                                .setRequestId(Integer.toString(++requestId))
+                                .setSessionId(sessionId)
+                                .build())
                         .build();
         wrapAndSend(requestWrapper);
     }
 
     private void logout_response(Logout.LogoutResponse logoutResponse) {
-        switch (logoutResponse.getResponseCase().getNumber()) {
-            case 1:
-                if (logoutResponse.getResult().getSuccess()) {
-                    Log.e(TAG, "Logout Success");
-                    mListener.onCallback();
-                }
-                break;
-            case 2:
-                Log.e(TAG, "Bad Request Error : " + logoutResponse.getBadRequestError().getReason());
-            case 3:
-                Log.e(TAG, "Internal Server Error : " + logoutResponse.getInternalServerError().getReason());
+        if (logoutResponse.getResult().getSuccess()) {
+            Log.e(TAG, "Logout Success");
+            mListener.onCallback();
+        } else if (logoutResponse.getBadRequestError() != null) {
+            Log.e(TAG, "Bad Request Error : " + logoutResponse.getBadRequestError().getReason());
+        } else {
+            Log.e(TAG, "Internal Server Error : " + logoutResponse.getInternalServerError().getReason());
         }
     }
 
     private void get_leaderboard(GetLeaderboard.GetLeaderboardResponse getLeaderboardResponse) {
-        switch (getLeaderboardResponse.getResponseCase().getNumber()) {
-            case 1:
-                Log.e(TAG, "Got Company profile : " + getLeaderboardResponse.getResult().getMyRank()
-                        + getLeaderboardResponse.getResult().getRankListCount() + getLeaderboardResponse.getResult().getRankListMap());
-            case 2:
-                Log.e(TAG, "Bad Request Error : " + getLeaderboardResponse.getBadRequestError().getReason());
-            case 3:
-                Log.e(TAG, "Internal Server Error : " + getLeaderboardResponse.getInternalServerError().getReason());
+        if (getLeaderboardResponse.getResult() != null) {
+            Log.e(TAG, "Got Leaderboard : " + getLeaderboardResponse.getResult().getMyRank()
+                    + getLeaderboardResponse.getResult().getRankListCount() + getLeaderboardResponse.getResult().getRankListMap());
+        } else if (getLeaderboardResponse.getBadRequestError() != null) {
+            Log.e(TAG, "Bad Request Error : " + getLeaderboardResponse.getBadRequestError().getReason());
+        } else {
+            Log.e(TAG, "Internal Server Error : " + getLeaderboardResponse.getInternalServerError().getReason());
         }
     }
 
     private void get_mortgage_details(GetMortgageDetails.GetMortgageDetailsResponse getMortgageDetailsResponse) {
-        switch (getMortgageDetailsResponse.getResponseCase().getNumber()) {
-            case 1:
-                Log.e(TAG, "Got Company profile : " + getMortgageDetailsResponse.getResult().getMortgageMapCount()
-                        + getMortgageDetailsResponse.getResult().getMortgageMapCount());
-            case 2:
-                Log.e(TAG, "Bad Request Error : " + getMortgageDetailsResponse.getBadRequestError().getReason());
-            case 3:
-                Log.e(TAG, "Internal Server Error : " + getMortgageDetailsResponse.getInternalServerError().getReason());
+        if (getMortgageDetailsResponse.getResult() != null) {
+            Log.e(TAG, "Got Mortgage Details : " + getMortgageDetailsResponse.getResult().getMortgageMapCount()
+                    + getMortgageDetailsResponse.getResult().getMortgageMapCount());
+        } else if (getMortgageDetailsResponse.getBadRequestError() != null) {
+            Log.e(TAG, "Bad Request Error : " + getMortgageDetailsResponse.getBadRequestError().getReason());
+        } else {
+            Log.e(TAG, "Internal Server Error : " + getMortgageDetailsResponse.getInternalServerError().getReason());
         }
     }
 
     private void get_transactions(GetTransactions.GetTransactionsResponse getTransactionsResponse) {
-        switch (getTransactionsResponse.getResponseCase().getNumber()) {
+        if (getTransactionsResponse.getResult() != null) {
 
-            case 1:
-                Log.e(TAG, "Got Company profile : " + getTransactionsResponse.getResult().getMoreExists()
-                        + getTransactionsResponse.getResult().getTransactionsMapCount());
-            case 2:
-                Log.e(TAG, "Bad Request Error : " + getTransactionsResponse.getBadRequestError().getReason());
-            case 3:
-                Log.e(TAG, "Internal Server Error : " + getTransactionsResponse.getInternalServerError().getReason());
+            Log.e(TAG, "Got Transactions : " + getTransactionsResponse.getResult().getMoreExists()
+                    + getTransactionsResponse.getResult().getTransactionsMapCount());
+        } else if (getTransactionsResponse.getBadRequestError() != null) {
+            Log.e(TAG, "Bad Request Error : " + getTransactionsResponse.getBadRequestError().getReason());
+        } else {
+            Log.e(TAG, "Internal Server Error : " + getTransactionsResponse.getInternalServerError().getReason());
         }
     }
 
     private void get_notifications(GetNotifications.GetNotificationsResponse getNotificationsResponse) {
-        switch (getNotificationsResponse.getResponseCase().getNumber()) {
-            case 1:
-                Log.e(TAG, "Got Company profile : " + getNotificationsResponse.getResult().getMoreExists()
-                        + getNotificationsResponse.getResult().getNotificationsCount()
-                        + getNotificationsResponse.getResult().getNotificationsMap());
-            case 2:
-                Log.e(TAG, "Bad Request Error : " + getNotificationsResponse.getBadRequestError().getReason());
-            case 3:
-                Log.e(TAG, "Internal Server Error : " + getNotificationsResponse.getInternalServerError().getReason());
+        if (getNotificationsResponse.getResult() != null) {
+            Log.e(TAG, "Got Notifications : " + getNotificationsResponse.getResult().getMoreExists()
+                    + getNotificationsResponse.getResult().getNotificationsCount()
+                    + getNotificationsResponse.getResult().getNotificationsMap());
+        } else if (getNotificationsResponse.getBadRequestError() != null) {
+            Log.e(TAG, "Bad Request Error : " + getNotificationsResponse.getBadRequestError().getReason());
+        } else {
+            Log.e(TAG, "Internal Server Error : " + getNotificationsResponse.getInternalServerError().getReason());
         }
     }
 
     private void get_my_bids(GetMyBids.GetMyBidsResponse getMyBidsResponse) {
-        switch (getMyBidsResponse.getResponseCase().getNumber()) {
-            case 1:
-                Log.e(TAG, "Got Company profile : " + getMyBidsResponse.getResult().getMoreExists()
-                        + getMyBidsResponse.getResult().getClosedBidOrdersCount()
-                        + getMyBidsResponse.getResult().getOpenBidOrdersCount());
-            case 2:
-                Log.e(TAG, "Bad Request Error : " + getMyBidsResponse.getBadRequestError().getReason());
-            case 3:
-                Log.e(TAG, "Internal Server Error : " + getMyBidsResponse.getInternalServerError().getReason());
+        if (getMyBidsResponse.getResult() != null) {
+            Log.e(TAG, "Got My Bids : " + getMyBidsResponse.getResult().getMoreExists()
+                    + getMyBidsResponse.getResult().getClosedBidOrdersCount()
+                    + getMyBidsResponse.getResult().getOpenBidOrdersCount());
+        } else if (getMyBidsResponse.getBadRequestError() != null) {
+            Log.e(TAG, "Bad Request Error : " + getMyBidsResponse.getBadRequestError().getReason());
+        } else {
+            Log.e(TAG, "Internal Server Error : " + getMyBidsResponse.getInternalServerError().getReason());
         }
     }
 
     private void get_my_asks(GetMyAsks.GetMyAsksResponse getMyAsksResponse) {
-        switch (getMyAsksResponse.getResponseCase().getNumber()) {
-            case 1:
-                Log.e(TAG, "Got Company profile : " + getMyAsksResponse.getResult().getMoreExists()
-                        + getMyAsksResponse.getResult().getClosedAskOrdersCount()
-                        + getMyAsksResponse.getResult().getClosedAskOrdersMap());
-            case 2:
-                Log.e(TAG, "Bad Request Error : " + getMyAsksResponse.getBadRequestError().getReason());
-            case 3:
-                Log.e(TAG, "Internal Server Error : " + getMyAsksResponse.getInternalServerError().getReason());
+        if (getMyAsksResponse.getResult() != null) {
+            Log.e(TAG, "Got My Asks : " + getMyAsksResponse.getResult().getMoreExists()
+                    + getMyAsksResponse.getResult().getClosedAskOrdersCount()
+                    + getMyAsksResponse.getResult().getClosedAskOrdersMap());
+        } else if (getMyAsksResponse.getBadRequestError() != null) {
+            Log.e(TAG, "Bad Request Error : " + getMyAsksResponse.getBadRequestError().getReason());
+        } else {
+            Log.e(TAG, "Internal Server Error : " + getMyAsksResponse.getInternalServerError().getReason());
         }
     }
 
     private void get_market_events(GetMarketEvents.GetMarketEventsResponse getMarketEventsResponse) {
-        switch (getMarketEventsResponse.getResponseCase().getNumber()) {
-            case 1:
-                Log.e(TAG, "Got Company profile : " + getMarketEventsResponse.getResult().getMarketEventsCount()
-                        + getMarketEventsResponse.getResult().getMarketEventsMap());
-            case 2:
-                Log.e(TAG, "Bad Request Error : " + getMarketEventsResponse.getBadRequestError().getReason());
-            case 3:
-                Log.e(TAG, "Internal Server Error : " + getMarketEventsResponse.getInternalServerError().getReason());
+        if (getMarketEventsResponse.getResult() != null) {
+            Log.e(TAG, "Got Market Events : " + getMarketEventsResponse.getResult().getMarketEventsCount()
+                    + getMarketEventsResponse.getResult().getMarketEventsMap());
+        } else if (getMarketEventsResponse.getBadRequestError() != null) {
+            Log.e(TAG, "Bad Request Error : " + getMarketEventsResponse.getBadRequestError().getReason());
+        } else {
+            Log.e(TAG, "Internal Server Error : " + getMarketEventsResponse.getInternalServerError().getReason());
         }
     }
 
     private void get_company_profile(GetCompanyProfile.GetCompanyProfileResponse getCompanyProfileResponse) {
-        switch (getCompanyProfileResponse.getResponseCase().getNumber()) {
-            case 1:
-                Log.e(TAG, "Got Company profile : " + getCompanyProfileResponse.getResult().getStockDetails()
-                        + getCompanyProfileResponse.getResult().getStockHistoryMapCount());
-            case 2:
-                Log.e(TAG, "Bad Request Error : " + getCompanyProfileResponse.getBadRequestError().getReason());
-            case 3:
-                Log.e(TAG, "Internal Server Error : " + getCompanyProfileResponse.getInternalServerError().getReason());
+        if (getCompanyProfileResponse.getResult() != null) {
+            Log.e(TAG, "Got Company profile : " + getCompanyProfileResponse.getResult().getStockDetails()
+                    + getCompanyProfileResponse.getResult().getStockHistoryMapCount());
+        } else if (getCompanyProfileResponse.getBadRequestError() != null) {
+            Log.e(TAG, "Bad Request Error : " + getCompanyProfileResponse.getBadRequestError().getReason());
+        } else {
+            Log.e(TAG, "Internal Server Error : " + getCompanyProfileResponse.getInternalServerError().getReason());
         }
     }
 
     private void buy_stocks_from_exchange_response(BuyStocksFromExchange.BuyStocksFromExchangeResponse buyStocksFromExchangeResponse) {
-        switch (buyStocksFromExchangeResponse.getResponseCase().getNumber()) {
-            case 1:
-                Log.e(TAG, "Buy Success, Trading Price : " + buyStocksFromExchangeResponse.getResult().getTransaction());
-            case 2:
-                Log.e(TAG, "Not Enough Cash Error : " + buyStocksFromExchangeResponse.getNotEnoughCashError().getReason());
-            case 3:
-                Log.e(TAG, "Buy Limit Exceeded Error : " + buyStocksFromExchangeResponse.getBuyLimitExceededError().getReason());
-            case 4:
-                Log.e(TAG, "Bad Request Error : " + buyStocksFromExchangeResponse.getBadRequestError().getReason());
-            case 5:
-                Log.e(TAG, "Internal Server Error : " + buyStocksFromExchangeResponse.getInternalServerError().getReason());
+        if (buyStocksFromExchangeResponse.getResult() != null) {
+            Log.e(TAG, "Buy Success, Trading Price : " + buyStocksFromExchangeResponse.getResult().getTransaction());
+        } else if (buyStocksFromExchangeResponse.getNotEnoughCashError() != null) {
+            Log.e(TAG, "Not Enough Cash Error : " + buyStocksFromExchangeResponse.getNotEnoughCashError().getReason());
+        } else if (buyStocksFromExchangeResponse.getBuyLimitExceededError() != null) {
+            Log.e(TAG, "Buy Limit Exceeded Error : " + buyStocksFromExchangeResponse.getBuyLimitExceededError().getReason());
+        } else if (buyStocksFromExchangeResponse.getBadRequestError() != null) {
+            Log.e(TAG, "Bad Request Error : " + buyStocksFromExchangeResponse.getBadRequestError().getReason());
+        } else {
+            Log.e(TAG, "Internal Server Error : " + buyStocksFromExchangeResponse.getInternalServerError().getReason());
         }
     }
 
     private void cancel_ask_order_response(CancelAskOrder.CancelAskOrderResponse cancelAskOrderResponse) {
-        switch (cancelAskOrderResponse.getResponseCase().getNumber()) {
-            case 1:
-                if (cancelAskOrderResponse.getResult().getSuccess())
-                    Log.e(TAG, "Cancel Ask Order Success");
-            case 2:
-                Log.e(TAG, "Invalid Ask Id Error : " + cancelAskOrderResponse.getInvalidAskIdError().getReason());
-            case 3:
-                Log.e(TAG, "Bad Request Error : " + cancelAskOrderResponse.getBadRequestError().getReason());
-            case 4:
-                Log.e(TAG, "Internal Server Error : " + cancelAskOrderResponse.getInternalServerError().getReason());
+        if (cancelAskOrderResponse.getResult().getSuccess()) {
+            Log.e(TAG, "Cancel Ask Order Success");
+        } else if (cancelAskOrderResponse.getInvalidAskIdError() != null) {
+            Log.e(TAG, "Invalid Ask Id Error : " + cancelAskOrderResponse.getInvalidAskIdError().getReason());
+        } else if (cancelAskOrderResponse.getBadRequestError() != null) {
+            Log.e(TAG, "Bad Request Error : " + cancelAskOrderResponse.getBadRequestError().getReason());
+        } else {
+            Log.e(TAG, "Internal Server Error : " + cancelAskOrderResponse.getInternalServerError().getReason());
         }
     }
 
     private void cancel_bid_order_response(CancelBidOrder.CancelBidOrderResponse cancelBidOrderResponse) {
-        switch (cancelBidOrderResponse.getResponseCase().getNumber()) {
-            case 1:
-                if (cancelBidOrderResponse.getResult().getSuccess())
-                    Log.e(TAG, "Cancel Ask Order Success");
-            case 2:
-                Log.e(TAG, "Invalid Bid Id Error : " + cancelBidOrderResponse.getInvalidBidIdError().getReason());
-            case 3:
-                Log.e(TAG, "Bad Request Error : " + cancelBidOrderResponse.getBadRequestError().getReason());
-            case 4:
-                Log.e(TAG, "Internal Server Error : " + cancelBidOrderResponse.getInternalServerError().getReason());
+        if (cancelBidOrderResponse.getResult().getSuccess()) {
+            Log.e(TAG, "Cancel Bid Order Success");
+        } else if (cancelBidOrderResponse.getInvalidBidIdError() != null) {
+            Log.e(TAG, "Invalid Bid Id Error : " + cancelBidOrderResponse.getInvalidBidIdError().getReason());
+        } else if (cancelBidOrderResponse.getBadRequestError() != null) {
+            Log.e(TAG, "Bad Request Error : " + cancelBidOrderResponse.getBadRequestError().getReason());
+        } else {
+            Log.e(TAG, "Internal Server Error : " + cancelBidOrderResponse.getInternalServerError().getReason());
         }
     }
 
     private void mortgage_stocks_response(MortgageStocks.MortgageStocksResponse mortgageStocksResponse) {
-        switch (mortgageStocksResponse.getResponseCase().getNumber()) {
-            case 1:
-                Log.e(TAG, "Mortgage Stocks Success, Trading Price : " + mortgageStocksResponse.getResult().getTransaction());
-            case 2:
-                Log.e(TAG, "Not Enough Stocks Error : " + mortgageStocksResponse.getNotEnoughStocksError().getReason());
-            case 3:
-                Log.e(TAG, "Bad Request Error : " + mortgageStocksResponse.getBadRequestError().getReason());
-            case 4:
-                Log.e(TAG, "Internal Server Error : " + mortgageStocksResponse.getInternalServerError().getReason());
+        if (mortgageStocksResponse.getResult() != null) {
+            Log.e(TAG, "Mortgage Stocks Success, Trading Price : " + mortgageStocksResponse.getResult().getTransaction());
+        } else if (mortgageStocksResponse.getNotEnoughStocksError() != null) {
+            Log.e(TAG, "Not Enough Stocks Error : " + mortgageStocksResponse.getNotEnoughStocksError().getReason());
+        } else if (mortgageStocksResponse.getBadRequestError() != null) {
+            Log.e(TAG, "Bad Request Error : " + mortgageStocksResponse.getBadRequestError().getReason());
+        } else {
+            Log.e(TAG, "Internal Server Error : " + mortgageStocksResponse.getInternalServerError().getReason());
         }
     }
 
     private void place_ask_order_response(PlaceAskOrder.PlaceAskOrderResponse placeAskOrderResponse) {
-        switch (placeAskOrderResponse.getResponseCase().getNumber()) {
-            case 1:
-                Log.e(TAG, "Ask Order Success, Ask id : " + placeAskOrderResponse.getResult().getAskId());
-            case 2:
-                Log.e(TAG, "Ask Limit Exceeded Error : " + placeAskOrderResponse.getAskLimitExceededError().getReason());
-            case 3:
-                Log.e(TAG, "Not Enough Stocks Error : " + placeAskOrderResponse.getNotEnoughStocksError().getReason());
-            case 4:
-                Log.e(TAG, "Bad Request Error : " + placeAskOrderResponse.getBadRequestError().getReason());
-            case 5:
-                Log.e(TAG, "Internal Server Error : " + placeAskOrderResponse.getInternalServerError().getReason());
+        if (placeAskOrderResponse.getResult() != null) {
+            Log.e(TAG, "Ask Order Success, Ask id : " + placeAskOrderResponse.getResult().getAskId());
+        } else if (placeAskOrderResponse.getAskLimitExceededError() != null) {
+            Log.e(TAG, "Ask Limit Exceeded Error : " + placeAskOrderResponse.getAskLimitExceededError().getReason());
+        } else if (placeAskOrderResponse.getNotEnoughStocksError() != null) {
+            Log.e(TAG, "Not Enough Stocks Error : " + placeAskOrderResponse.getNotEnoughStocksError().getReason());
+        } else if (placeAskOrderResponse.getBadRequestError() != null) {
+            Log.e(TAG, "Bad Request Error : " + placeAskOrderResponse.getBadRequestError().getReason());
+        } else {
+            Log.e(TAG, "Internal Server Error : " + placeAskOrderResponse.getInternalServerError().getReason());
         }
     }
 
     private void place_bid_order_response(PlaceBidOrder.PlaceBidOrderResponse placeBidOrderResponse) {
-        switch (placeBidOrderResponse.getResponseCase().getNumber()) {
-            case 1:
-                Log.e(TAG, "Bid Order Success, Ask id : " + placeBidOrderResponse.getResult().getBidId());
-            case 2:
-                Log.e(TAG, "Bid Limit Exceeded Error : " + placeBidOrderResponse.getBidLimitExceededError().getReason());
-            case 3:
-                Log.e(TAG, "Not Enough Cash Error : " + placeBidOrderResponse.getNotEnoughCashError().getReason());
-            case 4:
-                Log.e(TAG, "Bad Request Error : " + placeBidOrderResponse.getBadRequestError().getReason());
-            case 5:
-                Log.e(TAG, "Internal Server Error : " + placeBidOrderResponse.getInternalServerError().getReason());
+        if (placeBidOrderResponse.getResult() != null) {
+            Log.e(TAG, "Bid Order Success, Ask id : " + placeBidOrderResponse.getResult().getBidId());
+        } else if (placeBidOrderResponse.getBidLimitExceededError() != null) {
+            Log.e(TAG, "Bid Limit Exceeded Error : " + placeBidOrderResponse.getBidLimitExceededError().getReason());
+        } else if (placeBidOrderResponse.getNotEnoughCashError() != null) {
+            Log.e(TAG, "Not Enough Cash Error : " + placeBidOrderResponse.getNotEnoughCashError().getReason());
+        } else if (placeBidOrderResponse.getBadRequestError() != null) {
+            Log.e(TAG, "Bad Request Error : " + placeBidOrderResponse.getBadRequestError().getReason());
+        } else {
+            Log.e(TAG, "Internal Server Error : " + placeBidOrderResponse.getInternalServerError().getReason());
         }
     }
 
     private void retrieve_mortgage_stocks_response(RetrieveMortgageStocks.RetrieveMortgageStocksResponse retrieveMortgageStocksResponse) {
-        switch (retrieveMortgageStocksResponse.getResponseCase().getNumber()) {
-            case 1:
-                Log.e(TAG, "Mortgage Stocks Success, Trading Price : " + retrieveMortgageStocksResponse.getResult().getTransaction());
-            case 2:
-                Log.e(TAG, "Not Enough Stocks Error : " + retrieveMortgageStocksResponse.getNotEnoughStocksError().getReason());
-            case 3:
-                Log.e(TAG, "Not Enough Cash Error : " + retrieveMortgageStocksResponse.getNotEnoughCashError().getReason());
-            case 4:
-                Log.e(TAG, "Bad Request Error : " + retrieveMortgageStocksResponse.getBadRequestError().getReason());
-            case 5:
-                Log.e(TAG, "Internal Server Error : " + retrieveMortgageStocksResponse.getInternalServerError().getReason());
+        if (retrieveMortgageStocksResponse.getResult() != null) {
+            Log.e(TAG, "Mortgage Stocks Success, Trading Price : " + retrieveMortgageStocksResponse.getResult().getTransaction());
+        } else if (retrieveMortgageStocksResponse.getNotEnoughStocksError() != null) {
+            Log.e(TAG, "Not Enough Stocks Error : " + retrieveMortgageStocksResponse.getNotEnoughStocksError().getReason());
+        } else if (retrieveMortgageStocksResponse.getNotEnoughCashError() != null) {
+            Log.e(TAG, "Not Enough Cash Error : " + retrieveMortgageStocksResponse.getNotEnoughCashError().getReason());
+        } else if (retrieveMortgageStocksResponse.getBadRequestError() != null) {
+            Log.e(TAG, "Bad Request Error : " + retrieveMortgageStocksResponse.getBadRequestError().getReason());
+        } else {
+            Log.e(TAG, "Internal Server Error : " + retrieveMortgageStocksResponse.getInternalServerError().getReason());
         }
     }
 
     private void subscribe_response(Subscribe.SubscribeResponse subscribeResponse) {
-        switch (subscribeResponse.getResponseCase().getNumber()) {
-            case 1:
-                if (subscribeResponse.getResult().getSuccess())
-                    Log.e(TAG, "Subscribe Success");
-            case 2:
-                Log.e(TAG, "Bad Request Error : " + subscribeResponse.getBadRequestError().getReason());
-            case 3:
-                Log.e(TAG, "Internal Server Error : " + subscribeResponse.getInternalServerError().getReason());
+        if (subscribeResponse.getResult().getSuccess()) {
+            Log.e(TAG, "Subscribe Success");
+        } else if (subscribeResponse.getBadRequestError() != null) {
+            Log.e(TAG, "Bad Request Error : " + subscribeResponse.getBadRequestError().getReason());
+        } else {
+            Log.e(TAG, "Internal Server Error : " + subscribeResponse.getInternalServerError().getReason());
         }
     }
 
     private void unsubscribe_response(Unsubscribe.UnsubscribeResponse unsubscribeResponse) {
-        switch (unsubscribeResponse.getResponseCase().getNumber()) {
-            case 1:
-                if (unsubscribeResponse.getResult().getSuccess())
+        if (unsubscribeResponse.getResult().getSuccess()) {
                     Log.e(TAG, "Unsubscribe Success");
-            case 2:
-                Log.e(TAG, "Bad Request Error : " + unsubscribeResponse.getBadRequestError().getReason());
-            case 3:
-                Log.e(TAG, "Internal Server Error : " + unsubscribeResponse.getInternalServerError().getReason());
+        } else if (unsubscribeResponse.getBadRequestError() != null) {
+            Log.e(TAG, "Bad Request Error : " + unsubscribeResponse.getBadRequestError().getReason());
+        } else {
+            Log.e(TAG, "Internal Server Error : " + unsubscribeResponse.getInternalServerError().getReason());
         }
     }
 

@@ -16,11 +16,18 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import java.util.Map;
+import java.util.Set;
+
+import dalalstreet.socketapi.models.StockOuterClass;
+import dalalstreet.socketapi.models.UserOuterClass;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, Listener {
@@ -37,7 +44,7 @@ public class Home extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        websocket = new WebSocketsService(this);
+        websocket = new WebSocketsService(this,this);
         websocket.openWebSocket();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -58,7 +65,7 @@ public class Home extends AppCompatActivity
         cash = (TextView) findViewById(R.id.user_cash_worth);
         total = (TextView) findViewById(R.id.user_total_worth);
 
-        publish();
+
     }
 
     @Override
@@ -74,13 +81,13 @@ public class Home extends AppCompatActivity
     @Override
     protected void onStop() {
         super.onStop();
-        websocket.ws.close();
+        WebSocketsService.ws.close();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        websocket.ws.close();
+        WebSocketsService.ws.close();
     }
 
     @Override
@@ -190,11 +197,23 @@ public class Home extends AppCompatActivity
     public void publish() {
 
         setValues();
+        UserOuterClass.User user = WebSocketsService.user;
+        name = user.getName(); //todo : get from service
 
+        cashWorth = user.getCash();
+        String cashText = "Cash worth\n" + String.valueOf(cashWorth);
+        SpannableString spannable2 = new SpannableString(cashText);
+        spannable2.setSpan(new StyleSpan(Typeface.BOLD), 11, cashText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannable2.setSpan(new RelativeSizeSpan(0.8f), 0, 10, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannable2.setSpan(new RelativeSizeSpan(2.0f), 11, cashText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        cash.setText(spannable2);
+        stockWorth = getStockWorth();
+        totalWorth = cashWorth + stockWorth;
         username.setText(name);
         String stockText = "Stock worth\n" + String.valueOf(stockWorth);
-        String cashText = "Cash worth\n" + String.valueOf(cashWorth);
+
         String totalText = "Total worth\n" + String.valueOf(totalWorth);
+        Log.e(WebSocketsService.TAG,"  "+stockText+ " "+cashText);
 
 
         SpannableString spannable1 = new SpannableString(stockText);
@@ -203,11 +222,7 @@ public class Home extends AppCompatActivity
         spannable1.setSpan(new RelativeSizeSpan(2.0f), 12, stockText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         stock.setText(spannable1);
 
-        SpannableString spannable2 = new SpannableString(cashText);
-        spannable2.setSpan(new StyleSpan(Typeface.BOLD), 11, cashText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        spannable2.setSpan(new RelativeSizeSpan(0.8f), 0, 10, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        spannable2.setSpan(new RelativeSizeSpan(2.0f), 11, cashText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        cash.setText(spannable2);
+
 
         SpannableString spannable3 = new SpannableString(totalText);
         spannable3.setSpan(new StyleSpan(Typeface.BOLD), 12, totalText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -218,11 +233,22 @@ public class Home extends AppCompatActivity
     }
 
     public void setValues() {
-        name = "username"; //todo : get from service
+//        UserOuterClass.User user = WebSocketsService.user;
+//        name = user.getName(); //todo : get from service
+//
+//        cashWorth = user.getCash();
+//        stockWorth = getStockWorth();
+//        totalWorth = cashWorth + stockWorth;
+    }
 
-        cashWorth = 1500;
-        stockWorth = 2000;
-        totalWorth = 3500;
+    private int getStockWorth() {
+        Map<Integer, Integer> stocks_owned = WebSocketsService.stocks_owned;
+        Map<Integer, StockOuterClass.Stock> stock_list = WebSocketsService.stock_list;
+        Integer sum = 0;
+        for(Integer i : stock_list.keySet()){
+            sum += stock_list.get(i).getCurrentPrice() * stocks_owned.get(i);
+        }
+        return sum;
     }
 
     @Override
@@ -231,6 +257,11 @@ public class Home extends AppCompatActivity
         Intent intent = new Intent(this, Login.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void connectionEstablished() {
+        publish();
     }
 
 }

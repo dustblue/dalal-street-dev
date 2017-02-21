@@ -14,7 +14,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import dalalstreet.socketapi.models.StockOuterClass;
 
 
 /**
@@ -82,18 +87,21 @@ public class Companies extends Fragment {
 
         return rootView;
     }
-
+    private int returnUporDownImg(StockOuterClass.Stock stock){
+        if(stock.getCurrentPrice() >= stock.getPreviousDayClose())
+            return R.drawable.up_arrow;
+        else
+            return R.drawable.down_arrow;
+    }
     public void setValues(){ //todo : get from service,checkout companyAdapter
         companyList=new ArrayList<>();
         companyList.clear();
-
-        companyList.add(new Company("Github",String.valueOf(50),R.drawable.github2,R.drawable.down_arrow));
-        companyList.add(new Company("Apple",String.valueOf(100),R.drawable.apple,R.drawable.up_arrow));
-        companyList.add(new Company("Yahoo",String.valueOf(125),R.drawable.yahoo2,R.drawable.down_arrow));
-        companyList.add(new Company("HDFC",String.valueOf(95),R.drawable.hdfc3,R.drawable.down_arrow));
-        companyList.add(new Company("LG",String.valueOf(110),R.drawable.lg2,R.drawable.up_arrow));
-        companyList.add(new Company("Sony",String.valueOf(50),R.drawable.sony,R.drawable.down_arrow));
-        companyList.add(new Company("Infosys",String.valueOf(50),R.drawable.infosys,R.drawable.down_arrow));
+        Map<Integer, StockOuterClass.Stock> stockMap = WebSocketsService.stock_list;
+        Set<Integer> keyset = stockMap.keySet();
+        Collection<StockOuterClass.Stock> stockList = stockMap.values();
+        for (StockOuterClass.Stock i : stockList){
+            companyList.add(new Company(i.getShortName(),Integer.toString(i.getCurrentPrice()),R.drawable.github2,returnUporDownImg(i)));
+        }
 
         news=new ArrayList<>();
         news.clear();
