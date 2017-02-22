@@ -23,27 +23,37 @@ public final class LeaderboardRowOuterClass {
     int getUserId();
 
     /**
-     * <code>optional uint32 rank = 3;</code>
+     * <code>optional string user_name = 3;</code>
+     */
+    java.lang.String getUserName();
+    /**
+     * <code>optional string user_name = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getUserNameBytes();
+
+    /**
+     * <code>optional uint32 rank = 4;</code>
      */
     int getRank();
 
     /**
-     * <code>optional uint32 cash = 4;</code>
+     * <code>optional uint32 cash = 5;</code>
      */
     int getCash();
 
     /**
-     * <code>optional uint32 debt = 5;</code>
+     * <code>optional uint32 debt = 6;</code>
      */
     int getDebt();
 
     /**
-     * <code>optional int32 stock_worth = 6;</code>
+     * <code>optional int32 stock_worth = 7;</code>
      */
     int getStockWorth();
 
     /**
-     * <code>optional int32 total_worth = 7;</code>
+     * <code>optional int32 total_worth = 8;</code>
      */
     int getTotalWorth();
   }
@@ -56,6 +66,7 @@ public final class LeaderboardRowOuterClass {
       // @@protoc_insertion_point(message_implements:dalalstreet.socketapi.models.LeaderboardRow)
       LeaderboardRowOrBuilder {
     private LeaderboardRow() {
+      userName_ = "";
     }
     public static final int ID_FIELD_NUMBER = 1;
     private int id_;
@@ -103,115 +114,161 @@ public final class LeaderboardRowOuterClass {
       userId_ = 0;
     }
 
-    public static final int RANK_FIELD_NUMBER = 3;
+    public static final int USER_NAME_FIELD_NUMBER = 3;
+    private java.lang.String userName_;
+    /**
+     * <code>optional string user_name = 3;</code>
+     */
+    public java.lang.String getUserName() {
+      return userName_;
+    }
+    /**
+     * <code>optional string user_name = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getUserNameBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(userName_);
+    }
+    /**
+     * <code>optional string user_name = 3;</code>
+     */
+    private void setUserName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      userName_ = value;
+    }
+    /**
+     * <code>optional string user_name = 3;</code>
+     */
+    private void clearUserName() {
+      
+      userName_ = getDefaultInstance().getUserName();
+    }
+    /**
+     * <code>optional string user_name = 3;</code>
+     */
+    private void setUserNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      userName_ = value.toStringUtf8();
+    }
+
+    public static final int RANK_FIELD_NUMBER = 4;
     private int rank_;
     /**
-     * <code>optional uint32 rank = 3;</code>
+     * <code>optional uint32 rank = 4;</code>
      */
     public int getRank() {
       return rank_;
     }
     /**
-     * <code>optional uint32 rank = 3;</code>
+     * <code>optional uint32 rank = 4;</code>
      */
     private void setRank(int value) {
       
       rank_ = value;
     }
     /**
-     * <code>optional uint32 rank = 3;</code>
+     * <code>optional uint32 rank = 4;</code>
      */
     private void clearRank() {
       
       rank_ = 0;
     }
 
-    public static final int CASH_FIELD_NUMBER = 4;
+    public static final int CASH_FIELD_NUMBER = 5;
     private int cash_;
     /**
-     * <code>optional uint32 cash = 4;</code>
+     * <code>optional uint32 cash = 5;</code>
      */
     public int getCash() {
       return cash_;
     }
     /**
-     * <code>optional uint32 cash = 4;</code>
+     * <code>optional uint32 cash = 5;</code>
      */
     private void setCash(int value) {
       
       cash_ = value;
     }
     /**
-     * <code>optional uint32 cash = 4;</code>
+     * <code>optional uint32 cash = 5;</code>
      */
     private void clearCash() {
       
       cash_ = 0;
     }
 
-    public static final int DEBT_FIELD_NUMBER = 5;
+    public static final int DEBT_FIELD_NUMBER = 6;
     private int debt_;
     /**
-     * <code>optional uint32 debt = 5;</code>
+     * <code>optional uint32 debt = 6;</code>
      */
     public int getDebt() {
       return debt_;
     }
     /**
-     * <code>optional uint32 debt = 5;</code>
+     * <code>optional uint32 debt = 6;</code>
      */
     private void setDebt(int value) {
       
       debt_ = value;
     }
     /**
-     * <code>optional uint32 debt = 5;</code>
+     * <code>optional uint32 debt = 6;</code>
      */
     private void clearDebt() {
       
       debt_ = 0;
     }
 
-    public static final int STOCK_WORTH_FIELD_NUMBER = 6;
+    public static final int STOCK_WORTH_FIELD_NUMBER = 7;
     private int stockWorth_;
     /**
-     * <code>optional int32 stock_worth = 6;</code>
+     * <code>optional int32 stock_worth = 7;</code>
      */
     public int getStockWorth() {
       return stockWorth_;
     }
     /**
-     * <code>optional int32 stock_worth = 6;</code>
+     * <code>optional int32 stock_worth = 7;</code>
      */
     private void setStockWorth(int value) {
       
       stockWorth_ = value;
     }
     /**
-     * <code>optional int32 stock_worth = 6;</code>
+     * <code>optional int32 stock_worth = 7;</code>
      */
     private void clearStockWorth() {
       
       stockWorth_ = 0;
     }
 
-    public static final int TOTAL_WORTH_FIELD_NUMBER = 7;
+    public static final int TOTAL_WORTH_FIELD_NUMBER = 8;
     private int totalWorth_;
     /**
-     * <code>optional int32 total_worth = 7;</code>
+     * <code>optional int32 total_worth = 8;</code>
      */
     public int getTotalWorth() {
       return totalWorth_;
     }
     /**
-     * <code>optional int32 total_worth = 7;</code>
+     * <code>optional int32 total_worth = 8;</code>
      */
     private void setTotalWorth(int value) {
       
       totalWorth_ = value;
     }
     /**
-     * <code>optional int32 total_worth = 7;</code>
+     * <code>optional int32 total_worth = 8;</code>
      */
     private void clearTotalWorth() {
       
@@ -226,20 +283,23 @@ public final class LeaderboardRowOuterClass {
       if (userId_ != 0) {
         output.writeUInt32(2, userId_);
       }
+      if (!userName_.isEmpty()) {
+        output.writeString(3, getUserName());
+      }
       if (rank_ != 0) {
-        output.writeUInt32(3, rank_);
+        output.writeUInt32(4, rank_);
       }
       if (cash_ != 0) {
-        output.writeUInt32(4, cash_);
+        output.writeUInt32(5, cash_);
       }
       if (debt_ != 0) {
-        output.writeUInt32(5, debt_);
+        output.writeUInt32(6, debt_);
       }
       if (stockWorth_ != 0) {
-        output.writeInt32(6, stockWorth_);
+        output.writeInt32(7, stockWorth_);
       }
       if (totalWorth_ != 0) {
-        output.writeInt32(7, totalWorth_);
+        output.writeInt32(8, totalWorth_);
       }
     }
 
@@ -256,25 +316,29 @@ public final class LeaderboardRowOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(2, userId_);
       }
+      if (!userName_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getUserName());
+      }
       if (rank_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(3, rank_);
+          .computeUInt32Size(4, rank_);
       }
       if (cash_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(4, cash_);
+          .computeUInt32Size(5, cash_);
       }
       if (debt_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(5, debt_);
+          .computeUInt32Size(6, debt_);
       }
       if (stockWorth_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(6, stockWorth_);
+          .computeInt32Size(7, stockWorth_);
       }
       if (totalWorth_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(7, totalWorth_);
+          .computeInt32Size(8, totalWorth_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -409,13 +473,53 @@ public final class LeaderboardRowOuterClass {
       }
 
       /**
-       * <code>optional uint32 rank = 3;</code>
+       * <code>optional string user_name = 3;</code>
+       */
+      public java.lang.String getUserName() {
+        return instance.getUserName();
+      }
+      /**
+       * <code>optional string user_name = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getUserNameBytes() {
+        return instance.getUserNameBytes();
+      }
+      /**
+       * <code>optional string user_name = 3;</code>
+       */
+      public Builder setUserName(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setUserName(value);
+        return this;
+      }
+      /**
+       * <code>optional string user_name = 3;</code>
+       */
+      public Builder clearUserName() {
+        copyOnWrite();
+        instance.clearUserName();
+        return this;
+      }
+      /**
+       * <code>optional string user_name = 3;</code>
+       */
+      public Builder setUserNameBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setUserNameBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional uint32 rank = 4;</code>
        */
       public int getRank() {
         return instance.getRank();
       }
       /**
-       * <code>optional uint32 rank = 3;</code>
+       * <code>optional uint32 rank = 4;</code>
        */
       public Builder setRank(int value) {
         copyOnWrite();
@@ -423,7 +527,7 @@ public final class LeaderboardRowOuterClass {
         return this;
       }
       /**
-       * <code>optional uint32 rank = 3;</code>
+       * <code>optional uint32 rank = 4;</code>
        */
       public Builder clearRank() {
         copyOnWrite();
@@ -432,13 +536,13 @@ public final class LeaderboardRowOuterClass {
       }
 
       /**
-       * <code>optional uint32 cash = 4;</code>
+       * <code>optional uint32 cash = 5;</code>
        */
       public int getCash() {
         return instance.getCash();
       }
       /**
-       * <code>optional uint32 cash = 4;</code>
+       * <code>optional uint32 cash = 5;</code>
        */
       public Builder setCash(int value) {
         copyOnWrite();
@@ -446,7 +550,7 @@ public final class LeaderboardRowOuterClass {
         return this;
       }
       /**
-       * <code>optional uint32 cash = 4;</code>
+       * <code>optional uint32 cash = 5;</code>
        */
       public Builder clearCash() {
         copyOnWrite();
@@ -455,13 +559,13 @@ public final class LeaderboardRowOuterClass {
       }
 
       /**
-       * <code>optional uint32 debt = 5;</code>
+       * <code>optional uint32 debt = 6;</code>
        */
       public int getDebt() {
         return instance.getDebt();
       }
       /**
-       * <code>optional uint32 debt = 5;</code>
+       * <code>optional uint32 debt = 6;</code>
        */
       public Builder setDebt(int value) {
         copyOnWrite();
@@ -469,7 +573,7 @@ public final class LeaderboardRowOuterClass {
         return this;
       }
       /**
-       * <code>optional uint32 debt = 5;</code>
+       * <code>optional uint32 debt = 6;</code>
        */
       public Builder clearDebt() {
         copyOnWrite();
@@ -478,13 +582,13 @@ public final class LeaderboardRowOuterClass {
       }
 
       /**
-       * <code>optional int32 stock_worth = 6;</code>
+       * <code>optional int32 stock_worth = 7;</code>
        */
       public int getStockWorth() {
         return instance.getStockWorth();
       }
       /**
-       * <code>optional int32 stock_worth = 6;</code>
+       * <code>optional int32 stock_worth = 7;</code>
        */
       public Builder setStockWorth(int value) {
         copyOnWrite();
@@ -492,7 +596,7 @@ public final class LeaderboardRowOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 stock_worth = 6;</code>
+       * <code>optional int32 stock_worth = 7;</code>
        */
       public Builder clearStockWorth() {
         copyOnWrite();
@@ -501,13 +605,13 @@ public final class LeaderboardRowOuterClass {
       }
 
       /**
-       * <code>optional int32 total_worth = 7;</code>
+       * <code>optional int32 total_worth = 8;</code>
        */
       public int getTotalWorth() {
         return instance.getTotalWorth();
       }
       /**
-       * <code>optional int32 total_worth = 7;</code>
+       * <code>optional int32 total_worth = 8;</code>
        */
       public Builder setTotalWorth(int value) {
         copyOnWrite();
@@ -515,7 +619,7 @@ public final class LeaderboardRowOuterClass {
         return this;
       }
       /**
-       * <code>optional int32 total_worth = 7;</code>
+       * <code>optional int32 total_worth = 8;</code>
        */
       public Builder clearTotalWorth() {
         copyOnWrite();
@@ -548,6 +652,8 @@ public final class LeaderboardRowOuterClass {
               other.id_ != 0, other.id_);
           userId_ = visitor.visitInt(userId_ != 0, userId_,
               other.userId_ != 0, other.userId_);
+          userName_ = visitor.visitString(!userName_.isEmpty(), userName_,
+              !other.userName_.isEmpty(), other.userName_);
           rank_ = visitor.visitInt(rank_ != 0, rank_,
               other.rank_ != 0, other.rank_);
           cash_ = visitor.visitInt(cash_ != 0, cash_,
@@ -592,27 +698,33 @@ public final class LeaderboardRowOuterClass {
                   userId_ = input.readUInt32();
                   break;
                 }
-                case 24: {
+                case 26: {
+                  String s = input.readStringRequireUtf8();
 
-                  rank_ = input.readUInt32();
+                  userName_ = s;
                   break;
                 }
                 case 32: {
 
-                  cash_ = input.readUInt32();
+                  rank_ = input.readUInt32();
                   break;
                 }
                 case 40: {
 
-                  debt_ = input.readUInt32();
+                  cash_ = input.readUInt32();
                   break;
                 }
                 case 48: {
 
-                  stockWorth_ = input.readInt32();
+                  debt_ = input.readUInt32();
                   break;
                 }
                 case 56: {
+
+                  stockWorth_ = input.readInt32();
+                  break;
+                }
+                case 64: {
 
                   totalWorth_ = input.readInt32();
                   break;

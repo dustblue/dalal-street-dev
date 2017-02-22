@@ -11,10 +11,7 @@ import com.koushikdutta.async.callback.CompletedCallback;
 import com.koushikdutta.async.callback.DataCallback;
 import com.koushikdutta.async.http.AsyncHttpClient;
 import com.koushikdutta.async.http.WebSocket;
-import com.koushikdutta.async.util.HashList;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import dalalstreet.socketapi.DalalMessageOuterClass;
@@ -37,6 +34,7 @@ import dalalstreet.socketapi.actions.PlaceBidOrder;
 import dalalstreet.socketapi.actions.RetrieveMortgageStocks;
 import dalalstreet.socketapi.actions.Subscribe;
 import dalalstreet.socketapi.actions.Unsubscribe;
+import dalalstreet.socketapi.models.OrderTypeOuterClass;
 import dalalstreet.socketapi.models.StockOuterClass;
 import dalalstreet.socketapi.models.UserOuterClass;
 
@@ -156,28 +154,28 @@ class WebSocketsService {
                 unsubscribe_response(responseWrapper.getUnsubscribeResponse());
                 break;
             case 14:
-                get_company_profile(responseWrapper.getGetCompanyProfileResponse());
+                get_company_profile_response(responseWrapper.getGetCompanyProfileResponse());
                 break;
             case 15:
-                get_market_events(responseWrapper.getGetMarketEventsResponse());
+                get_market_events_response(responseWrapper.getGetMarketEventsResponse());
                 break;
             case 16:
-                get_my_asks(responseWrapper.getGetMyAsksResponse());
+                get_my_asks_response(responseWrapper.getGetMyAsksResponse());
                 break;
             case 17:
-                get_my_bids(responseWrapper.getGetMyBidsResponse());
+                get_my_bids_response(responseWrapper.getGetMyBidsResponse());
                 break;
             case 18:
-                get_notifications(responseWrapper.getGetNotificationsResponse());
+                get_notifications_response(responseWrapper.getGetNotificationsResponse());
                 break;
             case 19:
-                get_transactions(responseWrapper.getGetTransactionsResponse());
+                get_transactions_response(responseWrapper.getGetTransactionsResponse());
                 break;
             case 20:
-                get_mortgage_details(responseWrapper.getGetMortgageDetailsResponse());
+                get_mortgage_details_response(responseWrapper.getGetMortgageDetailsResponse());
                 break;
             case 21:
-                get_leaderboard(responseWrapper.getGetLeaderboardResponse());
+                get_leaderboard_response(responseWrapper.getGetLeaderboardResponse());
                 break;
             default:
                 break;
@@ -253,7 +251,18 @@ class WebSocketsService {
         }
     }
 
-    private void get_leaderboard(GetLeaderboard.GetLeaderboardResponse getLeaderboardResponse) {
+    void get_leaderboard_request() {
+        //Empty parameter returns Top 20 and User's place
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setGetLeaderboardRequest(GetLeaderboard.GetLeaderboardRequest
+                                .newBuilder()
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
+    }
+
+    private void get_leaderboard_response(GetLeaderboard.GetLeaderboardResponse getLeaderboardResponse) {
         if (getLeaderboardResponse.getResult() != null) {
             Log.e(TAG, "Got Leaderboard : " + getLeaderboardResponse.getResult().getMyRank()
                     + getLeaderboardResponse.getResult().getRankListCount() + getLeaderboardResponse.getResult().getRankListMap());
@@ -264,7 +273,17 @@ class WebSocketsService {
         }
     }
 
-    private void get_mortgage_details(GetMortgageDetails.GetMortgageDetailsResponse getMortgageDetailsResponse) {
+    void get_mortgage_details_request() {
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setGetMortgageDetailsRequest(GetMortgageDetails.GetMortgageDetailsRequest
+                                .newBuilder()
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
+    }
+
+    private void get_mortgage_details_response(GetMortgageDetails.GetMortgageDetailsResponse getMortgageDetailsResponse) {
         if (getMortgageDetailsResponse.getResult() != null) {
             Log.e(TAG, "Got Mortgage Details : " + getMortgageDetailsResponse.getResult().getMortgageMapCount()
                     + getMortgageDetailsResponse.getResult().getMortgageMapCount());
@@ -275,7 +294,29 @@ class WebSocketsService {
         }
     }
 
-    private void get_transactions(GetTransactions.GetTransactionsResponse getTransactionsResponse) {
+    void get_transactions_request() {
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setGetTransactionsRequest(GetTransactions.GetTransactionsRequest.newBuilder()
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
+    }
+
+    void get_transactions_request(int offset, int count) {
+        //Overloaded to handle custom requests
+        //id is the starting row and count is the number of rows
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setGetTransactionsRequest(GetTransactions.GetTransactionsRequest.newBuilder()
+                                .setLastTransactionId(offset)
+                                .setCount(count)
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
+    }
+
+    private void get_transactions_response(GetTransactions.GetTransactionsResponse getTransactionsResponse) {
         if (getTransactionsResponse.getResult() != null) {
 
             Log.e(TAG, "Got Transactions : " + getTransactionsResponse.getResult().getMoreExists()
@@ -287,7 +328,29 @@ class WebSocketsService {
         }
     }
 
-    private void get_notifications(GetNotifications.GetNotificationsResponse getNotificationsResponse) {
+    void get_notifications_request() {
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setGetNotificationsRequest(GetNotifications.GetNotificationsRequest.newBuilder()
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
+    }
+
+    void get_notifications_request(int offset, int count) {
+        //Overloaded to handle custom requests
+        //id is the starting row and count is the number of rows
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setGetNotificationsRequest(GetNotifications.GetNotificationsRequest.newBuilder()
+                                .setLastNotificationId(offset)
+                                .setCount(count)
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
+    }
+
+    private void get_notifications_response(GetNotifications.GetNotificationsResponse getNotificationsResponse) {
         if (getNotificationsResponse.getResult() != null) {
             Log.e(TAG, "Got Notifications : " + getNotificationsResponse.getResult().getMoreExists()
                     + getNotificationsResponse.getResult().getNotificationsCount()
@@ -299,7 +362,29 @@ class WebSocketsService {
         }
     }
 
-    private void get_my_bids(GetMyBids.GetMyBidsResponse getMyBidsResponse) {
+    void get_my_bids_request() {
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setGetMyBidsRequest(GetMyBids.GetMyBidsRequest.newBuilder()
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
+    }
+
+    void get_my_bids_request(int offset, int count) {
+        //Overloaded to handle custom requests
+        //id is the starting row and count is the number of rows
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setGetMyBidsRequest(GetMyBids.GetMyBidsRequest.newBuilder()
+                                .setLastBidId(offset)
+                                .setCount(count)
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
+    }
+
+    private void get_my_bids_response(GetMyBids.GetMyBidsResponse getMyBidsResponse) {
         if (getMyBidsResponse.getResult() != null) {
             Log.e(TAG, "Got My Bids : " + getMyBidsResponse.getResult().getMoreExists()
                     + getMyBidsResponse.getResult().getClosedBidOrdersCount()
@@ -311,7 +396,29 @@ class WebSocketsService {
         }
     }
 
-    private void get_my_asks(GetMyAsks.GetMyAsksResponse getMyAsksResponse) {
+    void get_my_asks_request() {
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setGetMyAsksRequest(GetMyAsks.GetMyAsksRequest.newBuilder()
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
+    }
+
+    void get_my_asks_request(int offset, int count) {
+        //Overloaded to handle custom requests
+        //id is the starting row and count is the number of rows
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setGetMyAsksRequest(GetMyAsks.GetMyAsksRequest.newBuilder()
+                                .setLastAskId(offset)
+                                .setCount(count)
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
+    }
+
+    private void get_my_asks_response(GetMyAsks.GetMyAsksResponse getMyAsksResponse) {
         if (getMyAsksResponse.getResult() != null) {
             Log.e(TAG, "Got My Asks : " + getMyAsksResponse.getResult().getMoreExists()
                     + getMyAsksResponse.getResult().getClosedAskOrdersCount()
@@ -323,7 +430,29 @@ class WebSocketsService {
         }
     }
 
-    private void get_market_events(GetMarketEvents.GetMarketEventsResponse getMarketEventsResponse) {
+    void get_market_events_request() {
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setGetMarketEventsRequest(GetMarketEvents.GetMarketEventsRequest.newBuilder()
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
+    }
+
+    void get_market_events_request(int offset, int count) {
+        //Overloaded to handle custom requests
+        //id is the starting row and count is the number of rows
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setGetMarketEventsRequest(GetMarketEvents.GetMarketEventsRequest.newBuilder()
+                                .setLastEventId(offset)
+                                .setCount(count)
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
+    }
+
+    private void get_market_events_response(GetMarketEvents.GetMarketEventsResponse getMarketEventsResponse) {
         if (getMarketEventsResponse.getResult() != null) {
             Log.e(TAG, "Got Market Events : " + getMarketEventsResponse.getResult().getMarketEventsCount()
                     + getMarketEventsResponse.getResult().getMarketEventsMap());
@@ -334,7 +463,17 @@ class WebSocketsService {
         }
     }
 
-    private void get_company_profile(GetCompanyProfile.GetCompanyProfileResponse getCompanyProfileResponse) {
+    void get_company_profile_request(int stock_id) {
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setGetCompanyProfileRequest(GetCompanyProfile.GetCompanyProfileRequest.newBuilder()
+                                .setStockId(stock_id)
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
+    }
+
+    private void get_company_profile_response(GetCompanyProfile.GetCompanyProfileResponse getCompanyProfileResponse) {
         if (getCompanyProfileResponse.getResult() != null) {
             Log.e(TAG, "Got Company profile : " + getCompanyProfileResponse.getResult().getStockDetails()
                     + getCompanyProfileResponse.getResult().getStockHistoryMapCount());
@@ -343,6 +482,17 @@ class WebSocketsService {
         } else {
             Log.e(TAG, "Internal Server Error : " + getCompanyProfileResponse.getInternalServerError().getReason());
         }
+    }
+
+    void buy_stocks_from_exchange_request(int stock_id, int quantity) {
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setBuyStocksFromExchangeRequest(BuyStocksFromExchange.BuyStocksFromExchangeRequest.newBuilder()
+                                .setStockId(stock_id)
+                                .setStockQuantity(quantity)
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
     }
 
     private void buy_stocks_from_exchange_response(BuyStocksFromExchange.BuyStocksFromExchangeResponse buyStocksFromExchangeResponse) {
@@ -359,6 +509,17 @@ class WebSocketsService {
         }
     }
 
+    void cancel_ask_order_request(int stock_id, int ask_id) {
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setCancelAskOrderRequest(CancelAskOrder.CancelAskOrderRequest.newBuilder()
+                                .setStockId(stock_id)
+                                .setAskId(ask_id)
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
+    }
+
     private void cancel_ask_order_response(CancelAskOrder.CancelAskOrderResponse cancelAskOrderResponse) {
         if (cancelAskOrderResponse.getResult().getSuccess()) {
             Log.e(TAG, "Cancel Ask Order Success");
@@ -369,6 +530,17 @@ class WebSocketsService {
         } else {
             Log.e(TAG, "Internal Server Error : " + cancelAskOrderResponse.getInternalServerError().getReason());
         }
+    }
+
+    void cancel_bid_order_request(int stock_id, int bid_id) {
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setCancelBidOrderRequest(CancelBidOrder.CancelBidOrderRequest.newBuilder()
+                                .setStockId(stock_id)
+                                .setBidId(bid_id)
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
     }
 
     private void cancel_bid_order_response(CancelBidOrder.CancelBidOrderResponse cancelBidOrderResponse) {
@@ -383,6 +555,17 @@ class WebSocketsService {
         }
     }
 
+    void mortgage_stocks_request(int stock_id, int quantity) {
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setMortgageStocksRequest(MortgageStocks.MortgageStocksRequest.newBuilder()
+                                .setStockId(stock_id)
+                                .setStockQuantity(quantity)
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
+    }
+
     private void mortgage_stocks_response(MortgageStocks.MortgageStocksResponse mortgageStocksResponse) {
         if (mortgageStocksResponse.getResult() != null) {
             Log.e(TAG, "Mortgage Stocks Success, Trading Price : " + mortgageStocksResponse.getResult().getTransaction());
@@ -393,6 +576,20 @@ class WebSocketsService {
         } else {
             Log.e(TAG, "Internal Server Error : " + mortgageStocksResponse.getInternalServerError().getReason());
         }
+    }
+
+    void place_ask_order_request(int stock_id, int quantity, int price, int order_type) {
+        // Order Type : LIMIT = 0, MARKET = 1, STOPLOSS = 2.
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setPlaceAskOrderRequest(PlaceAskOrder.PlaceAskOrderRequest.newBuilder()
+                                .setStockId(stock_id)
+                                .setStockQuantity(quantity)
+                                .setPrice(price)
+                                .setOrderTypeValue(order_type)
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
     }
 
     private void place_ask_order_response(PlaceAskOrder.PlaceAskOrderResponse placeAskOrderResponse) {
@@ -409,6 +606,20 @@ class WebSocketsService {
         }
     }
 
+    void place_bid_order_request(int stock_id, int quantity, int price, int order_type) {
+        // Order Type : LIMIT = 0, MARKET = 1, STOPLOSS = 2.
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setPlaceBidOrderRequest(PlaceBidOrder.PlaceBidOrderRequest.newBuilder()
+                                .setStockId(stock_id)
+                                .setStockQuantity(quantity)
+                                .setPrice(price)
+                                .setOrderTypeValue(order_type)
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
+    }
+
     private void place_bid_order_response(PlaceBidOrder.PlaceBidOrderResponse placeBidOrderResponse) {
         if (placeBidOrderResponse.getResult() != null) {
             Log.e(TAG, "Bid Order Success, Ask id : " + placeBidOrderResponse.getResult().getBidId());
@@ -421,6 +632,17 @@ class WebSocketsService {
         } else {
             Log.e(TAG, "Internal Server Error : " + placeBidOrderResponse.getInternalServerError().getReason());
         }
+    }
+
+    void retrieve_mortgage_stocks_request(int stock_id, int quantity) {
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setRetrieveMortgageStocksRequest(RetrieveMortgageStocks.RetrieveMortgageStocksRequest.newBuilder()
+                                .setStockId(stock_id)
+                                .setStockQuantity(quantity)
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
     }
 
     private void retrieve_mortgage_stocks_response(RetrieveMortgageStocks.RetrieveMortgageStocksResponse retrieveMortgageStocksResponse) {
@@ -437,6 +659,19 @@ class WebSocketsService {
         }
     }
 
+    void subscribe_request(int datastream_type, String datastream_id) {
+        // DataStream type : MARKET_DEPTH = 0, TRANSACTIONS = 1, NOTIFICATIONS = 2, STOCK_PRICES = 3,
+        // STOCK_EXCHANGE = 4, MARKET_EVENTS = 5, MY_ORDERS = 6.
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setSubscribeRequest(Subscribe.SubscribeRequest.newBuilder()
+                                .setDataStreamTypeValue(datastream_type)
+                                .setDataStreamId(datastream_id)
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
+    }
+
     private void subscribe_response(Subscribe.SubscribeResponse subscribeResponse) {
         if (subscribeResponse.getResult().getSuccess()) {
             Log.e(TAG, "Subscribe Success");
@@ -445,6 +680,19 @@ class WebSocketsService {
         } else {
             Log.e(TAG, "Internal Server Error : " + subscribeResponse.getInternalServerError().getReason());
         }
+    }
+
+    void unsubscribe_request(int datastream_type, String datastream_id) {
+        // DataStream type : MARKET_DEPTH = 0, TRANSACTIONS = 1, NOTIFICATIONS = 2, STOCK_PRICES = 3,
+        // STOCK_EXCHANGE = 4, MARKET_EVENTS = 5, MY_ORDERS = 6.
+        DalalMessageOuterClass.RequestWrapper requestWrapper =
+                DalalMessageOuterClass.RequestWrapper.newBuilder()
+                        .setUnsubscribeRequest(Unsubscribe.UnsubscribeRequest.newBuilder()
+                                .setDataStreamTypeValue(datastream_type)
+                                .setDataStreamId(datastream_id)
+                                .build())
+                        .build();
+        wrapAndSend(requestWrapper);
     }
 
     private void unsubscribe_response(Unsubscribe.UnsubscribeResponse unsubscribeResponse) {

@@ -33,6 +33,11 @@ public final class NotificationOuterClass {
         getTextBytes();
 
     /**
+     * <code>optional bool is_broadcast = 5;</code>
+     */
+    boolean getIsBroadcast();
+
+    /**
      * <code>optional string created_at = 4;</code>
      */
     java.lang.String getCreatedAt();
@@ -146,6 +151,29 @@ public final class NotificationOuterClass {
       text_ = value.toStringUtf8();
     }
 
+    public static final int IS_BROADCAST_FIELD_NUMBER = 5;
+    private boolean isBroadcast_;
+    /**
+     * <code>optional bool is_broadcast = 5;</code>
+     */
+    public boolean getIsBroadcast() {
+      return isBroadcast_;
+    }
+    /**
+     * <code>optional bool is_broadcast = 5;</code>
+     */
+    private void setIsBroadcast(boolean value) {
+      
+      isBroadcast_ = value;
+    }
+    /**
+     * <code>optional bool is_broadcast = 5;</code>
+     */
+    private void clearIsBroadcast() {
+      
+      isBroadcast_ = false;
+    }
+
     public static final int CREATED_AT_FIELD_NUMBER = 4;
     private java.lang.String createdAt_;
     /**
@@ -206,6 +234,9 @@ public final class NotificationOuterClass {
       if (!createdAt_.isEmpty()) {
         output.writeString(4, getCreatedAt());
       }
+      if (isBroadcast_ != false) {
+        output.writeBool(5, isBroadcast_);
+      }
     }
 
     public int getSerializedSize() {
@@ -228,6 +259,10 @@ public final class NotificationOuterClass {
       if (!createdAt_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeStringSize(4, getCreatedAt());
+      }
+      if (isBroadcast_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(5, isBroadcast_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -402,6 +437,29 @@ public final class NotificationOuterClass {
       }
 
       /**
+       * <code>optional bool is_broadcast = 5;</code>
+       */
+      public boolean getIsBroadcast() {
+        return instance.getIsBroadcast();
+      }
+      /**
+       * <code>optional bool is_broadcast = 5;</code>
+       */
+      public Builder setIsBroadcast(boolean value) {
+        copyOnWrite();
+        instance.setIsBroadcast(value);
+        return this;
+      }
+      /**
+       * <code>optional bool is_broadcast = 5;</code>
+       */
+      public Builder clearIsBroadcast() {
+        copyOnWrite();
+        instance.clearIsBroadcast();
+        return this;
+      }
+
+      /**
        * <code>optional string created_at = 4;</code>
        */
       public java.lang.String getCreatedAt() {
@@ -468,6 +526,8 @@ public final class NotificationOuterClass {
               other.userId_ != 0, other.userId_);
           text_ = visitor.visitString(!text_.isEmpty(), text_,
               !other.text_.isEmpty(), other.text_);
+          isBroadcast_ = visitor.visitBoolean(isBroadcast_ != false, isBroadcast_,
+              other.isBroadcast_ != false, other.isBroadcast_);
           createdAt_ = visitor.visitString(!createdAt_.isEmpty(), createdAt_,
               !other.createdAt_.isEmpty(), other.createdAt_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
@@ -514,6 +574,11 @@ public final class NotificationOuterClass {
                   String s = input.readStringRequireUtf8();
 
                   createdAt_ = s;
+                  break;
+                }
+                case 40: {
+
+                  isBroadcast_ = input.readBool();
                   break;
                 }
               }

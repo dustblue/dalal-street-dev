@@ -8,6 +8,448 @@ public final class MarketDepth {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
+  public interface TradeOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:dalalstreet.socketapi.datastreams.Trade)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>optional uint32 trade_price = 1;</code>
+     */
+    int getTradePrice();
+
+    /**
+     * <code>optional uint32 trade_quantity = 2;</code>
+     */
+    int getTradeQuantity();
+
+    /**
+     * <code>optional string trade_time = 3;</code>
+     */
+    java.lang.String getTradeTime();
+    /**
+     * <code>optional string trade_time = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getTradeTimeBytes();
+  }
+  /**
+   * Protobuf type {@code dalalstreet.socketapi.datastreams.Trade}
+   */
+  public  static final class Trade extends
+      com.google.protobuf.GeneratedMessageLite<
+          Trade, Trade.Builder> implements
+      // @@protoc_insertion_point(message_implements:dalalstreet.socketapi.datastreams.Trade)
+      TradeOrBuilder {
+    private Trade() {
+      tradeTime_ = "";
+    }
+    public static final int TRADE_PRICE_FIELD_NUMBER = 1;
+    private int tradePrice_;
+    /**
+     * <code>optional uint32 trade_price = 1;</code>
+     */
+    public int getTradePrice() {
+      return tradePrice_;
+    }
+    /**
+     * <code>optional uint32 trade_price = 1;</code>
+     */
+    private void setTradePrice(int value) {
+      
+      tradePrice_ = value;
+    }
+    /**
+     * <code>optional uint32 trade_price = 1;</code>
+     */
+    private void clearTradePrice() {
+      
+      tradePrice_ = 0;
+    }
+
+    public static final int TRADE_QUANTITY_FIELD_NUMBER = 2;
+    private int tradeQuantity_;
+    /**
+     * <code>optional uint32 trade_quantity = 2;</code>
+     */
+    public int getTradeQuantity() {
+      return tradeQuantity_;
+    }
+    /**
+     * <code>optional uint32 trade_quantity = 2;</code>
+     */
+    private void setTradeQuantity(int value) {
+      
+      tradeQuantity_ = value;
+    }
+    /**
+     * <code>optional uint32 trade_quantity = 2;</code>
+     */
+    private void clearTradeQuantity() {
+      
+      tradeQuantity_ = 0;
+    }
+
+    public static final int TRADE_TIME_FIELD_NUMBER = 3;
+    private java.lang.String tradeTime_;
+    /**
+     * <code>optional string trade_time = 3;</code>
+     */
+    public java.lang.String getTradeTime() {
+      return tradeTime_;
+    }
+    /**
+     * <code>optional string trade_time = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTradeTimeBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(tradeTime_);
+    }
+    /**
+     * <code>optional string trade_time = 3;</code>
+     */
+    private void setTradeTime(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      tradeTime_ = value;
+    }
+    /**
+     * <code>optional string trade_time = 3;</code>
+     */
+    private void clearTradeTime() {
+      
+      tradeTime_ = getDefaultInstance().getTradeTime();
+    }
+    /**
+     * <code>optional string trade_time = 3;</code>
+     */
+    private void setTradeTimeBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      tradeTime_ = value.toStringUtf8();
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (tradePrice_ != 0) {
+        output.writeUInt32(1, tradePrice_);
+      }
+      if (tradeQuantity_ != 0) {
+        output.writeUInt32(2, tradeQuantity_);
+      }
+      if (!tradeTime_.isEmpty()) {
+        output.writeString(3, getTradeTime());
+      }
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (tradePrice_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, tradePrice_);
+      }
+      if (tradeQuantity_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, tradeQuantity_);
+      }
+      if (!tradeTime_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getTradeTime());
+      }
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static dalalstreet.socketapi.datastreams.MarketDepth.Trade parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static dalalstreet.socketapi.datastreams.MarketDepth.Trade parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static dalalstreet.socketapi.datastreams.MarketDepth.Trade parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static dalalstreet.socketapi.datastreams.MarketDepth.Trade parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static dalalstreet.socketapi.datastreams.MarketDepth.Trade parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static dalalstreet.socketapi.datastreams.MarketDepth.Trade parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static dalalstreet.socketapi.datastreams.MarketDepth.Trade parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static dalalstreet.socketapi.datastreams.MarketDepth.Trade parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static dalalstreet.socketapi.datastreams.MarketDepth.Trade parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static dalalstreet.socketapi.datastreams.MarketDepth.Trade parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(dalalstreet.socketapi.datastreams.MarketDepth.Trade prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    /**
+     * Protobuf type {@code dalalstreet.socketapi.datastreams.Trade}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          dalalstreet.socketapi.datastreams.MarketDepth.Trade, Builder> implements
+        // @@protoc_insertion_point(builder_implements:dalalstreet.socketapi.datastreams.Trade)
+        dalalstreet.socketapi.datastreams.MarketDepth.TradeOrBuilder {
+      // Construct using dalalstreet.socketapi.datastreams.MarketDepth.Trade.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>optional uint32 trade_price = 1;</code>
+       */
+      public int getTradePrice() {
+        return instance.getTradePrice();
+      }
+      /**
+       * <code>optional uint32 trade_price = 1;</code>
+       */
+      public Builder setTradePrice(int value) {
+        copyOnWrite();
+        instance.setTradePrice(value);
+        return this;
+      }
+      /**
+       * <code>optional uint32 trade_price = 1;</code>
+       */
+      public Builder clearTradePrice() {
+        copyOnWrite();
+        instance.clearTradePrice();
+        return this;
+      }
+
+      /**
+       * <code>optional uint32 trade_quantity = 2;</code>
+       */
+      public int getTradeQuantity() {
+        return instance.getTradeQuantity();
+      }
+      /**
+       * <code>optional uint32 trade_quantity = 2;</code>
+       */
+      public Builder setTradeQuantity(int value) {
+        copyOnWrite();
+        instance.setTradeQuantity(value);
+        return this;
+      }
+      /**
+       * <code>optional uint32 trade_quantity = 2;</code>
+       */
+      public Builder clearTradeQuantity() {
+        copyOnWrite();
+        instance.clearTradeQuantity();
+        return this;
+      }
+
+      /**
+       * <code>optional string trade_time = 3;</code>
+       */
+      public java.lang.String getTradeTime() {
+        return instance.getTradeTime();
+      }
+      /**
+       * <code>optional string trade_time = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTradeTimeBytes() {
+        return instance.getTradeTimeBytes();
+      }
+      /**
+       * <code>optional string trade_time = 3;</code>
+       */
+      public Builder setTradeTime(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setTradeTime(value);
+        return this;
+      }
+      /**
+       * <code>optional string trade_time = 3;</code>
+       */
+      public Builder clearTradeTime() {
+        copyOnWrite();
+        instance.clearTradeTime();
+        return this;
+      }
+      /**
+       * <code>optional string trade_time = 3;</code>
+       */
+      public Builder setTradeTimeBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setTradeTimeBytes(value);
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:dalalstreet.socketapi.datastreams.Trade)
+    }
+    protected final Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        Object arg0, Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new dalalstreet.socketapi.datastreams.MarketDepth.Trade();
+        }
+        case IS_INITIALIZED: {
+          return DEFAULT_INSTANCE;
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          dalalstreet.socketapi.datastreams.MarketDepth.Trade other = (dalalstreet.socketapi.datastreams.MarketDepth.Trade) arg1;
+          tradePrice_ = visitor.visitInt(tradePrice_ != 0, tradePrice_,
+              other.tradePrice_ != 0, other.tradePrice_);
+          tradeQuantity_ = visitor.visitInt(tradeQuantity_ != 0, tradeQuantity_,
+              other.tradeQuantity_ != 0, other.tradeQuantity_);
+          tradeTime_ = visitor.visitString(!tradeTime_.isEmpty(), tradeTime_,
+              !other.tradeTime_.isEmpty(), other.tradeTime_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!input.skipField(tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+
+                  tradePrice_ = input.readUInt32();
+                  break;
+                }
+                case 16: {
+
+                  tradeQuantity_ = input.readUInt32();
+                  break;
+                }
+                case 26: {
+                  String s = input.readStringRequireUtf8();
+
+                  tradeTime_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (dalalstreet.socketapi.datastreams.MarketDepth.Trade.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+        }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:dalalstreet.socketapi.datastreams.Trade)
+    private static final dalalstreet.socketapi.datastreams.MarketDepth.Trade DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new Trade();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static dalalstreet.socketapi.datastreams.MarketDepth.Trade getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<Trade> PARSER;
+
+    public static com.google.protobuf.Parser<Trade> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
   public interface MarketDepthUpdateOrBuilder extends
       // @@protoc_insertion_point(interface_extends:dalalstreet.socketapi.datastreams.MarketDepthUpdate)
       com.google.protobuf.MessageLiteOrBuilder {
@@ -83,6 +525,40 @@ public final class MarketDepth {
      */
 
     int getBidDepthOrThrow(
+        int key);
+
+    /**
+     * <code>map&lt;uint32, .dalalstreet.socketapi.datastreams.Trade&gt; latest_trades = 4;</code>
+     */
+    int getLatestTradesCount();
+    /**
+     * <code>map&lt;uint32, .dalalstreet.socketapi.datastreams.Trade&gt; latest_trades = 4;</code>
+     */
+    boolean containsLatestTrades(
+        int key);
+    /**
+     * Use {@link #getLatestTradesMap()} instead.
+     */
+    @java.lang.Deprecated
+    java.util.Map<java.lang.Integer, dalalstreet.socketapi.datastreams.MarketDepth.Trade>
+    getLatestTrades();
+    /**
+     * <code>map&lt;uint32, .dalalstreet.socketapi.datastreams.Trade&gt; latest_trades = 4;</code>
+     */
+    java.util.Map<java.lang.Integer, dalalstreet.socketapi.datastreams.MarketDepth.Trade>
+    getLatestTradesMap();
+    /**
+     * <code>map&lt;uint32, .dalalstreet.socketapi.datastreams.Trade&gt; latest_trades = 4;</code>
+     */
+
+    dalalstreet.socketapi.datastreams.MarketDepth.Trade getLatestTradesOrDefault(
+        int key,
+        dalalstreet.socketapi.datastreams.MarketDepth.Trade defaultValue);
+    /**
+     * <code>map&lt;uint32, .dalalstreet.socketapi.datastreams.Trade&gt; latest_trades = 4;</code>
+     */
+
+    dalalstreet.socketapi.datastreams.MarketDepth.Trade getLatestTradesOrThrow(
         int key);
   }
   /**
@@ -293,6 +769,93 @@ public final class MarketDepth {
       return internalGetMutableBidDepth();
     }
 
+    public static final int LATEST_TRADES_FIELD_NUMBER = 4;
+    private static final class LatestTradesDefaultEntryHolder {
+      static final com.google.protobuf.MapEntryLite<
+          java.lang.Integer, dalalstreet.socketapi.datastreams.MarketDepth.Trade> defaultEntry =
+              com.google.protobuf.MapEntryLite
+              .<java.lang.Integer, dalalstreet.socketapi.datastreams.MarketDepth.Trade>newDefaultInstance(
+                  com.google.protobuf.WireFormat.FieldType.UINT32,
+                  0,
+                  com.google.protobuf.WireFormat.FieldType.MESSAGE,
+                  dalalstreet.socketapi.datastreams.MarketDepth.Trade.getDefaultInstance());
+    }
+    private com.google.protobuf.MapFieldLite<
+        java.lang.Integer, dalalstreet.socketapi.datastreams.MarketDepth.Trade> latestTrades_ =
+            com.google.protobuf.MapFieldLite.emptyMapField();
+    private com.google.protobuf.MapFieldLite<java.lang.Integer, dalalstreet.socketapi.datastreams.MarketDepth.Trade>
+    internalGetLatestTrades() {
+      return latestTrades_;
+    }
+    private com.google.protobuf.MapFieldLite<java.lang.Integer, dalalstreet.socketapi.datastreams.MarketDepth.Trade>
+    internalGetMutableLatestTrades() {
+      if (!latestTrades_.isMutable()) {
+        latestTrades_ = latestTrades_.mutableCopy();
+      }
+      return latestTrades_;
+    }
+
+    public int getLatestTradesCount() {
+      return internalGetLatestTrades().size();
+    }
+    /**
+     * <code>map&lt;uint32, .dalalstreet.socketapi.datastreams.Trade&gt; latest_trades = 4;</code>
+     */
+
+    public boolean containsLatestTrades(
+        int key) {
+      
+      return internalGetLatestTrades().containsKey(key);
+    }
+    /**
+     * Use {@link #getLatestTradesMap()} instead.
+     */
+    @java.lang.Deprecated
+    public java.util.Map<java.lang.Integer, dalalstreet.socketapi.datastreams.MarketDepth.Trade> getLatestTrades() {
+      return getLatestTradesMap();
+    }
+    /**
+     * <code>map&lt;uint32, .dalalstreet.socketapi.datastreams.Trade&gt; latest_trades = 4;</code>
+     */
+
+    public java.util.Map<java.lang.Integer, dalalstreet.socketapi.datastreams.MarketDepth.Trade> getLatestTradesMap() {
+      return java.util.Collections.unmodifiableMap(
+          internalGetLatestTrades());
+    }
+    /**
+     * <code>map&lt;uint32, .dalalstreet.socketapi.datastreams.Trade&gt; latest_trades = 4;</code>
+     */
+
+    public dalalstreet.socketapi.datastreams.MarketDepth.Trade getLatestTradesOrDefault(
+        int key,
+        dalalstreet.socketapi.datastreams.MarketDepth.Trade defaultValue) {
+      
+      java.util.Map<java.lang.Integer, dalalstreet.socketapi.datastreams.MarketDepth.Trade> map =
+          internalGetLatestTrades();
+      return map.containsKey(key) ? map.get(key) : defaultValue;
+    }
+    /**
+     * <code>map&lt;uint32, .dalalstreet.socketapi.datastreams.Trade&gt; latest_trades = 4;</code>
+     */
+
+    public dalalstreet.socketapi.datastreams.MarketDepth.Trade getLatestTradesOrThrow(
+        int key) {
+      
+      java.util.Map<java.lang.Integer, dalalstreet.socketapi.datastreams.MarketDepth.Trade> map =
+          internalGetLatestTrades();
+      if (!map.containsKey(key)) {
+        throw new java.lang.IllegalArgumentException();
+      }
+      return map.get(key);
+    }
+    /**
+     * <code>map&lt;uint32, .dalalstreet.socketapi.datastreams.Trade&gt; latest_trades = 4;</code>
+     */
+    private java.util.Map<java.lang.Integer, dalalstreet.socketapi.datastreams.MarketDepth.Trade>
+    getMutableLatestTradesMap() {
+      return internalGetMutableLatestTrades();
+    }
+
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (stockId_ != 0) {
@@ -307,6 +870,11 @@ public final class MarketDepth {
            : internalGetBidDepth().entrySet()) {
         BidDepthDefaultEntryHolder.defaultEntry.serializeTo(
             output, 3, entry.getKey(), entry.getValue());
+      }
+      for (java.util.Map.Entry<java.lang.Integer, dalalstreet.socketapi.datastreams.MarketDepth.Trade> entry
+           : internalGetLatestTrades().entrySet()) {
+        LatestTradesDefaultEntryHolder.defaultEntry.serializeTo(
+            output, 4, entry.getKey(), entry.getValue());
       }
     }
 
@@ -328,6 +896,11 @@ public final class MarketDepth {
            : internalGetBidDepth().entrySet()) {
         size += BidDepthDefaultEntryHolder.defaultEntry.computeMessageSize(
           3, entry.getKey(), entry.getValue());
+      }
+      for (java.util.Map.Entry<java.lang.Integer, dalalstreet.socketapi.datastreams.MarketDepth.Trade> entry
+           : internalGetLatestTrades().entrySet()) {
+        size += LatestTradesDefaultEntryHolder.defaultEntry.computeMessageSize(
+          4, entry.getKey(), entry.getValue());
       }
       memoizedSerializedSize = size;
       return size;
@@ -622,6 +1195,98 @@ public final class MarketDepth {
         return this;
       }
 
+
+      public int getLatestTradesCount() {
+        return instance.getLatestTradesMap().size();
+      }
+      /**
+       * <code>map&lt;uint32, .dalalstreet.socketapi.datastreams.Trade&gt; latest_trades = 4;</code>
+       */
+
+      public boolean containsLatestTrades(
+          int key) {
+        
+        return instance.getLatestTradesMap().containsKey(key);
+      }
+
+      public Builder clearLatestTrades() {
+        copyOnWrite();
+        instance.getMutableLatestTradesMap().clear();
+        return this;
+      }
+      /**
+       * <code>map&lt;uint32, .dalalstreet.socketapi.datastreams.Trade&gt; latest_trades = 4;</code>
+       */
+
+      public Builder removeLatestTrades(
+          int key) {
+        
+        copyOnWrite();
+        instance.getMutableLatestTradesMap().remove(key);
+        return this;
+      }
+      /**
+       * Use {@link #getLatestTradesMap()} instead.
+       */
+      @java.lang.Deprecated
+      public java.util.Map<java.lang.Integer, dalalstreet.socketapi.datastreams.MarketDepth.Trade> getLatestTrades() {
+        return getLatestTradesMap();
+      }
+      /**
+       * <code>map&lt;uint32, .dalalstreet.socketapi.datastreams.Trade&gt; latest_trades = 4;</code>
+       */
+      public java.util.Map<java.lang.Integer, dalalstreet.socketapi.datastreams.MarketDepth.Trade> getLatestTradesMap() {
+        return java.util.Collections.unmodifiableMap(
+            instance.getLatestTradesMap());
+      }
+      /**
+       * <code>map&lt;uint32, .dalalstreet.socketapi.datastreams.Trade&gt; latest_trades = 4;</code>
+       */
+
+      public dalalstreet.socketapi.datastreams.MarketDepth.Trade getLatestTradesOrDefault(
+          int key,
+          dalalstreet.socketapi.datastreams.MarketDepth.Trade defaultValue) {
+        
+        java.util.Map<java.lang.Integer, dalalstreet.socketapi.datastreams.MarketDepth.Trade> map =
+            instance.getLatestTradesMap();
+        return map.containsKey(key) ? map.get(key) : defaultValue;
+      }
+      /**
+       * <code>map&lt;uint32, .dalalstreet.socketapi.datastreams.Trade&gt; latest_trades = 4;</code>
+       */
+
+      public dalalstreet.socketapi.datastreams.MarketDepth.Trade getLatestTradesOrThrow(
+          int key) {
+        
+        java.util.Map<java.lang.Integer, dalalstreet.socketapi.datastreams.MarketDepth.Trade> map =
+            instance.getLatestTradesMap();
+        if (!map.containsKey(key)) {
+          throw new java.lang.IllegalArgumentException();
+        }
+        return map.get(key);
+      }
+      /**
+       * <code>map&lt;uint32, .dalalstreet.socketapi.datastreams.Trade&gt; latest_trades = 4;</code>
+       */
+      public Builder putLatestTrades(
+          int key,
+          dalalstreet.socketapi.datastreams.MarketDepth.Trade value) {
+        
+        if (value == null) { throw new java.lang.NullPointerException(); }
+        copyOnWrite();
+        instance.getMutableLatestTradesMap().put(key, value);
+        return this;
+      }
+      /**
+       * <code>map&lt;uint32, .dalalstreet.socketapi.datastreams.Trade&gt; latest_trades = 4;</code>
+       */
+      public Builder putAllLatestTrades(
+          java.util.Map<java.lang.Integer, dalalstreet.socketapi.datastreams.MarketDepth.Trade> values) {
+        copyOnWrite();
+        instance.getMutableLatestTradesMap().putAll(values);
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:dalalstreet.socketapi.datastreams.MarketDepthUpdate)
     }
     protected final Object dynamicMethod(
@@ -637,6 +1302,7 @@ public final class MarketDepth {
         case MAKE_IMMUTABLE: {
           askDepth_.makeImmutable();
           bidDepth_.makeImmutable();
+          latestTrades_.makeImmutable();
           return null;
         }
         case NEW_BUILDER: {
@@ -651,6 +1317,8 @@ public final class MarketDepth {
               askDepth_, other.internalGetAskDepth());
           bidDepth_ = visitor.visitMap(
               bidDepth_, other.internalGetBidDepth());
+          latestTrades_ = visitor.visitMap(
+              latestTrades_, other.internalGetLatestTrades());
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
               .INSTANCE) {
             bitField0_ |= other.bitField0_;
@@ -692,6 +1360,12 @@ public final class MarketDepth {
                     bidDepth_ = bidDepth_.mutableCopy();
                   }
                   BidDepthDefaultEntryHolder.defaultEntry.parseInto(bidDepth_, input, extensionRegistry);  break;
+                }
+                case 34: {
+                  if (!latestTrades_.isMutable()) {
+                    latestTrades_ = latestTrades_.mutableCopy();
+                  }
+                  LatestTradesDefaultEntryHolder.defaultEntry.parseInto(latestTrades_, input, extensionRegistry);  break;
                 }
               }
             }

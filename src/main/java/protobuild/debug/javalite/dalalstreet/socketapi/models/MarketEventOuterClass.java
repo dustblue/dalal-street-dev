@@ -23,26 +23,41 @@ public final class MarketEventOuterClass {
     int getStockId();
 
     /**
-     * <code>optional string text = 3;</code>
+     * <code>optional string headline = 3;</code>
+     */
+    java.lang.String getHeadline();
+    /**
+     * <code>optional string headline = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getHeadlineBytes();
+
+    /**
+     * <code>optional string text = 4;</code>
      */
     java.lang.String getText();
     /**
-     * <code>optional string text = 3;</code>
+     * <code>optional string text = 4;</code>
      */
     com.google.protobuf.ByteString
         getTextBytes();
 
     /**
-     * <code>optional sint32 emotion_score = 4;</code>
+     * <code>optional sint32 emotion_score = 5;</code>
      */
     int getEmotionScore();
 
     /**
-     * <code>optional string created_at = 5;</code>
+     * <code>optional bool is_global = 7;</code>
+     */
+    boolean getIsGlobal();
+
+    /**
+     * <code>optional string created_at = 6;</code>
      */
     java.lang.String getCreatedAt();
     /**
-     * <code>optional string created_at = 5;</code>
+     * <code>optional string created_at = 6;</code>
      */
     com.google.protobuf.ByteString
         getCreatedAtBytes();
@@ -56,6 +71,7 @@ public final class MarketEventOuterClass {
       // @@protoc_insertion_point(message_implements:dalalstreet.socketapi.models.MarketEvent)
       MarketEventOrBuilder {
     private MarketEvent() {
+      headline_ = "";
       text_ = "";
       createdAt_ = "";
     }
@@ -105,23 +121,69 @@ public final class MarketEventOuterClass {
       stockId_ = 0;
     }
 
-    public static final int TEXT_FIELD_NUMBER = 3;
+    public static final int HEADLINE_FIELD_NUMBER = 3;
+    private java.lang.String headline_;
+    /**
+     * <code>optional string headline = 3;</code>
+     */
+    public java.lang.String getHeadline() {
+      return headline_;
+    }
+    /**
+     * <code>optional string headline = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getHeadlineBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(headline_);
+    }
+    /**
+     * <code>optional string headline = 3;</code>
+     */
+    private void setHeadline(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      headline_ = value;
+    }
+    /**
+     * <code>optional string headline = 3;</code>
+     */
+    private void clearHeadline() {
+      
+      headline_ = getDefaultInstance().getHeadline();
+    }
+    /**
+     * <code>optional string headline = 3;</code>
+     */
+    private void setHeadlineBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      headline_ = value.toStringUtf8();
+    }
+
+    public static final int TEXT_FIELD_NUMBER = 4;
     private java.lang.String text_;
     /**
-     * <code>optional string text = 3;</code>
+     * <code>optional string text = 4;</code>
      */
     public java.lang.String getText() {
       return text_;
     }
     /**
-     * <code>optional string text = 3;</code>
+     * <code>optional string text = 4;</code>
      */
     public com.google.protobuf.ByteString
         getTextBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(text_);
     }
     /**
-     * <code>optional string text = 3;</code>
+     * <code>optional string text = 4;</code>
      */
     private void setText(
         java.lang.String value) {
@@ -132,14 +194,14 @@ public final class MarketEventOuterClass {
       text_ = value;
     }
     /**
-     * <code>optional string text = 3;</code>
+     * <code>optional string text = 4;</code>
      */
     private void clearText() {
       
       text_ = getDefaultInstance().getText();
     }
     /**
-     * <code>optional string text = 3;</code>
+     * <code>optional string text = 4;</code>
      */
     private void setTextBytes(
         com.google.protobuf.ByteString value) {
@@ -151,46 +213,69 @@ public final class MarketEventOuterClass {
       text_ = value.toStringUtf8();
     }
 
-    public static final int EMOTION_SCORE_FIELD_NUMBER = 4;
+    public static final int EMOTION_SCORE_FIELD_NUMBER = 5;
     private int emotionScore_;
     /**
-     * <code>optional sint32 emotion_score = 4;</code>
+     * <code>optional sint32 emotion_score = 5;</code>
      */
     public int getEmotionScore() {
       return emotionScore_;
     }
     /**
-     * <code>optional sint32 emotion_score = 4;</code>
+     * <code>optional sint32 emotion_score = 5;</code>
      */
     private void setEmotionScore(int value) {
       
       emotionScore_ = value;
     }
     /**
-     * <code>optional sint32 emotion_score = 4;</code>
+     * <code>optional sint32 emotion_score = 5;</code>
      */
     private void clearEmotionScore() {
       
       emotionScore_ = 0;
     }
 
-    public static final int CREATED_AT_FIELD_NUMBER = 5;
+    public static final int IS_GLOBAL_FIELD_NUMBER = 7;
+    private boolean isGlobal_;
+    /**
+     * <code>optional bool is_global = 7;</code>
+     */
+    public boolean getIsGlobal() {
+      return isGlobal_;
+    }
+    /**
+     * <code>optional bool is_global = 7;</code>
+     */
+    private void setIsGlobal(boolean value) {
+      
+      isGlobal_ = value;
+    }
+    /**
+     * <code>optional bool is_global = 7;</code>
+     */
+    private void clearIsGlobal() {
+      
+      isGlobal_ = false;
+    }
+
+    public static final int CREATED_AT_FIELD_NUMBER = 6;
     private java.lang.String createdAt_;
     /**
-     * <code>optional string created_at = 5;</code>
+     * <code>optional string created_at = 6;</code>
      */
     public java.lang.String getCreatedAt() {
       return createdAt_;
     }
     /**
-     * <code>optional string created_at = 5;</code>
+     * <code>optional string created_at = 6;</code>
      */
     public com.google.protobuf.ByteString
         getCreatedAtBytes() {
       return com.google.protobuf.ByteString.copyFromUtf8(createdAt_);
     }
     /**
-     * <code>optional string created_at = 5;</code>
+     * <code>optional string created_at = 6;</code>
      */
     private void setCreatedAt(
         java.lang.String value) {
@@ -201,14 +286,14 @@ public final class MarketEventOuterClass {
       createdAt_ = value;
     }
     /**
-     * <code>optional string created_at = 5;</code>
+     * <code>optional string created_at = 6;</code>
      */
     private void clearCreatedAt() {
       
       createdAt_ = getDefaultInstance().getCreatedAt();
     }
     /**
-     * <code>optional string created_at = 5;</code>
+     * <code>optional string created_at = 6;</code>
      */
     private void setCreatedAtBytes(
         com.google.protobuf.ByteString value) {
@@ -228,14 +313,20 @@ public final class MarketEventOuterClass {
       if (stockId_ != 0) {
         output.writeUInt32(2, stockId_);
       }
+      if (!headline_.isEmpty()) {
+        output.writeString(3, getHeadline());
+      }
       if (!text_.isEmpty()) {
-        output.writeString(3, getText());
+        output.writeString(4, getText());
       }
       if (emotionScore_ != 0) {
-        output.writeSInt32(4, emotionScore_);
+        output.writeSInt32(5, emotionScore_);
       }
       if (!createdAt_.isEmpty()) {
-        output.writeString(5, getCreatedAt());
+        output.writeString(6, getCreatedAt());
+      }
+      if (isGlobal_ != false) {
+        output.writeBool(7, isGlobal_);
       }
     }
 
@@ -252,17 +343,25 @@ public final class MarketEventOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(2, stockId_);
       }
+      if (!headline_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(3, getHeadline());
+      }
       if (!text_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(3, getText());
+          .computeStringSize(4, getText());
       }
       if (emotionScore_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt32Size(4, emotionScore_);
+          .computeSInt32Size(5, emotionScore_);
       }
       if (!createdAt_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeStringSize(5, getCreatedAt());
+          .computeStringSize(6, getCreatedAt());
+      }
+      if (isGlobal_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(7, isGlobal_);
       }
       memoizedSerializedSize = size;
       return size;
@@ -397,20 +496,60 @@ public final class MarketEventOuterClass {
       }
 
       /**
-       * <code>optional string text = 3;</code>
+       * <code>optional string headline = 3;</code>
+       */
+      public java.lang.String getHeadline() {
+        return instance.getHeadline();
+      }
+      /**
+       * <code>optional string headline = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getHeadlineBytes() {
+        return instance.getHeadlineBytes();
+      }
+      /**
+       * <code>optional string headline = 3;</code>
+       */
+      public Builder setHeadline(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setHeadline(value);
+        return this;
+      }
+      /**
+       * <code>optional string headline = 3;</code>
+       */
+      public Builder clearHeadline() {
+        copyOnWrite();
+        instance.clearHeadline();
+        return this;
+      }
+      /**
+       * <code>optional string headline = 3;</code>
+       */
+      public Builder setHeadlineBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setHeadlineBytes(value);
+        return this;
+      }
+
+      /**
+       * <code>optional string text = 4;</code>
        */
       public java.lang.String getText() {
         return instance.getText();
       }
       /**
-       * <code>optional string text = 3;</code>
+       * <code>optional string text = 4;</code>
        */
       public com.google.protobuf.ByteString
           getTextBytes() {
         return instance.getTextBytes();
       }
       /**
-       * <code>optional string text = 3;</code>
+       * <code>optional string text = 4;</code>
        */
       public Builder setText(
           java.lang.String value) {
@@ -419,7 +558,7 @@ public final class MarketEventOuterClass {
         return this;
       }
       /**
-       * <code>optional string text = 3;</code>
+       * <code>optional string text = 4;</code>
        */
       public Builder clearText() {
         copyOnWrite();
@@ -427,7 +566,7 @@ public final class MarketEventOuterClass {
         return this;
       }
       /**
-       * <code>optional string text = 3;</code>
+       * <code>optional string text = 4;</code>
        */
       public Builder setTextBytes(
           com.google.protobuf.ByteString value) {
@@ -437,13 +576,13 @@ public final class MarketEventOuterClass {
       }
 
       /**
-       * <code>optional sint32 emotion_score = 4;</code>
+       * <code>optional sint32 emotion_score = 5;</code>
        */
       public int getEmotionScore() {
         return instance.getEmotionScore();
       }
       /**
-       * <code>optional sint32 emotion_score = 4;</code>
+       * <code>optional sint32 emotion_score = 5;</code>
        */
       public Builder setEmotionScore(int value) {
         copyOnWrite();
@@ -451,7 +590,7 @@ public final class MarketEventOuterClass {
         return this;
       }
       /**
-       * <code>optional sint32 emotion_score = 4;</code>
+       * <code>optional sint32 emotion_score = 5;</code>
        */
       public Builder clearEmotionScore() {
         copyOnWrite();
@@ -460,20 +599,43 @@ public final class MarketEventOuterClass {
       }
 
       /**
-       * <code>optional string created_at = 5;</code>
+       * <code>optional bool is_global = 7;</code>
+       */
+      public boolean getIsGlobal() {
+        return instance.getIsGlobal();
+      }
+      /**
+       * <code>optional bool is_global = 7;</code>
+       */
+      public Builder setIsGlobal(boolean value) {
+        copyOnWrite();
+        instance.setIsGlobal(value);
+        return this;
+      }
+      /**
+       * <code>optional bool is_global = 7;</code>
+       */
+      public Builder clearIsGlobal() {
+        copyOnWrite();
+        instance.clearIsGlobal();
+        return this;
+      }
+
+      /**
+       * <code>optional string created_at = 6;</code>
        */
       public java.lang.String getCreatedAt() {
         return instance.getCreatedAt();
       }
       /**
-       * <code>optional string created_at = 5;</code>
+       * <code>optional string created_at = 6;</code>
        */
       public com.google.protobuf.ByteString
           getCreatedAtBytes() {
         return instance.getCreatedAtBytes();
       }
       /**
-       * <code>optional string created_at = 5;</code>
+       * <code>optional string created_at = 6;</code>
        */
       public Builder setCreatedAt(
           java.lang.String value) {
@@ -482,7 +644,7 @@ public final class MarketEventOuterClass {
         return this;
       }
       /**
-       * <code>optional string created_at = 5;</code>
+       * <code>optional string created_at = 6;</code>
        */
       public Builder clearCreatedAt() {
         copyOnWrite();
@@ -490,7 +652,7 @@ public final class MarketEventOuterClass {
         return this;
       }
       /**
-       * <code>optional string created_at = 5;</code>
+       * <code>optional string created_at = 6;</code>
        */
       public Builder setCreatedAtBytes(
           com.google.protobuf.ByteString value) {
@@ -524,10 +686,14 @@ public final class MarketEventOuterClass {
               other.id_ != 0, other.id_);
           stockId_ = visitor.visitInt(stockId_ != 0, stockId_,
               other.stockId_ != 0, other.stockId_);
+          headline_ = visitor.visitString(!headline_.isEmpty(), headline_,
+              !other.headline_.isEmpty(), other.headline_);
           text_ = visitor.visitString(!text_.isEmpty(), text_,
               !other.text_.isEmpty(), other.text_);
           emotionScore_ = visitor.visitInt(emotionScore_ != 0, emotionScore_,
               other.emotionScore_ != 0, other.emotionScore_);
+          isGlobal_ = visitor.visitBoolean(isGlobal_ != false, isGlobal_,
+              other.isGlobal_ != false, other.isGlobal_);
           createdAt_ = visitor.visitString(!createdAt_.isEmpty(), createdAt_,
               !other.createdAt_.isEmpty(), other.createdAt_);
           if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
@@ -567,18 +733,29 @@ public final class MarketEventOuterClass {
                 case 26: {
                   String s = input.readStringRequireUtf8();
 
+                  headline_ = s;
+                  break;
+                }
+                case 34: {
+                  String s = input.readStringRequireUtf8();
+
                   text_ = s;
                   break;
                 }
-                case 32: {
+                case 40: {
 
                   emotionScore_ = input.readSInt32();
                   break;
                 }
-                case 42: {
+                case 50: {
                   String s = input.readStringRequireUtf8();
 
                   createdAt_ = s;
+                  break;
+                }
+                case 56: {
+
+                  isGlobal_ = input.readBool();
                   break;
                 }
               }
