@@ -34,23 +34,33 @@ import dalalstreet.socketapi.actions.PlaceBidOrder;
 import dalalstreet.socketapi.actions.RetrieveMortgageStocks;
 import dalalstreet.socketapi.actions.Subscribe;
 import dalalstreet.socketapi.actions.Unsubscribe;
-import dalalstreet.socketapi.models.OrderTypeOuterClass;
+import dalalstreet.socketapi.models.LeaderboardRowOuterClass;
+import dalalstreet.socketapi.models.MortgageDetailOuterClass;
 import dalalstreet.socketapi.models.StockOuterClass;
 import dalalstreet.socketapi.models.UserOuterClass;
 
 class WebSocketsService {
 
     public static WebSocket ws;
-    public String sessionId;
     public static int requestId = 0;
-    public static UserOuterClass.User user;
-    public static Map<Integer, Integer> stocks_owned;
-    public static Map<Integer, StockOuterClass.Stock> stock_list;
-    public static Map<String, Integer> constants;
     private Listener mListener;
     private SharedPreferences mSharedPreferences;
     public static final String TAG = "WebSocketsService";
-    //TODO: to store requestID
+
+    //User variables
+    public String sessionId;
+    public static UserOuterClass.User user;
+    public static Map<Integer, Integer> stocks_owned;
+    public static Map<Integer, StockOuterClass.Stock> stocks_list;
+    public static Map<String, Integer> constants;
+
+    //Leaderboard
+    public static int my_rank;
+    public static int total_users;
+    public static Map<Integer, LeaderboardRowOuterClass.LeaderboardRow> rank_list;
+
+    //Mortgage Details
+    public static Map<Integer, MortgageDetailOuterClass.MortgageDetail> mortgaged_stocks;
 
     WebSocketsService(Listener listener, Context context) {
         mSharedPreferences = context.getSharedPreferences("dalal", Context.MODE_PRIVATE);
@@ -216,9 +226,10 @@ class WebSocketsService {
     private void login_response(Login.LoginResponse loginResponse) {
         if (loginResponse.getResult() != null) {
             sessionId = loginResponse.getResult().getSessionId();
-            stock_list = loginResponse.getResult().getStockListMap();
-            stocks_owned = loginResponse.getResult().getStocksOwnedMap();
             user = loginResponse.getResult().getUser();
+            stocks_list = loginResponse.getResult().getStockListMap();
+            stocks_owned = loginResponse.getResult().getStocksOwnedMap();
+            constants = loginResponse.getResult().getConstantsMap();
             mListener.onCallback();
         } else if (loginResponse.getInvalidCredentialsError() != null) {
             Log.e(TAG, "Invalid Credentials Error : " + loginResponse.getInvalidCredentialsError().getReason());
@@ -264,8 +275,9 @@ class WebSocketsService {
 
     private void get_leaderboard_response(GetLeaderboard.GetLeaderboardResponse getLeaderboardResponse) {
         if (getLeaderboardResponse.getResult() != null) {
-            Log.e(TAG, "Got Leaderboard : " + getLeaderboardResponse.getResult().getMyRank()
-                    + getLeaderboardResponse.getResult().getRankListCount() + getLeaderboardResponse.getResult().getRankListMap());
+            my_rank = getLeaderboardResponse.getResult().getMyRank();
+            total_users = getLeaderboardResponse.getResult().getRankListCount();
+            rank_list = getLeaderboardResponse.getResult().getRankListMap();
         } else if (getLeaderboardResponse.getBadRequestError() != null) {
             Log.e(TAG, "Bad Request Error : " + getLeaderboardResponse.getBadRequestError().getReason());
         } else {

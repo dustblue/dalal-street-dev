@@ -96,7 +96,7 @@ public class Companies extends Fragment {
     public void setValues(){ //todo : get from service,checkout companyAdapter
         companyList=new ArrayList<>();
         companyList.clear();
-        Map<Integer, StockOuterClass.Stock> stockMap = WebSocketsService.stock_list;
+        Map<Integer, StockOuterClass.Stock> stockMap = WebSocketsService.stocks_list;
         Set<Integer> keyset = stockMap.keySet();
         Collection<StockOuterClass.Stock> stockList = stockMap.values();
         for (StockOuterClass.Stock i : stockList){

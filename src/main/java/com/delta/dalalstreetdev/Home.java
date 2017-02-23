@@ -24,7 +24,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.util.Map;
-import java.util.Set;
 
 import dalalstreet.socketapi.models.StockOuterClass;
 import dalalstreet.socketapi.models.UserOuterClass;
@@ -46,6 +45,9 @@ public class Home extends AppCompatActivity
 
         websocket = new WebSocketsService(this,this);
         websocket.openWebSocket();
+        //TODO Move these to Splash and Login
+        websocket.get_leaderboard_request();
+        websocket.get_mortgage_details_request();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -198,7 +200,7 @@ public class Home extends AppCompatActivity
 
         setValues();
         UserOuterClass.User user = WebSocketsService.user;
-        name = user.getName(); //todo : get from service
+        name = user.getName();
 
         cashWorth = user.getCash();
         String cashText = "Cash worth\n" + String.valueOf(cashWorth);
@@ -243,7 +245,7 @@ public class Home extends AppCompatActivity
 
     private int getStockWorth() {
         Map<Integer, Integer> stocks_owned = WebSocketsService.stocks_owned;
-        Map<Integer, StockOuterClass.Stock> stock_list = WebSocketsService.stock_list;
+        Map<Integer, StockOuterClass.Stock> stock_list = WebSocketsService.stocks_list;
         Integer sum = 0;
         for(Integer i : stock_list.keySet()){
             sum += stock_list.get(i).getCurrentPrice() * stocks_owned.get(i);
